@@ -56,7 +56,7 @@ var renderCollection = function(collection) {
 };
 
 $(document).ready(function() {
-  $("#contact-details").hide();
-  console.log(myRolodex);
-  // render(myContact);
+  // $("#contact-details").hide();
+  // console.log(myRolodex);
+  renderCollection(myRolodex);
 });
