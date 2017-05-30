@@ -34,7 +34,7 @@ var render = function(contact) {
   var templateText = $('#tmpl-contact-card').html();
   var templateObject = _.template(templateText);
   var compiledHTML = $(templateObject(contact.toJSON()));
-  $('#contact-details').append(compiledHTML);
+  $('#contact-cards').append(compiledHTML);
 };
 
 var renderRolodex = function(contacts) {
@@ -58,5 +58,6 @@ var getFormData = function() {
 $(document).ready(function() {
   render(testContact1);
   render(testContact2);
+  render(new Contact());
 
 });
