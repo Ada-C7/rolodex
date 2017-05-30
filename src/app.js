@@ -2,8 +2,8 @@ import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 import $ from 'jquery';
 import _ from 'underscore';
-import Contact from './models/contact.js';
-import Rolodex from './collections/rolodex.js';
+import Contact from 'app/models/contact.js';
+import Rolodex from 'app/collections/rolodex.js';
 
 var application = new Application();
 
@@ -27,3 +27,20 @@ var contactData = [
     email: "tina@burgers.com"
   }
 ];
+
+var myContact = new Contact({
+  name: "Jimmy Pesto",
+  phone: "4958305s",
+  email: "jimmy@pesto.com"
+});
+
+var render = function(contact) {
+  var templateText = $("#tmpl-contact-card").html();
+  var templateObject = _.template(templateText);
+  var compiledHTML = $(templateObject(contact.toJSON()));
+  $("#contact-cards").append(compiledHTML);
+};
+
+$(document).ready(function(){
+  render(myContact);
+});
