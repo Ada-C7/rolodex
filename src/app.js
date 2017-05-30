@@ -69,6 +69,16 @@ var getFormData = function(){
   };
 };
 
+// --------------clear form data--------------------
+
+var clearFormData = function(){
+  $('#name').val('');
+  $('#email').val('');
+  $('#phone').val('');
+};
+
+
+// --------------Document Ready--------------------
 
 
 $(document).ready(function() {
@@ -81,9 +91,15 @@ $(document).ready(function() {
     myContacts.add(newContact);
   });
 
+  $('.btn-cancel').click(function(){
+    clearFormData();
+  });
+
   renderRolodex(myContacts);
 
   myContacts.on("update", function(){
     renderRolodex(myContacts);
   });
+
+
 });
