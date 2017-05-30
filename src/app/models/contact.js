@@ -1,4 +1,6 @@
 import Backbone from 'backbone';
+import $ from 'jquery';
+import _ from 'underscore';
 
 const Contact = Backbone.Model.extend({
   // This model should have the attributes for
