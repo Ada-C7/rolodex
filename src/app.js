@@ -46,6 +46,30 @@ var renderList = function(contactList) {
   });
 };
 
+var getFormData = function() {
+  var formName = $('#name').val();
+  $('#name').val('');
+  var formEmail = $('#email').val();
+  $('#email').val('');
+  var formPhone = $('#phone').val();
+  $('#phone').val('');
+
+  return {
+    name: formName,
+    email: formEmail,
+    phone: formPhone
+  };
+};
+
 $(document).ready(function() {
   renderList(myContactList);
+
+  myContactList.on('update', function() {
+    renderList(myContactList);
+  });
+
+  $('.btn-save').click(function() {
+    var contact = new Contact(getFormData());
+    myContactList.add(contact);
+  });
 });
