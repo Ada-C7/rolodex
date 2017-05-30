@@ -2,8 +2,8 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from '/app/models/contact.js';
 import Rolodex from '/app/collections/rolodex.js';
-// import Application from './src/app/models/application';
-// import ApplicationView from './src/app/views/application_view';
+import Application from '/app/models/application';
+import ApplicationView from '/app/views/application_view';
 
 
 // WAVE 1
@@ -22,9 +22,9 @@ var renderContact = function(contact){
   $('#contact-cards').append($(contactDetails));
 };
 
-$(document).ready(function() {
-  renderContact(myContact);
-});
+// $(document).ready(function() {
+//   renderContact(myContact);
+// });
 
 
 
@@ -93,8 +93,14 @@ var myContacts = [
 ];
 
 var myRolodex = new Rolodex(myContacts);
-  {
-  myContacts.each(function(contact){
+
+var renderRolodex = function(rolodex){
+  $('#contact-cards').empty();
+  rolodex.each(function(contact){
     renderContact(contact);
   });
+};
+
+$(document).ready(function() {
+  renderRolodex(myRolodex);
 });
