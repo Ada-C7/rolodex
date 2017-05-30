@@ -59,4 +59,8 @@ $(document).ready(function() {
   // $("#contact-details").hide();
   // console.log(myRolodex);
   renderCollection(myRolodex);
+
+  myRolodex.on("update", function() {
+    renderCollection(myRolodex);
+  });
 });
