@@ -12,8 +12,29 @@ var appView = new ApplicationView({
   model: application
 });
 
+var getContactInfo = function() {
 
+};
 
+//create a collection for storing contacts
+var rolodexList = new Rolodex();
+
+$('.btn-save').click(function(){
+  //get data from form
+  //create Contact
+  //add to list
+})
+
+//render one contact
+var renderContact = function(contact) {
+
+};
+
+var renderRolodex = function(contactList) {
+  contactList.each(function(contact){
+    renderContact(contact);
+  })
+};
 
 $(document).ready(function(){
 
