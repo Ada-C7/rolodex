@@ -55,12 +55,32 @@ var renderCollection = function(collection) {
   });
 };
 
+var getFormData = function() {
+  var formName = $("#contact-name").val();
+  $("#contact-name").val("");
+  var formEmail = $("#contact-email").val();
+  $("#contact-email").val("");
+  var formPhone = $("#contact-phone").val();
+  $("#contact-phone").val("");
+  return {
+    name: formName,
+    email: formEmail,
+    phone: formPhone
+  };
+};
+
 $(document).ready(function() {
-  // $("#contact-details").hide();
-  // console.log(myRolodex);
+  $("#contact-details").hide();
   renderCollection(myRolodex);
 
   myRolodex.on("update", function() {
     renderCollection(myRolodex);
   });
+
+  $("h3.btn-save").click(function() {
+    var formData = getFormData();
+    var newContact = new Contact(formData);
+    myRolodex.add(newContact);
+  });
+
 });
