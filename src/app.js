@@ -17,6 +17,18 @@ var myContact = new Contact({
   email: "lynn@test.com"
 });
 
+var render = function(contact) {
+  var templateText = $("#tmpl-contact-card").html();
+
+  var templateObject = _.template(templateText);
+
+  var compiledHTML = templateObject(contact.toJSON());
+
+  $("#contact-cards").append(compiledHTML);
+};
+
 $(document).ready(function() {
+  $("#contact-details").hide();
   console.log(myContact);
+  render(myContact);
 });
