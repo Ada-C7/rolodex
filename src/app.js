@@ -26,6 +26,8 @@ var render = function(contact) {
 
   var compiledHTML = (templateObject(contact.toJSON()));
 
+  $('#contact-cards').append(compiledHTML);
+
 };
 
 
