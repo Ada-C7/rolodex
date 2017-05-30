@@ -19,10 +19,13 @@ var newContact = new Contact({
 });
 
 var renderCard = function(contact){
-  console.log(contact);
+  var templateText = $('#tmpl-contact-card').html();
+  var templateObject = _.template(templateText);
+  var compiledHTML = $(templateObject(contact.toJSON()));
+  $('#contact-cards').append(compiledHTML);
 };
 
 $(document).ready(function() {
-  renderCard("new contact");
+  renderCard(newContact);
 
 });
