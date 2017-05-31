@@ -12,6 +12,9 @@ import _ from 'underscore';
 // Link to contact model
 import Contact from './app/models/contact.js';
 
+import Rolodex from './app/collections/rolodex.js';
+
+
 // Creating instance of Contact model with static data
 var myContact = new Contact({
   name: "Rana Sulaiman",
@@ -33,6 +36,32 @@ var render = function(contact){
   // Append result to the DOM
 $('#contact-cards').append(compiledHTML);
 };
+
+
+// Collections- Wave2
+var rolodexList = new Rolodex(myContact);
+
+// new rolodex
+var getInputData = function(){
+  var inputName = $('#name').val;
+  $('#name').val('');
+
+  var inputEmail = $('#email').val;
+  $('#email').val('');
+
+  var inputPhone = $('#phone').val;
+  $('#phone').val('');
+
+  return {
+  name: inputName,
+  email: inputEmail,
+  phone: inputPhone
+  };
+
+};
+
+
+
 
 
 
