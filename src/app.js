@@ -6,29 +6,6 @@ import Application from '/app/models/application';
 import ApplicationView from '/app/views/application_view';
 import ContactView from 'app/views/contact_view';
 
-
-// WAVE 1
-var myContact = new Contact({
-  name: "chris",
-  phone: "8005553333",
-  email: "notreal@gmail.com"
-});
-
-// var renderContact = function(contact){
-//
-//   var contactTemplate = _.template($('#tmpl-contact-card').html());
-//   var contactDetails = contactTemplate({
-//     name: contact.get("name")
-//   });
-//   $('#contact-cards').append($(contactDetails));
-// };
-
-// $(document).ready(function() {
-//   renderContact(myContact);
-// });
-
-
-
 // WAVE 2
 
 var myContacts = [
@@ -112,3 +89,26 @@ var renderRolodex = function(rolodex){
 $(document).ready(function() {
   renderRolodex(myRolodex);
 });
+
+
+
+// WAVE 1
+
+// var myContact = new Contact({
+//   name: "chris",
+//   phone: "8005553333",
+//   email: "notreal@gmail.com"
+// });
+
+// var renderContact = function(contact){
+//
+//   var contactTemplate = _.template($('#tmpl-contact-card').html());
+//   var contactDetails = contactTemplate({
+//     name: contact.get("name")
+//   });
+//   $('#contact-cards').append($(contactDetails));
+// };
+
+// $(document).ready(function() {
+//   renderContact(myContact);
+// });
