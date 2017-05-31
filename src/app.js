@@ -41,22 +41,8 @@ $('#contact-cards').append(compiledHTML);
 // Collections- Wave2
 var rolodexList = new Rolodex(myContact);
 
-// new rolodex
+// Read the Form data
 var getInputData = function(){
-  var inputName = $('#name').val;
-  $('#name').val('');
-
-  var inputEmail = $('#email').val;
-  $('#email').val('');
-
-  var inputPhone = $('#phone').val;
-  $('#phone').val('');
-
-  return {
-  name: inputName,
-  email: inputEmail,
-  phone: inputPhone
-  };
 
 };
 
