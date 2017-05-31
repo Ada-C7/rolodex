@@ -57,9 +57,9 @@ var renderRolodex = function(rolodex) {
 
 var readNewContactForm = function() {
   // Get the values from the fields
-  var nameData = $('#name').val();
-  var emailData = $('#email').val();
-  var phoneData = $('#phone').val();
+  var nameData = $('.name').val();
+  var emailData = $('.email').val();
+  var phoneData = $('.phone').val();
 
   clearForm();
 
@@ -72,9 +72,7 @@ var readNewContactForm = function() {
 };
 
 var clearForm = function(){
-  $('#name').val('');
-  $('#email').val('');
-  $('#phone').val('');
+  $('.input').val('');
 };
 
 
