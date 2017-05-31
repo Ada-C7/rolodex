@@ -2,8 +2,10 @@ import _ from 'underscore';
 import $ from 'jquery';
 
 import Contact from 'app/models/contact';
+import ContactList from './app/collections/rolodex';
 
 var contactTemplate;
+var contactList;
 
 var contactData = [
   {
@@ -24,20 +26,36 @@ var contactData = [
     email: 'jenni@email.com'
   }];
 
-var myContact = new Contact(contactData[0]);
+  // var readContactForm = function() {
+  //   var nameData = $("name").val();
+  //   $("#name").val("");
+  // }
+
+// var myContact = new Contact(contactData[0]);
 
 var render = function(contact) {
-  var jsonContact = myContact.toJSON();
+  var jsonContact = contact.toJSON();
   var generatedHTML = contactTemplate(jsonContact);
   console.log(generatedHTML);
 
   $("#contact-cards").append(generatedHTML);
 };
 
+var renderList = function(contactList) {
+  $("#contact-cards").empty();
+  contactList.each(function(contact) {
+    render(contact);
+  });
+};
+
+contactList = new ContactList(contactData);
+
 $(document).ready(function() {
-  console.log(myContact.get("name"));
+  // console.log(myContact.get("name"));
 
   contactTemplate = _.template($('#tmpl-contact-card').html());
 
-  render(myContact);
+  renderList(contactList);
+
+  // render(myContact);
 });
