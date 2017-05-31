@@ -11,6 +11,16 @@ var contactData = [
     name: 'Brendon Small',
     email:'makin_movies1996@gmail.com',
     phone: "222-2222"
+  },
+  {
+    name: 'Coach John McGuirk',
+    email:'not_a_gym_teacher@gmail.com',
+    phone: "333-3333"
+  },
+  {
+    name: 'Melissa Robbins',
+    email:'happy_method_actor@gmail.com',
+    phone: "444-4444"
   }
 ];
 
@@ -34,13 +44,13 @@ var renderRolodex = function(rolodex) {
 
 var readContactForm = function() {
   var name = $('#name').val();
-  $('name').val('');
+  $('#name').val('');
 
   var email = $('#email').val();
-  $('email').val('');
+  $('#email').val('');
 
   var phone = $('#phone').val();
-  $('phone').val('');
+  $('#phone').val('');
 
   return {
     name: name,
@@ -57,20 +67,16 @@ $(document).ready(function() {
     renderRolodex(rolodex);
   });
 
-  contactData.forEach(function(rawContact) {
-    var contact = new Contact(rawContact);
-    render(contact);
-  });
+  renderRolodex(rolodex);
 
   console.log("Working.");
 
-$('.btn-save').click(function(event) {
-  var formData = readContactForm();
-  console.log(formData);
+  $('.btn-save').click(function(event) {
+    var formData = readContactForm();
+    console.log(formData);
 
-  //Changed from Rolodex to Contact
-  var contact = new Contact(formData);
-  rolodex.add(contact);
-});
-
+    //Changed from Rolodex to Contact
+    var contact = new Contact(formData);
+    rolodex.add(contact);
+  });
 });
