@@ -5,6 +5,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import Contact from 'app/models/contact';
 import Rolodex from 'app/collections/rolodex';
+import ContactView from 'app/views/contact_view';
 
 // var application = new Application();
 //
@@ -13,7 +14,6 @@ import Rolodex from 'app/collections/rolodex';
 //   model: application
 // });
 
-// var templateContact;
 var templateDetails;
 var templateCard;
 
@@ -27,17 +27,16 @@ var rawContact = {
 
 var renderRolodex = function(rolodex) {
 
-  $().empty();
+  $('#contact-cards').empty();
 
   rolodex.each(function(contactInfo) {
     var contactView = new ContactView ({
       mode: contactInfo,
-      template: _.template( $('#tmpl-contact-card').html() ),
+      template: templateCard,
     });
 
     $('#contact-cards').append(contactView.render().$el);
   });
-
 };
 
 // var renderContact = function(contact){
@@ -52,8 +51,8 @@ $(document).ready(function() {
   templateCard = _.template($('#tmpl-contact-card').html());
   templateDetails = _.template($('#tmpl-contact-details').html());
 
-  var contact = new Contact( rawContact );
-  renderContact(contact);
+  // var contact = new Contact( rawContact );
+  // renderContact(contact);
+  renderRolodex(rolodex);
 
-  var newContact = new Contact;
 });
