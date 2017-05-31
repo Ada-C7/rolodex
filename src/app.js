@@ -34,7 +34,7 @@ var renderRolodex = function(rolodex) {
 
 var readContactForm = function() {
   var name = $('#name').val();
-  $('name').val('something');
+  $('name').val('');
 
   var email = $('#email').val();
   $('email').val('');
@@ -57,10 +57,10 @@ $(document).ready(function() {
     renderRolodex(rolodex);
   });
 
-  // contactData.forEach(function(rawContact) {
-  //   var contact = new Contact(rawContact);
-  //   render(contact);
-  // });
+  contactData.forEach(function(rawContact) {
+    var contact = new Contact(rawContact);
+    render(contact);
+  });
 
   console.log("Working.");
 
@@ -68,7 +68,8 @@ $('.btn-save').click(function(event) {
   var formData = readContactForm();
   console.log(formData);
 
-  var contact = new Rolodex(formData);
+  //Changed from Rolodex to Contact
+  var contact = new Contact(formData);
   rolodex.add(contact);
 });
 
