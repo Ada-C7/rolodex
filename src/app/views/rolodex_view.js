@@ -1,8 +1,9 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
-import ContactView from './contact_view.js';
 import Contact from '../models/contact.js';
+import ContactView from './contact_view.js';
+
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
@@ -27,23 +28,35 @@ var RolodexView = Backbone.View.extend({
 
   events: {
     "click .btn-save": "saveTask",
+    "click .btn-cancel": "clearFormData"
   },
 
   getFormData: function(){
-    var formName = $('#name').val();
-    $('#name').val('');
+    var formName = this.$('#name').val();
+    this.$('#name').val('');
 
-    var formEmail = $('#email').val();
-    $('#email').val('');
+    var formEmail = this.$('#email').val();
+    this.$('#email').val('');
 
-    var formPhone = $('#phone').val();
-    $('#phone').val('');
+    var formPhone = this.$('#phone').val();
+    this.$('#phone').val('');
 
     return {
       name: formName,
       email: formEmail,
       phone: formPhone
     };
+  },
+
+  saveTask: function(){
+    var newContact = new Contact(this.getFormData());
+    this.model.add(newContact);
+  },
+
+  clearFormData: function(){
+    this.$('#name').val('');
+    this.$('#email').val('');
+    this.$('#phone').val('');
   }
 
 });

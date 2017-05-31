@@ -1,18 +1,9 @@
-import Application from 'app/models/application';
-import ApplicationView from 'app/views/application_view';
 import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
 import ContactView from './app/views/contact_view.js';
 import RolodexView from './app/views/rolodex_view.js';
-
-var application = new Application();
-
-var appView = new ApplicationView({
-  el: '#application',
-  model: application
-});
 
 
 var newContact = new Contact({
@@ -61,57 +52,61 @@ var myContacts = new Rolodex(contactData);
 // };
 
 // --------------get form data--------------------
-
-var getFormData = function(){
-  var formName = $('#name').val();
-  $('#name').val('');
-
-  var formEmail = $('#email').val();
-  $('#email').val('');
-
-  var formPhone = $('#phone').val();
-  $('#phone').val('');
-
-  return {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
-};
+//
+// var getFormData = function(){
+//   var formName = $('#name').val();
+//   $('#name').val('');
+//
+//   var formEmail = $('#email').val();
+//   $('#email').val('');
+//
+//   var formPhone = $('#phone').val();
+//   $('#phone').val('');
+//
+//   return {
+//     name: formName,
+//     email: formEmail,
+//     phone: formPhone
+//   };
+// };
 
 // --------------clear form data--------------------
-
-var clearFormData = function(){
-  $('#name').val('');
-  $('#email').val('');
-  $('#phone').val('');
-};
+//
+// var clearFormData = function(){
+//   $('#name').val('');
+//   $('#email').val('');
+//   $('#phone').val('');
+// };
 
 
 // --------------Document Ready--------------------
 
+// var myRolodex = new Rolodex();
 
 $(document).ready(function() {
   // renderCard(newContact);
 
-  $('.btn-save').click(function(){
-    var formData = getFormData();
-    var newContact = new Contact(formData);
+  // $('.btn-save').click(function(){
+  //   var formData = getFormData();
+  //   var newContact = new Contact(formData);
+  //
+  //   myContacts.add(newContact);
+  // });
 
-    myContacts.add(newContact);
-  });
+  // $('.btn-save').click(function(){
+  //   console.log("here");
+  // });
 
-  $('.btn-cancel').click(function(){
-    clearFormData();
-  });
+  // $('.btn-cancel').click(function(){
+  //   clearFormData();
+  // });
+  //
 
-
-  var myRolodex = new Rolodex();
 
   var myRolodexView = new RolodexView({
-    model: myRolodex,
+    model: myContacts,
     template: _.template($('#tmpl-contact-card').html()),
-    el: 'main'
+    el: '#application'
   });
   myRolodexView.render();
 });
