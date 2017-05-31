@@ -12,7 +12,8 @@ var RolodexView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$('#tmpl-contact-card').empty();
+    this.$('#contact-cards').empty();
+    this.$('#contact-details').hide();
     // saved a reference to 'this'
     var that = this;
 
@@ -21,8 +22,8 @@ var RolodexView = Backbone.View.extend({
       // created a new view for each task
       var myContactView = new ContactView({
         model: contact,
-        template: that.template,
-        tagName: 'li'
+        template: that.template
+        // tagName: 'li'
       });
       // rendered the view and appended it to 'todo-items'
       that.$('#contact-cards').append(myContactView.render().el);
@@ -44,7 +45,7 @@ var RolodexView = Backbone.View.extend({
 
     // clear checkbox get the property 'checked' and force is to false
     var formPhone = this.$('#phone').val();
-    this.$('#phone').val();
+    this.$('#phone').val('');
 
     return {
       name: formName,

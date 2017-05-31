@@ -5,7 +5,7 @@ const ContactView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
 
-    this.$el.addClass("contact-card small-11 medium-4 large-2 medium-offset-1 columns");
+    // this.$el.addClass("contact-card small-11 medium-4 large-2 medium-offset-1 columns");
 
     this.listenTo(this.model, "change", this.render);
   },
