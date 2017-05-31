@@ -89,6 +89,17 @@ $(document).ready(function() {
   $("#add-contact").click(function() {
     var contact = new Contact(getFormData());
 
+  $("#cancel-contact").click(function(){
+    var formName = $("#name").val();
+    $("#name").val('');
+
+    var formPhone = $("#phone").val();
+    $("#phone").val('');
+
+    var formEmail = $("#email").val();
+    $("#email").val('');
+  });
+
     myRolodex.add(contact);
 
   });
