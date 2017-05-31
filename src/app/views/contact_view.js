@@ -9,6 +9,7 @@ var ContactView = Backbone.View.extend({
     this.listenTo(this.model, "change", this.render);
   },
   render: function(){
+    console.log("Hey i'm trying to render");
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;

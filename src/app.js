@@ -6,23 +6,6 @@ import Application from '/app/models/application';
 import ApplicationView from '/app/views/application_view';
 import ContactView from 'app/views/contact_view';
 
-// WAVE 2
-var getFormData = function(){
-  var formName = $('.form-name').val();
-  $('.form-name').val(' ');
-
-  var formEmail = $('.form-email').val();
-  $('.form-email').val(' ');
-
-  var formPhone = $('.form-phone').val();
-  $('.form-phone').val(' ');
-
-  return {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
-};
 
 var myContacts = [
   { name: "Dwight Schrute",
@@ -103,16 +86,6 @@ var renderRolodex = function(rolodex){
 };
 
 $(document).ready(function() {
-  renderRolodex(myRolodex);
-
-  $(".btn-save").click(function(){
-    var contact = new Contact(getFormData());
-    myRolodex.add(contact);
-  });
-
-  myRolodex.on("update", function() {
-    renderRolodex(myRolodex);
-  });
 
 });
 

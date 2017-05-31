@@ -17,8 +17,10 @@ var Contact = Backbone.Model.extend({
   initialize: function(params){
     // console.log("starting", params);
     this.logStatus();
-  }
+  },
+  showAllInfo: function(){
 
+  }
 });
 
 export default Contact;
