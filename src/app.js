@@ -6,6 +6,7 @@ import $ from 'jquery';
 import Contact from 'app/models/contact';
 import Rolodex from 'app/collections/rolodex';
 import ContactView from 'app/views/contact_view';
+import RolodexView from 'app/views/rolodex_view';
 
 // var application = new Application();
 //
@@ -45,35 +46,40 @@ var contacts = [{
 
 var rolodex = new Rolodex(contacts);
 
-var renderRolodex = function(rolodex) {
-  // console.log("in renderRolodex");
-  $('#contact-cards').empty();
-
-  rolodex.each(function(contactInfo) {
-    var contactView = new ContactView ({
-      model: contactInfo,
-      template: templateCard
-    });
-
-    $('#contact-cards').append(contactView.render().$el);
-  });
-};
-
+// var renderRolodex = function(rolodex) {
+//   // console.log("in renderRolodex");
+//   $('#contact-cards').empty();
+//
+//   rolodex.each(function(contactInfo) {
+//     var contactView = new ContactView ({
+//       model: contactInfo,
+//       template: templateCard
+//     });
+//
+//     $('#contact-cards').append(contactView.render().$el);
+//   });
+// };
 
 $(document).ready(function() {
   templateCard = _.template($('#tmpl-contact-card').html());
   templateDetails = _.template($('#tmpl-contact-details').html());
 
-  renderRolodex(rolodex);
-
-  rolodex.on("update", function() {
-    renderRolodex(rolodex);
+  var rolodexView = new RolodexView({
+    model: rolodex,
+    template: templateCard,
+    el: 'main'
   });
+  rolodexView.render();
 
-  $(".button.btn-save").click( function(event) {
-    // console.log("button save button has been clicked!");
-    var contact = new Contact ( readNewContactForm() );
-    rolodex.add(contact);
-  });
+  // renderRolodex(rolodex);
+  //
+  // rolodex.on("update", function() {
+  //   renderRolodex(rolodex);
+  // });
 
+  // $(".button.btn-save").click( function(event) {
+  //   // console.log("button save button has been clicked!");
+  //   var contact = new Contact ( readNewContactForm() );
+  //   rolodex.add(contact);
+  // });
 });
