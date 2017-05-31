@@ -21,6 +21,10 @@ var contactData =
   name: 'Gargamel',
   email: 'smurfcatcher@smurfs.net',
   phone: '201-666-6666'
+},{
+  name: 'Carpenter Smurf',
+  email: 'hammerman@smurfs.net',
+  phone: '201-666-6666'
 }
 ];
 
@@ -35,7 +39,6 @@ var render =  function(contact){
   $(contactDetailsTemplate(jsonContact));
 
   $('#contact-cards').append(compiledCardTemplateHTML);
-
   $('#contact-details').append(compiledDetailsTemplateHTML);
 };
 
@@ -52,21 +55,56 @@ var renderRolodex = function(rolodex) {
 
 
 
+var readNewContactForm = function() {
+  // Get the values from the fields
+  var nameData = $('#name').val();
+  var emailData = $('#email').val();
+  var phoneData = $('#phone').val();
+
+  clearForm();
+
+  return {
+    name: nameData,
+    email: emailData,
+    phone: phoneData
+  };
+
+};
+
+var clearForm = function(){
+  $('#name').val('');
+  $('#email').val('');
+  $('#phone').val('');
+};
 
 
 $(document).ready(function() {
-  // compiling the template
+  // compiling the templates
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
-
   contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
-
-  // render(myContact);
 
   var rolodex = new Rolodex(contactData);
 
-  console.log(rolodex);
   renderRolodex(rolodex);
 
+  rolodex.on("update", function() {
+    renderRolodex(rolodex);
+  });
 
+
+
+  $('.btn-save').click(function(event){
+    var formData = readNewContactForm();
+    var contact = new Contact(formData);
+
+    // Add the Contact to the rolodex
+    rolodex.add(contact);
+    console.log("new contact:");
+    console.log(contact);
+  });
+
+  $('.btn-cancel').click(function(event){
+    clearForm();
+  });
 
 });
