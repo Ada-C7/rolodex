@@ -7,6 +7,16 @@ import ApplicationView from '/app/views/application_view';
 import ContactView from 'app/views/contact_view';
 
 // WAVE 2
+var getFormData = function(){
+  var formName = $('.form-name').val();
+  $('.form-name').val(' ');
+
+  var formEmail = $('.form-email').val();
+  $('.form-email').val(' ');
+
+  var formPhone = $('.form-phone').val();
+  $('.form-phone').val(' ');
+};
 
 var myContacts = [
   { name: "Dwight Schrute",
