@@ -17,6 +17,12 @@ var contactData = [
   }
 ];
 
+var newContact = new Contact ({
+  name: "Fabio McMuffin",
+  email: "mcmuffin@yahoo.com",
+  phone: "111-111-1111"
+});
+
 var  rolodex = new Rolodex(contactData);
 
 var render = function(contact) {
@@ -44,5 +50,10 @@ $(document).ready(function() {
   };
 
   renderRolodex(rolodex);
+
+  rolodex.on("update", function() {
+    renderRolodex(rolodex);
+  });
+  rolodex.add(newContact);
 
 });
