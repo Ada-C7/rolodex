@@ -14,6 +14,7 @@ import Contact from 'app/models/contact';
 
 // var templateContact;
 var templateDetails;
+var templateCard;
 
 var rawContact = {
   name: "cyn",
@@ -24,10 +25,13 @@ var rawContact = {
 var renderContact = function(contact){
   var generatedHTML = templateDetails(contact.toJSON());
   $('#contact-details').append(generatedHTML);
+
+  var generatedHTML = templateCard(contact.toJSON());
+  $('#contact-cards').append(generatedHTML);
 };
 
 $(document).ready(function() {
-  // templateNameObj = _.template(template_name);
+  templateCard = _.template($('#tmpl-contact-card').html());
   templateDetails = _.template($('#tmpl-contact-details').html());
 
   var contact = new Contact( rawContact );
