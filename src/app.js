@@ -64,6 +64,9 @@ $(document).ready(function() {
   templateCard = _.template($('#tmpl-contact-card').html());
   templateDetails = _.template($('#tmpl-contact-details').html());
 
+  // Hide the modal box
+    $("#contact-details").hide();
+
   renderRolodex(rolodex);
 
   rolodex.on("update", function() {

@@ -19,9 +19,15 @@ const ContactView = Backbone.View.extend({
     return this;
   },
 
-  // events: {
+  events: {
+    'click li.contact-card': "showDetails"
+  },
 
-  // },
+  // on the right track - probably should make this call a model function
+  showDetails: function(){
+    console.log("show the contact details");
+    $("#contact-details").show();
+  }
 });
 
 export default ContactView;
