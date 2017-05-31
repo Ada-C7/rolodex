@@ -18,25 +18,28 @@
           <div class="columns">
             <label>
               Name
-              <input type="text" name="name">
+              <input type="text" id="name" name="name">
             </label>
             <label>
               Email
-              <input type="text" name="email">
+              <input type="text" id="email" name="email">
             </label>
             <label>
               Phone
-              <input type="text" name="phone">
+              <input type="text" id="phone" name="phone">
             </label>
-            <h3 class="button btn-save">Save</h3>
+            <h3 class="button btn-save" id="create-contact">Save</h3>
             <h3 class="button btn-cancel">Cancel</h3>
+
           </div>
         </section>
       </header>
 
       <main>
-        <ul id="contact-cards" class="row align-center"></ul>
-        <section id="contact-details"></section>
+        <ul id="contact-cards" class="row align-center">
+
+        </ul>
+        <section id="contact-details" class="hide"></section>
       </main>
     </div>
 
@@ -48,9 +51,11 @@
     </script>
 
     <script type="text/template" id="tmpl-contact-details">
-      <h3><%- name %></h3>
-      <h4><%- email %></h4>
-      <h4><%- phone %></h4>
+      <h3><%- name %></h3><button  class="btn-edit-name">edit</button>
+      <h4><%- email %></h4><button class="btn-edit-email">edit</button>
+      <h4><%- phoneNumber %></h4><button class="btn-edit-phone">edit</button>
+      <button class="button btn-delete">Delete</button>
+
     </script>
 
     <!-- Entire JS project built by Webpack -->

@@ -30,8 +30,8 @@ header {
 #contact-details {
   z-index: 10;
   position: fixed;
-  width: 30%;
-  height: 30%;
+  width: 40%;
+  height: 40%;
   top: 30%;
   left: 30%;
   background-color: #538ca3;
@@ -63,4 +63,8 @@ header {
 
 .contact-card:hover h3 {
   color: white;
+}
+
+.hide {
+  display: none;
 }
