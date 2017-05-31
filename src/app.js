@@ -46,17 +46,20 @@ var renderList = function(contactList) {
 
 var getFormData = function() {
   var formName = $('#name').val();
-  $('#name').val('');
   var formEmail = $('#email').val();
-  $('#email').val('');
   var formPhone = $('#phone').val();
-  $('#phone').val('');
-
+  clearForm();
   return {
     name: formName,
     email: formEmail,
     phone: formPhone
   };
+};
+
+var clearForm = function() {
+  $('#name').val('');
+  $('#email').val('');
+  $('#phone').val('');
 };
 
 $(document).ready(function() {
@@ -70,4 +73,6 @@ $(document).ready(function() {
     var contact = new Contact(getFormData());
     myContactList.add(contact);
   });
+
+  $('.btn-cancel').click(clearForm);
 });
