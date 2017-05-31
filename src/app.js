@@ -31,7 +31,7 @@ var render = function(contact){
   var compiledHTML = templateObject(contact.toJSON());
 
   // Append result to the DOM
-$('#contact-details').append(compiledHTML);
+$('#contact-cards').append(compiledHTML);
 
 
 };
