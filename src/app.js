@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
+import ContactView from './app/views/contact_view.js';
 
 var application = new Application();
 
@@ -35,18 +36,26 @@ var contactData = [
 var myContacts = new Rolodex(contactData);
 
 // --------------render cards or rolodex--------------------
-var renderCard = function(contact){
-  var templateText = $('#tmpl-contact-card').html();
-  var templateObject = _.template(templateText);
-  var compiledHTML = $(templateObject(contact.toJSON()));
-  $('#contact-cards').append(compiledHTML);
-};
+// var renderCard = function(contact){
+//   var templateText = $('#tmpl-contact-card').html();
+//   var templateObject = _.template(templateText);
+//   var compiledHTML = $(templateObject(contact.toJSON()));
+//   $('#contact-cards').append(compiledHTML);
+// };
 
 var renderRolodex = function(rolodex){
   $('#contact-cards').empty();
 
   rolodex.each(function(contact) {
-    renderCard(contact);
+    // renderCard(contact);
+    // replacing render cards with contact view
+    var contactView = new ContactView({
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html()),
+    });
+
+    $('#contact-cards').append(contactView.render().$el);
+
   });
 };
 
