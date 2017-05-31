@@ -14,14 +14,14 @@ var myContact = new Contact({
   email: "notreal@gmail.com"
 });
 
-var renderContact = function(contact){
-
-  var contactTemplate = _.template($('#tmpl-contact-card').html());
-  var contactDetails = contactTemplate({
-    name: contact.get("name")
-  });
-  $('#contact-cards').append($(contactDetails));
-};
+// var renderContact = function(contact){
+//
+//   var contactTemplate = _.template($('#tmpl-contact-card').html());
+//   var contactDetails = contactTemplate({
+//     name: contact.get("name")
+//   });
+//   $('#contact-cards').append($(contactDetails));
+// };
 
 // $(document).ready(function() {
 //   renderContact(myContact);
@@ -97,8 +97,15 @@ var myRolodex = new Rolodex(myContacts);
 
 var renderRolodex = function(rolodex){
   $('#contact-cards').empty();
+
   rolodex.each(function(contact){
-    renderContact(contact);
+    // renderContact(contact);
+    var contactView = new ContactView({
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html())
+    });
+
+    $('#contact-cards').append(contactView.render().el);
   });
 };
 
