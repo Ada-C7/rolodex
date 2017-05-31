@@ -20,6 +20,7 @@ var appView = new ApplicationView({
 
 var contactDetailsTemplate;
 var contactTemplate;
+var contactNameTemplate;
 
 var contactData = [{
   name: "Natalia",
@@ -42,7 +43,7 @@ var  contactList = new Rolodex(contactData);
 
 var readNewContactForm = function() {
   var formName= $('#name').val();
-  $('#name').val(''); //reset a form, set all textboxes to empty
+  $('#name').val('');
   var formEmail= $('#email').val();
   $('#email').val('');
   var formPhone= $('#phone').val();
@@ -65,15 +66,19 @@ var readNewContactForm = function() {
 
 var render = function(contact){
   var generatedHTML = contactDetailsTemplate(contact.toJSON()); // give template data to generate html
-  $('#contact-cards').append(generatedHTML);
+  $('#contact-details').append(generatedHTML);
+};
 
+var renderContactName = function(contact){
+  var generatedHTML = contactNameTemplate(contact.toJSON()); // give template data to generate html
+  $('#contact-cards').append(generatedHTML);
 };
 
 
 var renderList = function(contactList) {
   $('#contact-cards').empty();
   contactList.each(function(contact) {
-    render(contact);
+    renderContactName(contact);
   });
 };
 
@@ -81,7 +86,7 @@ var renderList = function(contactList) {
 
 $(document).ready(function() {
   contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
-  // contactTemplate = _.template($('#tmpl-contact-card').html());
+  contactNameTemplate = _.template($('#tmpl-contact-card').html());
 
 
   $('.add-contact').click( function(){
@@ -89,7 +94,7 @@ $(document).ready(function() {
     contactList.add(contact);
   });
   $('.cancel-contact').click(function(){
-    var contact = new Contact(readNewContactForm() );  
+    var contact = new Contact(readNewContactForm() );
   });
 
   renderList(contactList);
@@ -98,6 +103,12 @@ $(document).ready(function() {
     renderList(contactList);
   });
 
+  $('.contact-card').click(function(){
+    var name = $(this).text().trim();
+    var contact = contactList.find(function(model){return model.get('name') == name;});
+    // console.log(contact);
+    render(contact);
+  });
 
 
 

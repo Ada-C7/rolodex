@@ -64,3 +64,11 @@ header {
 .contact-card:hover h3 {
   color: white;
 }
+
+#contact-details{
+  border-color: red;
+}
+
+#contact-cards{
+  border-color: yellow;
+}
