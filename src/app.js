@@ -31,7 +31,7 @@ var myContact = new Contact({
 
 
 var getFormData = function() {
-  var formName = $("name").val();
+  var formName = $("#name").val();
   $("#name").val('');
 
   var formEmail = $("#email").val();
@@ -52,7 +52,7 @@ var render = function(contact) {
 
   var templateObject = _.template(templateName);
 
-  var compiledHTML = (templateObject(contact.toJSON()));
+  var compiledHTML = $(templateObject(contact.toJSON()));
 
   $('#contact-cards').append(compiledHTML);
 
@@ -79,11 +79,17 @@ var renderList = function(rolodex) {
 };
 
 $(document).ready(function() {
-  render(myContact);
+  render(myRolodex);
   // render(myOtherContact);
+
+  myRolodex.on("update", function() {
+    renderList(myRolodex);
+  });
 
   $("#add-contact").click(function() {
     var contact = new Contact(getFormData());
+
+    myRolodex.add(contact);
 
   });
 });
