@@ -3,7 +3,7 @@ import ApplicationView from 'app/views/application_view';
 import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
-// import Rolodex from 'collections/rolodex.js';
+import Rolodex from './app/collections/rolodex.js';
 
 var application = new Application();
 
@@ -11,8 +11,6 @@ var appView = new ApplicationView({
   el: '#application',
   model: application
 });
-
-// console.log("hey");
 
 var contactData = [
   {
@@ -24,6 +22,16 @@ var contactData = [
     name: 'Lila',
     phone: '222-111-6666',
     email: 'lila@bard.com'
+  },
+  {
+    name: 'Kell',
+    phone: '333-999-8888',
+    email: 'kell@maresh.com'
+  },
+  {
+    name: 'Alucard',
+    phone: '555-444-3333',
+    email: 'alucard@emery.com'
   }
 ];
 
