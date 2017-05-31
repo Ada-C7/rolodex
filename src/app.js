@@ -32,8 +32,6 @@ var render = function(contact){
 
   // Append result to the DOM
 $('#contact-cards').append(compiledHTML);
-
-
 };
 
 
