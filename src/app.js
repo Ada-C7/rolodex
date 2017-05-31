@@ -5,7 +5,7 @@ import Rolodex from '/app/collections/rolodex.js';
 import Application from '/app/models/application';
 import ApplicationView from '/app/views/application_view';
 import ContactView from 'app/views/contact_view';
-
+import RolodexView from 'app/views/rolodex_view.js';
 
 var myContacts = [
   { name: "Dwight Schrute",
@@ -71,43 +71,13 @@ var myContacts = [
 
 var myRolodex = new Rolodex(myContacts);
 
-var renderRolodex = function(rolodex){
-  $('#contact-cards').empty();
-
-  rolodex.each(function(contact){
-    // renderContact(contact);
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html())
-    });
-
-    $('#contact-cards').append(contactView.render().el);
-  });
-};
-
 $(document).ready(function() {
 
+  var myRolodexView = new RolodexView({
+    model: myRolodex,
+    template: _.template($('#tmpl-contact-card').html()),
+    el: 'main'
+  });
+
+  myRolodexView.render();
 });
-
-
-
-// WAVE 1
-
-// var myContact = new Contact({
-//   name: "chris",
-//   phone: "8005553333",
-//   email: "notreal@gmail.com"
-// });
-
-// var renderContact = function(contact){
-//
-//   var contactTemplate = _.template($('#tmpl-contact-card').html());
-//   var contactDetails = contactTemplate({
-//     name: contact.get("name")
-//   });
-//   $('#contact-cards').append($(contactDetails));
-// };
-
-// $(document).ready(function() {
-//   renderContact(myContact);
-// });

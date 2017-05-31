@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Contact from '../models/contact.js';
 import ContactView from './contact_view.js';
 
-var ContactListView = Backbone.View.extend({
+var RolodexView = Backbone.View.extend({
 
   initialize: function(params){
     this.template = params.template;
@@ -12,7 +12,7 @@ var ContactListView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$('.todo-items').empty();
+    this.$('#contact-cards').empty();
     var self = this;
     this.model.each(function(task){
       var taskView = new TaskView({
@@ -20,7 +20,7 @@ var ContactListView = Backbone.View.extend({
         template: self.template,
         tagName: 'li'
       });
-      self.$(".todo-items").append(taskView.render().el);
+      self.$("#contact-cards").append(taskView.render().el);
     });
 
     return this;
@@ -54,4 +54,4 @@ var ContactListView = Backbone.View.extend({
   }
 });
 
-export default ContactListView;
+export default RolodexView;
