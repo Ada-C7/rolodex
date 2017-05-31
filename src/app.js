@@ -4,6 +4,7 @@ import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
+import ContactView from './app/views/contact_view.js';
 
 var application = new Application();
 
@@ -32,17 +33,14 @@ var contactData = [
 
 var myContactList = new Rolodex(contactData);
 
-var render = function(contact) {
-  var templateText = $('#tmpl-contact-card').html();
-  var templateObject = _.template(templateText);
-  var compiledHTML = $(templateObject(contact.toJSON()));
-  $('#contact-cards').append(compiledHTML);
-};
-
 var renderList = function(contactList) {
   $('#contact-cards').empty();
   contactList.each(function(contact) {
-    render(contact);
+    var contactView = new ContactView({
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html())
+    });
+    $('#contact-cards').append(contactView.render().el);
   });
 };
 
