@@ -5,6 +5,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import Contact from './models/contact.js';
 import Rolodex from './collections/rolodex.js';
+import ContactView from './views/contact_view.js';
 
 // var application = new Application();
 //
@@ -52,17 +53,22 @@ var getFormData = function() {
   };
 };
 
-var render = function(contact) {
-  var templateText = $('#tmpl-contact-card').html();
-  var templateObject = _.template(templateText);
-  var compiledHTML = templateObject(contact.toJSON());
-  $('#contact-cards').append(compiledHTML);
-};
+// var render = function(contact) {
+//   var templateText = $('#tmpl-contact-card').html();
+//   var templateObject = _.template(templateText);
+//   var compiledHTML = templateObject(contact.toJSON());
+//   $('#contact-cards').append(compiledHTML);
+// };
 
 var renderList = function(contactList) {
   $('#contact-cards').empty();
   contactList.each(function(contact) {
-    render(contact);
+    var contactView = new ContactView({
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html())
+    });
+    $('#contact-cards').append(contactView.render().el);
+    // render(contact);
   });
 };
 
@@ -81,11 +87,4 @@ $(document).ready(function() {
     $('#contact-form').empty();
   });
 
-  // render(myContact);
-  // $('.button.btn-save').click(function() {
-  //   console.log('test');
-  //   var formData = getFormData();
-  //   var newContact = new Contact(formData);
-  //   render(newContact);
-  // });
 });
