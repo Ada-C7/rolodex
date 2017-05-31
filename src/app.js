@@ -13,7 +13,7 @@ import Contact from 'app/models/contact';
 // });
 
 // var templateContact;
-var templateCard;
+var templateDetails;
 
 var rawContact = {
   name: "cyn",
@@ -22,13 +22,13 @@ var rawContact = {
 };
 
 var renderContact = function(contact){
-  var generatedHTML = templateCard(contact.toJSON());
+  var generatedHTML = templateDetails(contact.toJSON());
   $('#contact-details').append(generatedHTML);
 };
 
 $(document).ready(function() {
   // templateNameObj = _.template(template_name);
-  templateCard = _.template($('#tmpl-contact-details').html());
+  templateDetails = _.template($('#tmpl-contact-details').html());
 
   var contact = new Contact( rawContact );
   renderContact(contact);
