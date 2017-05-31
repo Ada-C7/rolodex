@@ -17,13 +17,13 @@ import ContactView from 'app/views/contact_view';
 var templateDetails;
 var templateCard;
 
-var rawContact = [{
+var contacts = [{
   name: "cyn",
   phone: "123-456-7890",
   email: "cyn@test.com"
 }];
 
-var rolodex = new Rolodex(rawContact);
+var rolodex = new Rolodex(contacts);
 
 var renderRolodex = function(rolodex) {
   console.log("in renderRolodex");
@@ -40,20 +40,16 @@ var renderRolodex = function(rolodex) {
   });
 };
 
-// var renderContact = function(contact){
-//   var generatedHTML = templateDetails(contact.toJSON());
-//   $('#contact-details').append(generatedHTML);
-//
-//   var generatedHTML = templateCard(contact.toJSON());
-//   $('#contact-cards').append(generatedHTML);
-// };
 
 $(document).ready(function() {
   templateCard = _.template($('#tmpl-contact-card').html());
   templateDetails = _.template($('#tmpl-contact-details').html());
 
-  // var contact = new Contact( rawContact );
+  // var contact = new Contact( contacts );
   // renderContact(contact);
   renderRolodex(rolodex);
+  rolordex.on("update", function() {
+    renderRolodex(rolodex);
+  });
 
 });
