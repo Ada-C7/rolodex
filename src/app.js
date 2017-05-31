@@ -4,6 +4,7 @@
 import _ from 'underscore';
 import $ from 'jquery';
 import Contact from './models/contact.js';
+import Rolodex from './collections/rolodex.js';
 
 // var application = new Application();
 //
@@ -32,6 +33,8 @@ var myContact = new Contact( {
   email: "test@model.com"
 });
 
+var myRolodex = new Rolodex(contactData);
+
 var getFormData = function() {
   var formName = $('#name').val();
   $('#name').val('');
@@ -56,12 +59,33 @@ var render = function(contact) {
   $('#contact-cards').append(compiledHTML);
 };
 
-$(document).ready(function() {
-  render(myContact);
-  $('.button.btn-save').click(function() {
-    console.log('test');
-    var formData = getFormData();
-    var newContact = new Contact(formData);
-    render(newContact);
+var renderList = function(contactList) {
+  $('#contact-cards').empty();
+  contactList.each(function(contact) {
+    render(contact);
   });
+};
+
+$(document).ready(function() {
+  renderList(myRolodex);
+  myRolodex.on("update", function() {
+    renderList(myRolodex);
+  });
+  $('.button.btn-save').click(function() {
+    var contact = new Contact(getFormData());
+    myRolodex.add(contact);
+  });
+  $('.button.btn-cancel').click(function() {
+    // clear out form
+    console.log('cancel button pressed');
+    $('#contact-form').empty();
+  });
+
+  // render(myContact);
+  // $('.button.btn-save').click(function() {
+  //   console.log('test');
+  //   var formData = getFormData();
+  //   var newContact = new Contact(formData);
+  //   render(newContact);
+  // });
 });
