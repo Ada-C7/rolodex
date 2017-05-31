@@ -1,10 +1,8 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Contact from '/app/models/contact.js';
-import Rolodex from '/app/collections/rolodex.js';
-import Application from '/app/models/application';
-import ApplicationView from '/app/views/application_view';
-import ContactView from 'app/views/contact_view';
+import Contact from 'app/models/contact.js';
+import Rolodex from 'app/collections/rolodex.js';
+import ContactView from 'app/views/contact_view.js';
 import RolodexView from 'app/views/rolodex_view.js';
 
 var myContacts = [
@@ -76,7 +74,7 @@ $(document).ready(function() {
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($('#tmpl-contact-card').html()),
-    el: 'main'
+    el: 'div#application'
   });
 
   myRolodexView.render();
