@@ -34,18 +34,37 @@ var myContact = new Contact({
   email: "jimmy@pesto.com"
 });
 
-var secondContact = new Contact({
+var secondContact = new Contact({});
 
-});
+var myRolodex = new Rolodex(contactData);
 
-var render = function(contact) {
-  var templateText = $("#tmpl-contact-card").html();
-  var templateObject = _.template(templateText);
-  var compiledHTML = $(templateObject(contact.toJSON()));
-  $("#contact-cards").append(compiledHTML);
+var getFormData = function() {
+  var formName = $("input[name=name]").val();
+  $("input[name=name]").val('');
+
+  var formEmail = $("input[name=email]").val();
+  $("input[name=email]").val('');
+
+  var formPhone = $("input[name=phone]").val();
+  $("input[name=phone]").val('');
+
+  return {
+    name: formName,
+    email: formEmail,
+    phone: formPhone
+  };
 };
+
+// var render = function(contact) {
+//   var templateText = $("#tmpl-contact-card").html();
+//   var templateObject = _.template(templateText);
+//   var compiledHTML = $(templateObject(contact.toJSON()));
+//   $("#contact-cards").append(compiledHTML);
+// };
 
 $(document).ready(function(){
   render(myContact);
   render(secondContact);
+
+  
 });
