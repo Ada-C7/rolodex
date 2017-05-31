@@ -3,9 +3,9 @@ import Backbone from 'backbone';
 
 var Contact = Backbone.Model.extend({
   defaults: {
-    name: "MYSTERY CONTACT",
-    email: "***@*****.***",
-    phone: "*** *** ****"
+    name: 'MYSTERY CONTACT',
+    email: '***@*****.***',
+    phone: '*** *** ****'
   },
   logStatus: function() {
     console.log("Model " + this.cid);

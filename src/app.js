@@ -6,6 +6,7 @@ import $ from 'jquery';
 import Contact from './models/contact.js';
 import Rolodex from './collections/rolodex.js';
 import ContactView from './views/contact_view.js';
+import RolodexView from './views/rolodex_view.js';
 
 // var application = new Application();
 //
@@ -13,6 +14,7 @@ import ContactView from './views/contact_view.js';
 //   el: '#application',
 //   model: application
 // });
+
 $('#contact-details').hide();
 
 var contactData = [
@@ -28,37 +30,7 @@ var contactData = [
   }
 ];
 
-var myContact = new Contact( {
-  name: "Model tester",
-  phone: "1112223333",
-  email: "test@model.com"
-});
-
 var myRolodex = new Rolodex(contactData);
-
-var getFormData = function() {
-  var formName = $('#name').val();
-  $('#name').val('');
-
-  var formEmail = $('#email').val();
-  $('#email').val('');
-
-  var formPhone = $('#phone').val();
-  $('#phone').val('');
-
-  return {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
-};
-
-// var render = function(contact) {
-//   var templateText = $('#tmpl-contact-card').html();
-//   var templateObject = _.template(templateText);
-//   var compiledHTML = templateObject(contact.toJSON());
-//   $('#contact-cards').append(compiledHTML);
-// };
 
 var renderList = function(contactList) {
   $('#contact-cards').empty();
