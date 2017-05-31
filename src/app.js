@@ -20,7 +20,6 @@ var appView = new ApplicationView({
 
 var contactDetailsTemplate;
 var contactTemplate;
-// var contactTemplate;
 
 var contactData = [{
   name: "Natalia",
@@ -49,18 +48,24 @@ var readNewContactForm = function() {
   var formPhone= $('#phone').val();
   $('#phone').val('');
 
-  return {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
+  var contactData = {};
+  if (formName && formName != ""){
+    contactData["name"] = formName;
+  }
+  if (formEmail){
+    contactData["email"] = formEmail;
+  }
+  if (formPhone){
+    contactData["phone"] = formPhone;
+  }
+  return contactData;
 };
 
 
 
 var render = function(contact){
   var generatedHTML = contactDetailsTemplate(contact.toJSON()); // give template data to generate html
-    $('#contact-cards').append(generatedHTML);
+  $('#contact-cards').append(generatedHTML);
 
 };
 
