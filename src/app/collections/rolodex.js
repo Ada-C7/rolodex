@@ -1,5 +1,5 @@
 import Backbone from 'backbone';
-import Contact from 'models/task.js';
+import Contact from '../models/contact.js';
 
 const Rolodex = Backbone.Collection.extend({
   // This Rolodex represents a collection of Contacts

@@ -6,7 +6,17 @@ const Contact = Backbone.Model.extend({
   defaults: {
     name: "It's a me",
     email: "me@me.com",
-    phone: "333-777-8888"
+    phone: "XXX-XXX-XXXX"
+  },
+  logStatus: function() {
+    console.log("Model" + this.cid);
+    console.log("Name " + this.get("name"));
+    console.log("Email " + this.get("email"));
+    console.log("Phone " + this.get("phone"));
+  },
+  initialize: function(params) {
+    console.log("Starting", params);
+    this.logStatus();
   }
 });
 

@@ -35,8 +35,10 @@ var contactData = [
   }
 ];
 
-var testContact1 = new Contact(contactData[0]);
-var testContact2 = new Contact(contactData[1]);
+var myRolodex = new Rolodex(contactData);
+
+var newContact = new Contact();
+myRolodex.add(newContact);
 
 var render = function(contact) {
   var templateText = $('#tmpl-contact-card').html();
@@ -46,15 +48,31 @@ var render = function(contact) {
 };
 
 var renderRolodex = function(contacts) {
-
+  $('.contact-cards').empty();
+  myRolodex.each(function(contact) {
+    render(contact);
+  });
 };
 
 var getFormData = function() {
-  var formName;
+  var inputName = $("input[name='name']");
+  var inputEmail = $("input[name='email']");
+  var inputPhone = $("input[name='phone']");
 
-  var formEmail;
+  if (inputName.val()) {
+    var formName = inputName.val();
+  }
+  inputName.val('');
 
-  var formPhone;
+  if (inputEmail.val()) {
+    var formEmail = inputEmail.val();
+  }
+  inputEmail.val('');
+
+  if (inputPhone.val()) {
+    var formPhone = inputPhone.val();
+  }
+  inputPhone.val('');
 
   return {
     name: formName,
@@ -64,8 +82,10 @@ var getFormData = function() {
 };
 
 $(document).ready(function() {
-  render(testContact1);
-  render(testContact2);
-  render(new Contact());
+  // render(testContact1);
+  // render(testContact2);
+  // render(new Contact());
+
+  renderRolodex(myRolodex);
 
 });
