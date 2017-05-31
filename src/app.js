@@ -8,22 +8,49 @@ import Rolodex from './app/collections/rolodex.js'
 var application = new Application();
 
 var appView = new ApplicationView({
-  el: '#application',
-  model: application
+    el: '#application',
+    model: application
 });
 
 var contactData = [{
     name: 'Drew',
-    phoneNumber: '304',
+    phoneNumber: 304,
     email: 'drew@gmail.com'
 },
 {
     name: 'Dad',
-    phoneNumber: '987',
+    phoneNumber: 987,
     email: 'bob@gmail.com'
+},
+{
+    name: 'Mom',
+    phoneNumber: 609,
+    email: 'jan@gmail.com'
+},
+{
+    name: 'Jeff',
+    phoneNumber: 215,
+    email: 'jeff@gmail.com'
 }]
 
 var contactList = new Rolodex(contactData);
+
+var getFormData = function(){
+    var formName = $('#name').val();
+    $('#name').val('');
+    var formPhone = $('#phone').val();
+    $('#phone').val('');
+    var formEmail = $('#email').val();
+    $('#email').val('');
+
+    return {
+        name: formName,
+        phoneNumber: formPhone,
+        email: formEmail
+    };
+
+};
+
 
 
 var render = function(contact){
@@ -35,12 +62,23 @@ var render = function(contact){
     $('#contact-cards').append(compiledHTML);
 }
 
-
-$(document).ready(function(){
-    console.log('!!!!!!!!!!!************!!!!!!!!!!');
-    console.log(contactList);
-    // render(myContact);
+var renderList = function(contactList){
+    $('#contact-cards').empty();
     contactList.each(function(contact){
         render(contact);
+    });
+};
+
+$(document).ready(function(){
+    renderList(contactList);
+
+    $('#btn-save').click(function() {
+        console.log('helllooooooo');
+        var contact = new Contact(getFormData());
+        contactList.add(contact);
+    });
+
+    contactList.on('update', function(){
+        renderList(contactList);
     });
 });
