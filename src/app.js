@@ -88,6 +88,10 @@ $(document).ready(function() {
     var contact = new Contact(readNewContactForm() );
     contactList.add(contact);
   });
+  $('.cancel-contact').click(function(){
+    var contact = new Contact(readNewContactForm() );  
+  });
+
   renderList(contactList);
 
   contactList.on("update", function() {
