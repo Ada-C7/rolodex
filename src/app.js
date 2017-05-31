@@ -33,7 +33,7 @@ $(document).ready(function() {
   var rolodexView = new RolodexView({
     model: rolodex,
     template: templateCard,
-    el: 'main'
+    el: 'body'
   });
   rolodexView.render();
 });
