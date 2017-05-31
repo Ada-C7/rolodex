@@ -17,8 +17,6 @@ const ContactView = Backbone.View.extend({
     return this;
   }
 
-
-
 });
 
 export default ContactView;

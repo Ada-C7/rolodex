@@ -5,6 +5,7 @@ import _ from 'underscore';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
 import ContactView from './app/views/contact_view.js';
+import RolodexView from './app/views/rolodex_view.js';
 
 var application = new Application();
 
@@ -43,21 +44,21 @@ var myContacts = new Rolodex(contactData);
 //   $('#contact-cards').append(compiledHTML);
 // };
 
-var renderRolodex = function(rolodex){
-  $('#contact-cards').empty();
-
-  rolodex.each(function(contact) {
-    // renderCard(contact);
-    // replacing render cards with contact view
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html()),
-    });
-
-    $('#contact-cards').append(contactView.render().$el);
-
-  });
-};
+// var renderRolodex = function(rolodex){
+//   $('#contact-cards').empty();
+//
+//   rolodex.each(function(contact) {
+//     // renderCard(contact);
+//     // replacing render cards with contact view
+//     var contactView = new ContactView({
+//       model: contact,
+//       template: _.template($('#tmpl-contact-card').html()),
+//     });
+//
+//     $('#contact-cards').append(contactView.render().$el);
+//
+//   });
+// };
 
 // --------------get form data--------------------
 
@@ -104,11 +105,13 @@ $(document).ready(function() {
     clearFormData();
   });
 
-  renderRolodex(myContacts);
 
-  myContacts.on("update", function(){
-    renderRolodex(myContacts);
+  var myRolodex = new Rolodex();
+
+  var myRolodexView = new RolodexView({
+    model: myRolodex,
+    template: _.template($('#tmpl-contact-card').html()),
+    el: 'main'
   });
-
-
+  myRolodexView.render();
 });
