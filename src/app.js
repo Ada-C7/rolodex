@@ -1,6 +1,9 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Contact from 'app/models/contact';
+import Rolodex from 'app/collections/rolodex';
+import ContactView from 'app/views/contact_view';
+import RolodexView from 'app/views/rolodex_view';
 
 var contactTemplate;
 
@@ -8,7 +11,7 @@ var contactData = {
   name: "Anacelia",
   phone: "111-1111",
   email: "anacelia@ugh.com"
-}
+};
 
 var firstContact = new Contact(contactData);
 
