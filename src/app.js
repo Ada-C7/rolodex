@@ -3,6 +3,7 @@ import ApplicationView from 'app/views/application_view';
 import $ from 'jQuery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
+import Rolodex from './app/collections/rolodex.js'
 
 var application = new Application();
 
@@ -11,11 +12,19 @@ var appView = new ApplicationView({
   model: application
 });
 
-var myContact = new Contact({
-    name: 'Mom',
-    phoneNumber: '123',
-    email: 'mom@gmail.com'
-})
+var contactData = [{
+    name: 'Drew',
+    phoneNumber: '304',
+    email: 'drew@gmail.com'
+},
+{
+    name: 'Dad',
+    phoneNumber: '987',
+    email: 'bob@gmail.com'
+}]
+
+var contactList = new Rolodex(contactData);
+
 
 var render = function(contact){
     var templateText = $('#tmpl-contact-card').html();
@@ -28,7 +37,10 @@ var render = function(contact){
 
 
 $(document).ready(function(){
-    console.log('hi there');
-    console.log(myContact);
-    render(myContact);
+    console.log('!!!!!!!!!!!************!!!!!!!!!!');
+    console.log(contactList);
+    // render(myContact);
+    contactList.each(function(contact){
+        render(contact);
+    });
 });
