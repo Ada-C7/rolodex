@@ -5,6 +5,7 @@ import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 import Rolodex from 'app/collections/rolodex.js';
 import ContactView from 'app/views/contact_view.js';
+import RolodexView from 'app/views/rolodex_view.js';
 
 // var application = new Application();
 //
@@ -84,13 +85,21 @@ var myContacts = new Rolodex(contactsData);
 
 $(document).ready(function() {
   // renderContacts(myContacts);
-  var myContactView = new ContactView({
-    model: myContact,
+  // var myContactView = new ContactView({
+  //   model: myContact,
+  //   template: _.template($('#tmpl-contact-card').html()),
+  //   el: 'main'
+  // });
+  //
+  // myContactView.render();
+
+  var myRolodexView = new RolodexView({
+    model: myContacts,
     template: _.template($('#tmpl-contact-card').html()),
     el: 'main'
   });
 
-  myContactView.render();
+  myRolodexView.render();
 
 
 
