@@ -8,9 +8,6 @@ import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
 import ContactView from './app/views/contact_view.js';
 
-
-
-
 var application = new Application();
 
 var appView = new ApplicationView({
@@ -47,8 +44,6 @@ var getFormData = function() {
     email: formEmail
   };
 };
-
-
 
 var renderSmall = function(contact) {
   var templateText = $('#tmpl-contact-card').html();
