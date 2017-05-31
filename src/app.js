@@ -51,6 +51,12 @@ var getFormData = function() {
   };
 };
 
+var clearFormData = function() {
+  $("#name").val('');
+  $("#email").val('');
+  $("#phone").val('');
+};
+
 var render = function(contact) {
   var templateText = $('#tmpl-contact-card').html();
 
@@ -78,6 +84,10 @@ $(document).ready(function() {
     var contact = new Contact(getFormData());
     myRolodex.add(contact);
     renderList(myRolodex);
+  });
+
+  $(".btn-cancel").click(function() {
+    clearFormData();
   });
 
 });
