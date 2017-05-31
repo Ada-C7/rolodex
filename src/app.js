@@ -16,19 +16,15 @@ var render = function(contact) {
   var newContact = contact.toJSON();
   console.log(newContact);
 
-  // var generatedHTML = $(contactTemplate(newContact));
-  // console.log(generatedHTML);
-  //
-  // $('#postits').append(generatedHTML);
-  //
-  // generatedHTML.find(".button").click({postit: postit}, function(params) {
-  //   postitList.add(params.data.postit);
-  // });
+  var generatedHTML = $(contactTemplate(newContact));
+  console.log(generatedHTML);
+
+  $('#contact-cards').append(generatedHTML);
 };
 
 
 $(document).ready(function() {
-  // contactTemplate = _.template($('#tmple-contact-card').html());
+  contactTemplate = _.template($('#tmpl-contact-card').html());
 
   contactData.forEach(function(rawContact) {
     var contact = new Contact(rawContact);
