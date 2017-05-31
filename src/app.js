@@ -17,22 +17,23 @@ import ContactView from 'app/views/contact_view';
 var templateDetails;
 var templateCard;
 
-var rolodex = new Rolodex(rawContact);
-
-var rawContact = {
+var rawContact = [{
   name: "cyn",
   phone: "123-456-7890",
   email: "cyn@test.com"
-};
+}];
+
+var rolodex = new Rolodex(rawContact);
 
 var renderRolodex = function(rolodex) {
+  console.log("in renderRolodex");
 
   $('#contact-cards').empty();
 
   rolodex.each(function(contactInfo) {
     var contactView = new ContactView ({
-      mode: contactInfo,
-      template: templateCard,
+      model: contactInfo,
+      template: _.template( $('#tmpl-contact-card').html() )
     });
 
     $('#contact-cards').append(contactView.render().$el);

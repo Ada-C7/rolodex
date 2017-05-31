@@ -7,6 +7,16 @@ const Contact = Backbone.Model.extend({
     name: "-",
     phone: "-",
     email: "-"
+  },
+
+  initialize: function(params) {
+    console.log("Task initialized: " + this.get("name"));
+    // to see what params looks like
+    console.log(params);
+  },
+
+  logStatus: function() {
+    console.log("Contact: " + this.get("name"));
   }
 });
 
