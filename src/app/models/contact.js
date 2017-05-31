@@ -5,8 +5,8 @@ const Contact = Backbone.Model.extend({
   // a single contact: name, phone number, and email.
   defaults: {
   "name": "Name",
-  "e_mail": "E-mail address",
-  "phone_number": "Phone number"
+  "email": "E-mail address",
+  "phone": "Phone number"
 }
 });
 
