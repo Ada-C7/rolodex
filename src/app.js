@@ -15,8 +15,14 @@ var contactData = [
     name: "Michael Michaelson",
     email: "MM@gmail.com",
     phone: "333-333-3333"
-  }
+  },
 ];
+
+var newContact = new Contact({
+    name: "Felicia Anderson",
+    email: "andre@gmail.com",
+    phone: "555-555-5555"
+});
 
 var rolodex = new Rolodex(contactData);
 
@@ -43,5 +49,10 @@ $(document).ready(function() {
       render(contact);
     });
   };
+  // renderRolodex(rolodex);
+
+  rolodex.on("update", function() {
   renderRolodex(rolodex);
+});
+rolodex.add(newContact);
 });
