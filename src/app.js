@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
+import ContactView from './app/views/contact_view.js';
 
 var application = new Application();
 
@@ -27,20 +28,15 @@ var contactList = new Rolodex(contactData);
 var renderList = function(contactList) {
   $('#contact-cards').empty();
   contactList.each(function(contact) {
-    render(contact);
+    var contactView = new ContactView({
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html())
+    });
+    $('#contact-cards').append(contactView.render().el);
+
   });
 };
 
-var render = function(contact) {
-  var templateText = $('#tmpl-contact-card').html();
-
-  var templateObject = _.template(templateText);
-
-  var compiledHTML = $(templateObject(contact.toJSON()));
-
-  $('#contact-cards').append(compiledHTML);
-
-};
 
 var getFormData = function() {
   var formName = $('#name').val();
