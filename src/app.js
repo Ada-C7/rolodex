@@ -4,6 +4,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from 'app/models/contact.js';
 import Rolodex from 'app/collections/rolodex.js';
+import ContactView from 'app/views/contact_view.js';
 
 
 var contactData = [
@@ -17,16 +18,10 @@ var contactData = [
 var myRolodex = new Rolodex(contactData);
 
 
-var myContact = new Contact({
-  name: "Sue",
-  email: "sue_shmo86@example.com",
-  phone: "444-555-7777"
-});
-
-// var myOtherContact = new Contact({
-//   name: "sadlkf",
-//   email: "asdfdsafdsasdafasdfsad@example.com",
-//   phone: "444-555-7077"
+// var myContact = new Contact({
+//   name: "Sue",
+//   email: "sue_shmo86@example.com",
+//   phone: "444-555-7777"
 // });
 
 
@@ -57,17 +52,11 @@ var render = function(contact) {
   $('#contact-cards').append(compiledHTML);
 
   compiledHTML.find('button.success').click({contactToAdd: contact}, function(params) {
-    myRolodex.remove(params.data.contactToAdd);
+    myRolodex.add(params.data.contactToAdd);
   });
 
 };
 
-var application = new Application();
-
-var appView = new ApplicationView({
-  el: '#application',
-  model: application
-});
 
 
 var renderList = function(rolodex) {
@@ -79,8 +68,14 @@ var renderList = function(rolodex) {
 };
 
 $(document).ready(function() {
+  // var myContactView = new ContactView({
+  //   model: myContact,
+  //   template: _.template($('#tmpl-contact-details').html()),
+  //   el: 'main'
+  // });
+  // myContactView.render();
+
   render(myRolodex);
-  // render(myOtherContact);
 
   myRolodex.on("update", function() {
     renderList(myRolodex);
@@ -103,4 +98,12 @@ $(document).ready(function() {
     myRolodex.add(contact);
 
   });
+
+  var application = new Application();
+
+  var appView = new ApplicationView({
+    el: '#application',
+    model: application
+  });
+
 });
