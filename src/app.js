@@ -4,6 +4,7 @@ import Contact from '/app/models/contact.js';
 import Rolodex from '/app/collections/rolodex.js';
 import Application from '/app/models/application';
 import ApplicationView from '/app/views/application_view';
+import ContactView from 'app/views/contact_view';
 
 
 // WAVE 1
