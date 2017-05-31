@@ -16,6 +16,12 @@ var getFormData = function(){
 
   var formPhone = $('.form-phone').val();
   $('.form-phone').val(' ');
+
+  return {
+    name: formName,
+    email: formEmail,
+    phone: formPhone
+  };
 };
 
 var myContacts = [
@@ -98,6 +104,16 @@ var renderRolodex = function(rolodex){
 
 $(document).ready(function() {
   renderRolodex(myRolodex);
+
+  $(".btn-save").click(function(){
+    var contact = new Contact(getFormData());
+    myRolodex.add(contact);
+  });
+
+  myRolodex.on("update", function() {
+    renderRolodex(myRolodex);
+  });
+
 });
 
 
