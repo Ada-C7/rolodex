@@ -14,7 +14,8 @@ var ContactView = Backbone.View.extend({
     return this;
   },
   events: {
-
+    // will want to include click handler event
+    // to display more contact info on click
   }
 });
 
