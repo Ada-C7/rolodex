@@ -34,6 +34,10 @@ var myContact = new Contact({
   email: "jimmy@pesto.com"
 });
 
+var secondContact = new Contact({
+
+});
+
 var render = function(contact) {
   var templateText = $("#tmpl-contact-card").html();
   var templateObject = _.template(templateText);
@@ -43,4 +47,5 @@ var render = function(contact) {
 
 $(document).ready(function(){
   render(myContact);
+  render(secondContact);
 });
