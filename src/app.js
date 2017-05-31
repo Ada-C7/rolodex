@@ -34,26 +34,50 @@ var contactsData = [
 
 var myRolodex = new Rolodex(contactsData);
 
-var render = function(Contact) {
+var getFormData = function() {
+  var formName = $("#name").val();
+  $("#name").val('');
+
+  var formEmail = $("#email").val();
+  $("#email").val('');
+
+  var formPhone = $("#phone").val();
+  $("#phone").val('');
+
+  return {
+    name: formName,
+    email: formEmail,
+    phone: formPhone
+  };
+};
+
+var render = function(contact) {
   var templateText = $('#tmpl-contact-card').html();
 
   var templateObject = _.template(templateText);
 
-  var compiledHTML = templateObject(Contact.toJSON());
+  var compiledHTML = templateObject(contact.toJSON());
 
   $("#contact-cards").append(compiledHTML);
 };
 
 var renderList = function(Rolodex) {
-  $("contact-cards").empty();
-  Rolodex.each(function(Contact) {
-    render(Contact);
+  $("#contact-cards").empty();
+  Rolodex.each(function(contact) {
+    render(contact);
   });
 };
+
 
 $(document).ready(function() {
   // console.log(myContact.get("name"));
   // render(myContact);
   renderList(myRolodex);
+
+  $(".btn-save").click(function() {
+    var contact = new Contact(getFormData());
+    myRolodex.add(contact);
+    renderList(myRolodex);
+  });
 
 });
