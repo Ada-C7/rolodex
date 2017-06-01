@@ -9,4 +9,4 @@ const ContactList = Backbone.Collection.extend({
   // Contact.
 });
 
-export default Rolodex;
+export default ContactList;

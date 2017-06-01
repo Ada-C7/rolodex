@@ -3,14 +3,9 @@ import ApplicationView from 'app/views/application_view';
 import $ from 'jQuery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
-import Rolodex from './app/collections/rolodex.js'
-
-var application = new Application();
-
-var appView = new ApplicationView({
-    el: '#application',
-    model: application
-});
+import ContactList from './app/collections/contact_list.js';
+import ContactView from './views/contact_view.js';
+import ContactListView from './views/contact_list_view.js';
 
 var contactData = [{
     name: 'Drew',
@@ -33,50 +28,31 @@ var contactData = [{
     email: 'jeff@gmail.com'
 }]
 
-var contactList = new Rolodex(contactData);
 
-var getFormData = function(){
-    var formName = $('#name').val();
-    $('#name').val('');
-    var formPhone = $('#phone').val();
-    $('#phone').val('');
-    var formEmail = $('#email').val();
-    $('#email').val('');
 
-    return {
-        name: formName,
-        phoneNumber: formPhone,
-        email: formEmail
-    };
-
-};
-
-// var render = function(contact){
-//     var templateText = $('#tmpl-contact-card').html();
-//     var templateObject = _.template(templateText);
-//
-//     var compiledHTML = $(templateObject(contact.toJSON()));
-//
-//     $('#contact-cards').append(compiledHTML);
-// }
+var contactList = new ContactList(contactData);
 
 var renderList = function(contactList){
     $('#contact-cards').empty();
+
     contactList.each(function(contact){
-        render(contact);
+        var contactView = new ContactView({
+            model: contact,
+            template: _.template($('#tmpl-contact-card').html()),
+            el: 'section'
+            // tagName: 'li'
+        });
+        $('#contact-cards').append(taskView.render().$el);
     });
 };
 
+
+var contactListView = new ContactListView({
+    model: contactList,
+    template: _.template($('#tmpl-contact-card').html()),
+    el: 'section'
+});
+
 $(document).ready(function(){
-    renderList(contactList);
-
-    $('#btn-save').click(function() {
-        console.log('helllooooooo');
-        var contact = new Contact(getFormData());
-        contactList.add(contact);
-    });
-
-    contactList.on('update', function(){
-        renderList(contactList);
-    });
+    // contactListView.render();
 });
