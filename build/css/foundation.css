@@ -429,9 +429,9 @@ button {
   display: none !important; }
 
 .row {
-  max-width: 75rem;
-  margin-left: auto;
-  margin-right: auto; }
+  /*max-width: 75rem;*/
+  margin-left: 0;
+  margin-right: 0; }
   .row::before, .row::after {
     content: ' ';
     display: table; }
@@ -441,12 +441,12 @@ button {
     padding-left: 0;
     padding-right: 0; }
   .row .row {
-    margin-left: -0.625rem;
-    margin-right: -0.625rem; }
+    margin-left: -0rem;
+    margin-right: -0rem; }
     @media screen and (min-width: 40em) {
       .row .row {
-        margin-left: -0.9375rem;
-        margin-right: -0.9375rem; } }
+        margin-left: -0rem;
+        margin-right: -0rem; } }
     .row .row.collapse {
       margin-left: 0;
       margin-right: 0; }
