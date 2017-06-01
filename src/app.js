@@ -5,6 +5,7 @@ import _ from 'underscore';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
 import ContactView from './app/views/contact_view.js';
+import RolodexView from './app/views/rolodex_view.js';
 
 var application = new Application();
 
@@ -19,25 +20,25 @@ var myContact = new Contact({
   email: "lynn@test.com"
 });
 
-// var contactData = [
-//   {
-//     name: "Mom",
-//     phone: 2063658186,
-//     email: "mom@test.com"
-//   },
-//   {
-//     name: "Lynn",
-//     phone: 2062401029,
-//     email: "lynn@test.com"
-//   },
-//   {
-//     name: "Annie",
-//     phone: 2061234589,
-//     email: "Annie@test.com"
-//   }
-// ];
+var contactData = [
+  {
+    name: "Mom",
+    phone: 2063658186,
+    email: "mom@test.com"
+  },
+  {
+    name: "Lynn",
+    phone: 2062401029,
+    email: "lynn@test.com"
+  },
+  {
+    name: "Annie",
+    phone: 2061234589,
+    email: "Annie@test.com"
+  }
+];
 
-// var myRolodex = new Rolodex(contactData);
+var myRolodex = new Rolodex(contactData);
 
 // var render = function(contact) {
 //   var templateText = $("#tmpl-contact-card").html();
@@ -73,14 +74,13 @@ var myContact = new Contact({
 $(document).ready(function() {
   // $("#contact-details").hide();
 
-  var myContactView = new ContactView({
-    model: myContact,
+  var myRolodexView = new RolodexView({
+    model: myRolodex,
     template: _.template($("#tmpl-contact-card").html()),
-    tagName: 'li'
+    el: 'main'
   });
   console.log("before render");
-  console.log(myContactView.render().el);
-  $('#contact-cards').append(myContactView.render().el);
+  myRolodexView.render();
 
 });
 
