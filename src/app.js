@@ -25,21 +25,27 @@ var contactData = [
   }
 ];
 
-var render = function(contact) {
-  var newContact = contact.toJSON();
-  console.log(newContact);
-
-  var generatedHTML = $(contactTemplate(newContact));
-  console.log(generatedHTML);
-
-  $('#contact-cards').append(generatedHTML);
-};
+// var render = function(contact) {
+//   var newContact = contact.toJSON();
+//   console.log(newContact);
+//
+//   var generatedHTML = $(contactTemplate(newContact));
+//   console.log(generatedHTML);
+//
+//   $('#contact-cards').append(generatedHTML);
+// };
 
 var renderRolodex = function(rolodex) {
   $('#contact-cards').empty();
 
   rolodex.each(function(contact) {
-    render(contact);
+
+    var contactView = new ContactView({
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html())
+    });
+
+    $('#contact-cards').append(contactView.render().$el);
   });
 };
 
@@ -64,9 +70,9 @@ $(document).ready(function() {
   contactTemplate = _.template($('#tmpl-contact-card').html());
   rolodex = new Rolodex(contactData);
 
-  rolodex.on('update', function() {
-    renderRolodex(rolodex);
-  });
+  // rolodex.on('update', function() {
+  //   renderRolodex(rolodex);
+  // });
 
   renderRolodex(rolodex);
 
