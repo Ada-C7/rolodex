@@ -30,6 +30,7 @@ var RolodexView = Backbone.View.extend({
 
   events: {
     'click .btn-save': "addContact",
+    'click .btn-cancel': "clearForm",
     // 'click li.contact-card': "showDetails",
     'click section#contact-details': "hideDetails"
   },
@@ -45,20 +46,23 @@ var RolodexView = Backbone.View.extend({
     console.log("make form data into object");
 
     var name = this.$("#name").val();
-    // this is what deletes the users input from the text field
-    this.$("#name").val("");
-
     var email = this.$('#email').val();
-    this.$('#email').val("");
-
     var phone = this.$('#phone').val();
-    this.$('#phone').val("");
+
+    this.clearForm();
 
     return {
       name: name,
       phone: phone,
       email: email
     };
+  },
+
+  // how to clear the  input from the text field
+  clearForm: function(event){
+    this.$("#name").val("");
+    this.$('#email').val("");
+    this.$('#phone').val("");
   },
 
   // can't get this to work in the contact view
