@@ -30,9 +30,6 @@ $(document).ready(function() {
   templateCard = _.template($('#tmpl-contact-card').html());
   templateDetails = _.template($('#tmpl-contact-details').html());
 
-  // Hide the modal box // might be able to do this in the css
-  $("#contact-details").hide();
-
   var rolodexView = new RolodexView({
     model: rolodex,
     templateCard: templateCard,
