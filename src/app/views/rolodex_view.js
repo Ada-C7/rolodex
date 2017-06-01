@@ -9,6 +9,7 @@ var RolodexView = Backbone.View.extend({
     this.template = params.template;
 
     this.listenTo(this.model, "update", this.render);
+    // listenTo contact triggered
   },
   render: function() {
     // alert('render me bb');
@@ -30,6 +31,7 @@ var RolodexView = Backbone.View.extend({
     var inputName = this.$("input[name='name']");
     var inputEmail = this.$("input[name='email']");
     var inputPhone = this.$("input[name='phone']");
+    console.log(inputName + inputPhone + inputEmail);
 
     if (inputName.val()) {
       var formName = inputName.val();
@@ -57,7 +59,6 @@ var RolodexView = Backbone.View.extend({
     this.model.add(contact);
   },
   cancel: function() {
-    // alert('heeey im here now!!');
     this.$("input[name='name']").val('');
     this.$("input[name='email']").val('');
     this.$("input[name='phone']").val('');

@@ -39,19 +39,14 @@ var contactData = [
 
 var myRolodex = new Rolodex(contactData);
 
-var newContact = new Contact();
-myRolodex.add(newContact);
+// var newContact = new Contact();
+// myRolodex.add(newContact);
 
 $(document).ready(function() {
-  // render(testContact1);
-  // render(testContact2);
-  // render(new Contact());
-  // renderRolodex(myRolodex);
-
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($("#tmpl-contact-card").html()),
-    el: "main"
+    el: "#application"
   });
   myRolodexView.render();
 
