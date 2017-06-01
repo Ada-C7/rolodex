@@ -7,6 +7,7 @@ import Contact from '../models/contact';
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.templateCard = params.templateCard;
+    this.templateDetails = params.templateDetails;
     this.listenTo(this.model, "update", this.render);
   },
 
@@ -18,6 +19,7 @@ var RolodexView = Backbone.View.extend({
       var contactView = new ContactView({
         model: contact,
         templateCard: that.templateCard,
+        templateDetails: that.templateDetails
       });
 
       that.$('#contact-cards').append(contactView.render().$el);
@@ -26,7 +28,9 @@ var RolodexView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-save': "addContact"
+    'click .btn-save': "addContact",
+    // 'click li.contact-card': "showDetails",
+    'click section#contact-details': "hideDetails"
   },
 
   addContact: function(event){
@@ -54,6 +58,12 @@ var RolodexView = Backbone.View.extend({
       phone: phone,
       email: email
     };
+  },
+
+  // can't get this to work in the contact view
+  hideDetails: function(event) {
+    console.log("hide the details");
+    $("#contact-details").hide();
   }
 });
 

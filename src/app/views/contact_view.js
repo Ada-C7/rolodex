@@ -5,10 +5,12 @@ import Contact from '../models/contact';
 
 const ContactView = Backbone.View.extend({
   // cards are being sandwhiched inbetween div elements
-  // tagName: "",
-  // className: "",
+  // tagName: "li",
+  // className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns",
+
   initialize: function(params) {
     this.templateCard = params.templateCard;
+    this.templateDetails = params.templateDetails;
     console.log(this);
   },
 
@@ -19,14 +21,20 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    'click li.contact-card': "showDetails"
+    'click li.contact-card': "showDetails",
   },
 
   // on the right track...
-  showDetails: function(event){
+  showDetails: function(event) {
     console.log("show the contact details");
+    var compiledTemplateDetails = this.templateDetails( this.model.toJSON() );
+    console.log(compiledTemplateDetails);
+
+    $("#contact-details").html(compiledTemplateDetails);
     $("#contact-details").show();
-  }
+    // return this;
+  },
+
 });
 
 export default ContactView;
