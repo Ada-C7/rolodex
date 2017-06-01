@@ -40,12 +40,18 @@ var renderList = function() {
     // Create a new TaskView with the model & template
     var contactView = new ContactView({
       model: contact,
-      template: _.template($('#tmpl-contact-details').html()),
+      template: _.template($('#tmpl-contact-card').html()),
       tagname: 'li'
     });
     // Then render the TaskView
     // And append the resulting HTML to the DOM.
-      $('.todo-items').append(taskView.render().$el);
+    var target = $('#contact-cards')
+    console.log(target);
+
+    contactView.render();
+    console.log(contactView.$el);
+
+    target.append(contactView.$el);
   });
 };
 
