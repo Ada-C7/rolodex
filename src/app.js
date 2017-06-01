@@ -31,10 +31,10 @@ var readContactForm = function() {
   $("#name").val("");
 
   var phoneNumberData = $("phoneNumber").val();
-  $("phoneNumber").val("");
+  $("#phoneNumber").val("");
 
   var emailData = $("email");
-  $("email").val("");
+  $("#email").val("");
 
   var formData = {};
 
@@ -92,6 +92,12 @@ $(document).ready(function() {
 
     contactList.add(contact);
 
+  });
+
+  $(".btn-cancel").click(function(event) {
+      $("#name").val("");
+      $("#phoneNumber").val("");
+      $("#email").val("");
   });
 
   // render(myContact);
