@@ -5,11 +5,14 @@ import $ from 'jquery';
 import Contact from '../models/contact.js';
 import ContactView from '../views/contact_view.js';
 import Rolodex from '../collections/rolodex.js';
+import ContactDetailView from '../views/contact_detail_view.js';
+
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
     this.listenTo(this.model, "update", this.render);
+
   },
 
   render: function() {
@@ -28,7 +31,9 @@ var RolodexView = Backbone.View.extend({
   },
   events: {
     "click #create-contact" : "addContact",
-    "click #cancel-form" : "clearForm"
+    "click #cancel-form" : "clearForm",
+    // "click" : "hideCard"
+    // "click li.contact-card" : "showModal"
   },
 
   getFormData: function() {
@@ -55,6 +60,8 @@ var RolodexView = Backbone.View.extend({
     $("#phone").val('');
     $("#email").val('');
   }
+
+
 
 });
 

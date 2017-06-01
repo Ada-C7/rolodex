@@ -12,7 +12,9 @@ const ContactView = Backbone.View.extend({
     this.template = params.template;
     this.$el.addClass("contact-card small-11 medium-4 large-2 medium-offset-1 columns");
     this.listenTo(this.model, "change", this.render);
+    this.listenTo("body", "click", this.hideCard);
   },
+
   render: function() {
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
@@ -20,13 +22,13 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    "click li.contact-card" : "showCard",
-    "click body" : "hideCard"
+    "click" : "showCard",
+    // "click body" : "hideCard"
   },
 
   showCard: function() {
     $("#contact-details").empty();
-
+    $("#contact-details").removeClass("hide");
     console.log("clicked a card");
     var contactDetailView = new ContactDetailView({
       model: this.model,
@@ -34,13 +36,23 @@ const ContactView = Backbone.View.extend({
     });
 
     $("#contact-details").append(contactDetailView.render().el);
-    console.log($("#contact-details").html());
 
   },
 
   hideCard: function() {
-    $("#contact-details").empty();
+    console.log("tried to hide card");
+    $('body').off('click', this.remove);
+    // This is what the default `remove` does.
+    this.$el.remove();
+    return this;
+    // if ( $(event.target).closest("#contact-details").length > 0 ) {
+    //   return false;
+    // } else {
+      // $("#contact-details").empty();
+    //   $("#contact-details").addClass("hide");
+    // }
   }
+
 
 });
 
