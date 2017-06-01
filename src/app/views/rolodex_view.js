@@ -23,17 +23,19 @@ var RolodexView = Backbone.View.extend({
     return this;
   },
   events: {
-    "click .btn-save" : "addContact"
+    "click .btn-save" : "addContact",
+    "click .btn-cancel" : "clearForm"
+  },
+  clearForm: function () {
+    this.$("input[name=name]").val('');
+    this.$("input[name=email]").val('');
+    this.$("input[name=phone]").val('');
   },
   getFormData: function () {
     var name = this.$("input[name=name]").val();
-    $("input[name=name]").val('');
-
     var email = this.$("input[name=email]").val();
-    $("input[name=email]").val('');
-
     var phoneNumber = this.$("input[name=phone]").val();
-    $("input[name=phone]").val('');
+    this.clearForm();
 
     return {
       name: name,
