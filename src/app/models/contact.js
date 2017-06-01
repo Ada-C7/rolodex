@@ -1,8 +1,11 @@
 import Backbone from 'backbone';
 
 const Contact = Backbone.Model.extend({
-  // This model should have the attributes for
-  // a single contact: name, phone number, and email.
+    defaults: {
+      'name': "Fluff Butt",
+      'email': "butt@fluff.com",
+      'phone': '555-5555'
+    }
 });
 
 export default Contact;
