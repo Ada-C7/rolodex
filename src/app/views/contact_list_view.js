@@ -1,4 +1,9 @@
 import Backbone from 'backbone';
+import _ from 'underscore';
+import $ from 'jquery';
+import Contact from '../models/contact.js';
+import ContactView from '../views/contact_view.js';
+
 
 const ContactListView = Backbone.View.extend({
     initialize: function(params){
@@ -7,14 +12,15 @@ const ContactListView = Backbone.View.extend({
       },
 
   render: function() {
-      this.$('.contact-cards').empty();
+      this.$('#contact-cards').empty();
       var that = this;
       this.model.each(function(contact){
-          var contactView = new ContactView({
+          var myContactView = new ContactView({
               model: contact,
-              template: that.template
+              template: that.template,
+            //   tagName: 'li'
           });
-          that.$('.contact-cards').append(contactView.render().$el);
+          that.$('#contact-cards').append(myContactView.render().el);
       });
       return this;
   },
@@ -22,7 +28,13 @@ const ContactListView = Backbone.View.extend({
         'click #save': 'addContact'
     },
 
-    var getFormData = function(){
+    addContact: function(){
+        var contact = new Contact(this.getFormData);
+        this.model.add(contact);
+        console.log(contact);
+    },
+
+    getFormData: function(){
         var formName = this.$('#name').val();
         this.$('#name').val('');
         var formPhone = this.$('#phone').val();
@@ -36,12 +48,6 @@ const ContactListView = Backbone.View.extend({
             email: formEmail
         };
     },
-    addContact: function(e){
-        var contactData - this.getFormData();
-        var contact = new Contact(contactData);
-        this.model.add(contact);
-    }
-
 });
 
 export default ContactListView;

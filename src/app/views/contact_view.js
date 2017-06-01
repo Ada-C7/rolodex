@@ -11,9 +11,6 @@ const ContactView = Backbone.View.extend({
         //need to add more stuff here about adding class and listening events
         this.template = params.template;
         this.listenTo(this.model, 'update', this.render);
-        this.$el.addClass('contact-card');
-        this.$el.addClass('columns');
-
     },
 
     render: function(){

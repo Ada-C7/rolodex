@@ -1,11 +1,11 @@
-import Application from 'app/models/application';
-import ApplicationView from 'app/views/application_view';
+// import Application from 'app/models/application';
+// import ApplicationView from 'app/views/application_view';
 import $ from 'jQuery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
 import ContactList from './app/collections/contact_list.js';
-import ContactView from './views/contact_view.js';
-import ContactListView from './views/contact_list_view.js';
+import ContactView from './app/views/contact_view.js';
+import ContactListView from './app/views/contact_list_view.js';
 
 var contactData = [{
     name: 'Drew',
@@ -28,31 +28,15 @@ var contactData = [{
     email: 'jeff@gmail.com'
 }]
 
+var myContacts = new ContactList(contactData);
 
-
-var contactList = new ContactList(contactData);
-
-var renderList = function(contactList){
-    $('#contact-cards').empty();
-
-    contactList.each(function(contact){
-        var contactView = new ContactView({
-            model: contact,
-            template: _.template($('#tmpl-contact-card').html()),
-            el: 'section'
-            // tagName: 'li'
-        });
-        $('#contact-cards').append(taskView.render().$el);
-    });
-};
-
-
-var contactListView = new ContactListView({
-    model: contactList,
+var myContactListView = new ContactListView({
+    model: myContacts,
     template: _.template($('#tmpl-contact-card').html()),
-    el: 'section'
-});
+    el: 'div#application'
+
+})
 
 $(document).ready(function(){
-    // contactListView.render();
+    myContactListView.render();
 });
