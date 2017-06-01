@@ -2,10 +2,11 @@ import Backbone from 'backbone';
 import $ from 'jquery';
 import _ from 'underscore';
 import Contact from '../models/contact.js';
+import ContactView from '../views/contact_view.js';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
-    this.rolodexTemplate = params.template;
+    this.contactTemplate = params.template;
     this.listenTo(this.model, "update", this.render);
   },
 
@@ -15,7 +16,7 @@ var RolodexView = Backbone.View.extend({
     this.model.each(function(contact){
       var contactView = new ContactView({
         model: contact,
-        template: that.rolodexTemplate,
+        myTemplate: that.contactTemplate,
         // tagName: 'li'
       });
       that.$("#contact-cards").append(contactView.render().el);
@@ -25,6 +26,7 @@ var RolodexView = Backbone.View.extend({
 
   },
   events: {
+    // the event hash listen to the event listener
     'click .btn-save' : "saveContact",
 
     getFormData: function(){

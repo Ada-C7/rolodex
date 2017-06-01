@@ -52,8 +52,8 @@ var getInputData = function(){
 
 $(document).ready(function() {
   console.log(myContact);
-  render(myContact);
-  
+  // render(myContact);
+
   // RolodexView matches the var name in rolodex_view.js
   var myRolodexView = new RolodexView({
   // this matches the collection name up , var= rolodexList
