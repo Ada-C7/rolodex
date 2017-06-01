@@ -1,3 +1,4 @@
+// contact_view.js
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
@@ -6,7 +7,10 @@ import Contact from '../models/contact.js';
 const ContactView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
+    this.$el.addClass('contact-card small-11 medium-4 large-2 medium-offset-1 columns');
     this.listenTo(this.model, "change", this.render);
+    console.log(this.$el);
+    this.listenTo(this.$el, 'click', this.showContactDetails);
   },
 
   render: function() {
@@ -17,37 +21,25 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    'click .contact-card': 'showContactDetails',
+    // 'click .btn-save': 'saveContact',
+    'click': 'showContactDetails'
   },
 
   showContactDetails: function() {
-    //append contact details to "#tmpl-contact-details"
-    //show Contact Details
-  }
+    
+    $('#contact-details').show();
+    console.log("CLICKED");
+    console.log(this.model);
+    console.log(this.model.get("name"));
+  },
+
+  // saveContact: function() {
+  //   console.log("HELLO");
+  //   var contact = new Contact(getContactInfo);
+  //   rolodexList.add(contact);
+  // }
 
 });
+
 
 export default ContactView;
-
-
-
-$('.btn-save').click(function() {
-  var contact = new Contact( getContactInfo);
-  rolodexList.add(contact);
-  //get data from form
-  //create Contact
-  //add to list
-});
-
-//render one contact
-var renderContact = function(contact) {
-  //Get template using jQuery
-  var templateText = $('#tmpl-contact-card').html();
-  //create an underscore template object
-  var templateObject = _.template(templateText);
-  //fill in the ERB-style handles (<%- %>) with data from our task
-  var compiledHTML = $(templateObject(contact.toJSON()));
-
-  //append the results to the DOM
-  $('#contact-cards').append(compiledHTML);
-};
