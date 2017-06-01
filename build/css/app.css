@@ -26,7 +26,8 @@ header {
 
 .contact-form {
   padding: 60px 30px 90px 30px;
-  background-color: #1160A9;
+  background: #1160A9;
+  color: #fff;
 }
 
 .contact-form label {
@@ -35,6 +36,9 @@ header {
 }
 
 #contact-details {
+  padding: 30px;
+  background: #2199e8;
+  color: #fff;
   /*z-index: 10;
   position: fixed;
   width: 30%;
