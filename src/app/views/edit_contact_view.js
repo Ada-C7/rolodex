@@ -4,13 +4,10 @@ import $ from 'jquery';
 
 import Contact from '../models/contact.js';
 import Rolodex from '../collections/rolodex.js';
-import ContactDetailView from '../views/contact_detail_view.js';
 
-
-const ContactView = Backbone.View.extend({
+const EditContactView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
-    this.$el.addClass("contact-card small-11 medium-4 large-2 medium-offset-1 columns");
     this.listenTo(this.model, "change", this.render);
   },
   render: function() {
@@ -20,28 +17,24 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    "click li.contact-card" : "showCard",
-    "click body" : "hideCard"
+    "click button#edit-contact" : "saveChanges",
+    "click button#cancel-edit" : "cancel"
   },
 
-  showCard: function() {
-    $("#contact-details").empty();
+  saveChanges: function() {
+    this.$el.html("");
+    this.set(this, getFormData());
+  },
 
-    console.log("clicked a card");
+  cancel: function() {
     var contactDetailView = new ContactDetailView({
       model: this.model,
       template: _.template($("#tmpl-contact-details").html())
     });
-
     $("#contact-details").append(contactDetailView.render().el);
-    console.log($("#contact-details").html());
-
-  },
-
-  hideCard: function() {
-    $("#contact-details").empty();
   }
+
 
 });
 
-export default ContactView;
+export default EditContactView;

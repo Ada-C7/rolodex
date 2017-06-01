@@ -29,7 +29,7 @@
               <input type="text" id="phone" name="phone">
             </label>
             <h3 class="button btn-save" id="create-contact">Save</h3>
-            <h3 class="button btn-cancel">Cancel</h3>
+            <h3 id="cancel-form" class="button btn-cancel">Cancel</h3>
 
           </div>
         </section>
@@ -39,22 +39,44 @@
         <ul id="contact-cards" class="row align-center">
 
         </ul>
-        <section id="contact-details" class="hide"></section>
+        <section id="contact-details" class="hide">
+        </section>
       </main>
     </div>
 
     <!-- Underscore Templates -->
     <script type="text/template" id="tmpl-contact-card">
-      <li class="contact-card small-11 medium-4 large-2 medium-offset-1 columns">
+      <!-- <li class="contact-card small-11 medium-4 large-2 medium-offset-1 columns"> -->
         <h4><%- name %></h4>
-      </li>
+      <!-- </li> -->
     </script>
 
     <script type="text/template" id="tmpl-contact-details">
-      <h3><%- name %></h3><button  class="btn-edit-name">edit</button>
-      <h4><%- email %></h4><button class="btn-edit-email">edit</button>
-      <h4><%- phoneNumber %></h4><button class="btn-edit-phone">edit</button>
+      <h3><%- name %></h3>
+      <h4><%- email %></h4>
+      <h4><%- phoneNumber %></h4>
       <button class="button btn-delete">Delete</button>
+      <button class="button btn-edit">Edit</button>
+    </script>
+
+    <script type="text/template" id="tmpl-edit-contact">
+      <form>
+        <label>
+          Name
+          <input type="text" id="edit-name" name="name" value=<%- name %>>
+        </label>
+        <label>
+          Email
+          <input type="text" id="edit-email" name="email" value=<%- email %>>
+        </label>
+        <label>
+          Phone
+          <input type="text" id="edit-phone" name="phone" value=<%- phone %>>
+        </label>
+        <button class="button btn-save" id="edit-contact">Save Changes</button>
+        <button class="button btn-cancel" id="cancel-edit">Cancel</button>
+
+      </form>
 
     </script>
 
