@@ -78,4 +78,8 @@ $(document).ready(function() {
   });
 
   myRolodexView.render();
+
+  $('.scroll_navigation ul li').on('click', function(){
+    $('html,body').animate({scrollTop: $(this).offset().top}, 800);
+  });
 });

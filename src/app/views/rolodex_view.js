@@ -42,7 +42,7 @@ var RolodexView = Backbone.View.extend({
     return {
       name: formName,
       email: formEmail,
-      phone: formPhone
+      phone: formPhone,
     };
   },
 

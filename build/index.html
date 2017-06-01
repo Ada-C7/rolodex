@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Rolodex</title>
+    <title>Dunder Mifflin Directory</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,32 +12,45 @@
   <body>
     <div id="application">
       <header>
-        <h1>Rolodex</h1>
-        <section class="row contact-form">
-          <h3>Add A New Contact</h3>
-          <div class="columns">
-            <label>
-              Name
-              <input type="text" name="name" class="form-name">
-            </label>
-            <label>
-              Email
-              <input type="text" name="email" class="form-email">
-            </label>
-            <label>
-              Phone
-              <input type="text" name="phone" class="form-phone">
-            </label>
-            <h3 class="button btn-save">Save</h3>
-            <h3 class="button btn-cancel">Cancel</h3>
-          </div>
-        </section>
+        <img src="imgs/dunder-mifflin.png" alt="Dunder Mifflin Logo" id="logo">
+        <h1>Staff Directory</h1>
+        <section id="contact-details"></section>
       </header>
 
-      <main>
+      <main class="row">
         <ul id="contact-cards" class="row align-center"></ul>
-        <!-- <section id="contact-details"></section> -->
+        <img src="imgs/andy.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/angela.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/creed.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/dwight.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/gabe.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/jim.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/kelly.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/kevin.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/michael.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/pam.png" alt="Dunder Mifflin Logo" id="logo">
+        <img src="imgs/stanley.png" alt="Dunder Mifflin Logo" id="logo">
       </main>
+
+      <section class="row contact-form">
+        <h3>Add A New Contact</h3>
+        <div class="columns">
+          <label>
+            Name
+            <input type="text" name="name" class="form-name">
+          </label>
+          <label>
+            Email
+            <input type="text" name="email" class="form-email">
+          </label>
+          <label>
+            Phone
+            <input type="text" name="phone" class="form-phone">
+          </label>
+          <h3 class="button btn-save">Save</h3>
+          <h3 class="button btn-cancel">Cancel</h3>
+        </div>
+      </section>
     </div>
 
     <!-- Underscore Templates -->
