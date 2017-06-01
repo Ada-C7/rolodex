@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 import Contact from '../models/contact.js'
 
-const Rolodex = Backbone.Collection.extend({
+const ContactList = Backbone.Collection.extend({
     model: Contact
   // This Rolodex represents a collection of Contacts
   // and should include any methods or attributes
