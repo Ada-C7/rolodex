@@ -26,6 +26,12 @@ var newContact = new Contact({
 
 var rolodex = new Rolodex(contactData);
 
+var rolodexView = new rolodexView({
+  contactTemplate: contactTemplate,
+  model: rolodex,
+  el: $('main')
+});
+
 var render = function(contact) {
   var generatedHTML = $(contactTemplate(contact.toJSON()));
 
