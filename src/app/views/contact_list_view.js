@@ -28,19 +28,13 @@ const ContactListView = Backbone.View.extend({
         'click #save': 'addContact'
     },
 
-    addContact: function(){
-        var contact = new Contact(this.getFormData);
-        this.model.add(contact);
-        console.log(contact);
-    },
-
     getFormData: function(){
         var formName = this.$('#name').val();
-        this.$('#name').val('');
+        // this.$('#name').val('');
         var formPhone = this.$('#phone').val();
-        this.$('#phone').val('');
+        // this.$('#phone').val('');
         var formEmail = this.$('#email').val();
-        this.$('#email').val('');
+        // this.$('#email').val('');
 
         return {
             name: formName,
@@ -48,6 +42,12 @@ const ContactListView = Backbone.View.extend({
             email: formEmail
         };
     },
+
+    addContact: function(){
+        var contact = new Contact(this.getFormData());
+        this.model.add(contact);
+        console.log(contact);
+    }
 });
 
 export default ContactListView;
