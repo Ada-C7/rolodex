@@ -30,9 +30,10 @@ const ContactView = Backbone.View.extend({
     var compiledTemplateDetails = this.templateDetails( this.model.toJSON() );
     console.log(compiledTemplateDetails);
 
-    $("#contact-details").html(compiledTemplateDetails);
-    $("#contact-details").show();
-    // return this;
+    // chaining the methods works
+    $("#contact-details").html(compiledTemplateDetails).show();
+    // $("#contact-details").show();
+
   },
 
 });

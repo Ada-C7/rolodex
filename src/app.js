@@ -39,5 +39,6 @@ $(document).ready(function() {
     templateDetails: templateDetails,
     el: 'body'
   });
+  
   rolodexView.render();
 });

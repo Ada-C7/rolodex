@@ -8,6 +8,7 @@ var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.templateCard = params.templateCard;
     this.templateDetails = params.templateDetails;
+    // update only relates to adding or removing an instance from the collection
     this.listenTo(this.model, "update", this.render);
   },
 
