@@ -4,6 +4,8 @@ import $ from 'jquery';
 import ContactView from '../views/contact_view';
 import Contact from '../models/contact';
 
+// the RolodexView includes the cards but also adding new cards - save/cancel button)
+// and displaying the details
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.templateCard = params.templateCard;
@@ -20,11 +22,10 @@ var RolodexView = Backbone.View.extend({
       var contactView = new ContactView({
         model: contact,
         templateCard: that.templateCard,
-        templateDetails: that.templateDetails
       });
 
       that.$('#contact-cards').append(contactView.render().$el);
-      that.listenTo(contactView, "showDetails", that.displayDetails());
+      that.listenTo( contactView, "displayDetails", that.displayDetails );
     });
     return this;
   },
@@ -32,7 +33,6 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': "addContact",
     'click .btn-cancel': "clearForm",
-    // 'click li.contact-card': "showDetails",
     'click section#contact-details': "hideDetails"
   },
 
@@ -66,21 +66,17 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val("");
   },
 
-  displayDetails: function() {
+  // when you send this from the trigger in contactView - that parameter is expected here
+  displayDetails: function(contactCard) {
     console.log("show the contact details");
-    // console.log(this.model);
-    var compiledTemplateDetails = this.templateDetails( this.model.toJSON() );
-    console.log(compiledTemplateDetails);
-    // this.removeClass('classname').addClass('newclass')
 
-    // chaining the methods works
+    var compiledTemplateDetails = this.templateDetails( contactCard.model.toJSON() );
+    console.log(compiledTemplateDetails);
+
     $("#contact-details").html(compiledTemplateDetails).show();
-    // $("#contact-details").show();
   },
 
-  // can't get this to work in the contact view
   hideDetails: function(event) {
-
     // event delegation - use a condtional to check if the box is showing
     console.log("hide the details");
     $("#contact-details").hide();

@@ -3,14 +3,13 @@ import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact';
 
+// this view is ONLY responsible for the contact card
 const ContactView = Backbone.View.extend({
   // cards are being sandwhiched inbetween div elements
-  // tagName: "li",
-  // className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns",
-
+  tagName: "li",
+  className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns end",
   initialize: function(params) {
     this.templateCard = params.templateCard;
-    this.templateDetails = params.templateDetails;
     console.log(this);
   },
 
@@ -21,12 +20,13 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    'click li.contact-card': "showDetails",
+    'click': "details"
   },
 
   // on the right track...
-  showDetails: function(event) {
-    this.trigger("showDetails");
+  details: function(event) {
+    console.log("you clicked a card");
+    this.trigger("displayDetails", this);
   }
 });
 
