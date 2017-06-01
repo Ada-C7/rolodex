@@ -4,7 +4,7 @@ const Contact = Backbone.Model.extend({
   // This model should have the attributes for
   // a single contact: name, phone number, and email.
   defaults: {
-    name: 'peanut',
+    name: '',
     phone: '',
     email: ''
   },
@@ -18,7 +18,6 @@ const Contact = Backbone.Model.extend({
     this.logStatus();
   },
   toggleComplete: function() {
-    var canceled =
     this.get("canceled");
     this.set("canceled", !canceled);
   }
