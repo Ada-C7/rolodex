@@ -39,25 +39,25 @@ var contactData = [{
 
 var contactList;
 
-var readNewContactForm = function() {
-  var formName= $('#name').val();
-  $('#name').val('');
-  var formEmail= $('#email').val();
-  $('#email').val('');
-  var formPhone= $('#phone').val();
-  $('#phone').val('');
-  var contactData = {};
-  if (formName && formName != ""){
-    contactData["name"] = formName;
-  }
-  if (formEmail){
-    contactData["email"] = formEmail;
-  }
-  if (formPhone){
-    contactData["phone"] = formPhone;
-  }
-  return contactData;
-};
+// var readNewContactForm = function() {
+//   var formName= $('#name').val();
+//   $('#name').val('');
+//   var formEmail= $('#email').val();
+//   $('#email').val('');
+//   var formPhone= $('#phone').val();
+//   $('#phone').val('');
+//   var contactData = {};
+//   if (formName && formName != ""){
+//     contactData["name"] = formName;
+//   }
+//   if (formEmail){
+//     contactData["email"] = formEmail;
+//   }
+//   if (formPhone){
+//     contactData["phone"] = formPhone;
+//   }
+//   return contactData;
+// };
 
 // var render = function(contact){
 //   $('#contact-details').empty();
@@ -92,18 +92,30 @@ var readNewContactForm = function() {
 
 
 $(document).ready(function() {
-  contactList = new Rolodex(contactData);
+
   // contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
 
   contactTemplate = _.template($('#tmpl-contact-card').html());
+  contactList = new Rolodex(contactData);
 
-  $('.add-contact').click( function(){
-    var contact = new Contact(readNewContactForm() );
-    contactList.add(contact);
+  var contactListView = new ContactListView({
+    contactTemplate: contactTemplate,
+    model: contactList,
+    el: $('#application')
   });
-  $('.cancel-contact').click(function(){
-    var contact = new Contact(readNewContactForm() );
-  });
+
+  contactListView.render();
+
+
+  // $('.add-contact').click( function(){
+  //   var contact = new Contact(readNewContactForm() );
+  //   contactList.add(contact);
+  // });
+
+
+  // $('.cancel-contact').click(function(){
+  //   var contact = new Contact(readNewContactForm() );
+  // });
 
   // renderList(contactList);
 
@@ -112,13 +124,6 @@ $(document).ready(function() {
   // });
 
 
-  var contactListView = new ContactListView({
-    contactTemplate: contactTemplate,
-    model: contactList,
-    el: $('main')
-  });
-
-  contactListView.render();
 
 
 

@@ -10,6 +10,7 @@ const Contact = Backbone.Model.extend({
     console.log("Contact initialized: " + this.get("name"));
     console.log(params);
   }
+
 });
 
 export default Contact;
