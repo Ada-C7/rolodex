@@ -6,7 +6,7 @@ import Contact from '../models/contact';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
-    this.template = params.template;
+    this.templateCard = params.templateCard;
     this.listenTo(this.model, "update", this.render);
   },
 
@@ -17,7 +17,7 @@ var RolodexView = Backbone.View.extend({
     this.model.each(function(contact) {
       var contactView = new ContactView({
         model: contact,
-        template: that.template,
+        templateCard: that.templateCard,
       });
 
       that.$('#contact-cards').append(contactView.render().$el);
@@ -26,27 +26,7 @@ var RolodexView = Backbone.View.extend({
   },
 
   events: {
-    'click h3#save-button': "addContact"
-  },
-
-  readNewContactForm: function(){
-    console.log("make form data into object");
-
-    var name = $("#name").val();
-    // this is what deletes the users input from the text field
-    $("#name").val("");
-
-    var email = $('#email').val();
-    $('#email').val("");
-
-    var phone = $('#phone').val();
-    $('#phone').val("");
-
-    return {
-      name: name,
-      phone: phone,
-      email: email
-    };
+    'click .btn-save': "addContact"
   },
 
   addContact: function(event){
@@ -54,6 +34,26 @@ var RolodexView = Backbone.View.extend({
     var contactData = this.readNewContactForm();
     var contact = new Contact(contactData);
     this.model.add(contact);
+  },
+
+  readNewContactForm: function(){
+    console.log("make form data into object");
+
+    var name = this.$("#name").val();
+    // this is what deletes the users input from the text field
+    this.$("#name").val("");
+
+    var email = this.$('#email').val();
+    this.$('#email').val("");
+
+    var phone = this.$('#phone').val();
+    this.$('#phone').val("");
+
+    return {
+      name: name,
+      phone: phone,
+      email: email
+    };
   }
 });
 

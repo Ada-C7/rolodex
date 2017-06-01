@@ -4,17 +4,16 @@ import $ from 'jquery';
 import Contact from '../models/contact';
 
 const ContactView = Backbone.View.extend({
+  // cards are being sandwhiched inbetween div elements
   // tagName: "",
   // className: "",
-
   initialize: function(params) {
-    this.template = params.template;
+    this.templateCard = params.templateCard;
     console.log(this);
   },
 
   render: function(){
-
-    var compiledTemplate = this.template(this.model.toJSON());
+    var compiledTemplate = this.templateCard(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
   },
@@ -23,8 +22,8 @@ const ContactView = Backbone.View.extend({
     'click li.contact-card': "showDetails"
   },
 
-  // on the right track - probably should make this call a model function
-  showDetails: function(){
+  // on the right track...
+  showDetails: function(event){
     console.log("show the contact details");
     $("#contact-details").show();
   }
