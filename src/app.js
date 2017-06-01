@@ -9,7 +9,7 @@ import RolodexView from './app/views/rolodex_view';
 
 
 var contactCardTemplate;
-// var contactDetailsTemplate;
+var contactDetailsTemplate;
 
 var contactData =
 [{
@@ -42,36 +42,20 @@ var contactData =
 
 
 
-// var readNewContactForm = function() {
-//   // Get the values from the fields
-//   var nameData = $('.name').val();
-//   var emailData = $('.email').val();
-//   var phoneData = $('.phone').val();
-//
-//   clearForm();
-//
-//   return {
-//     name: nameData,
-//     email: emailData,
-//     phone: phoneData
-//   };
-//
-// };
-//
-// var clearForm = function(){
-//   $('.input').val('');
-// };
-
 
 $(document).ready(function() {
+  
   // compiling the templates
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
+
+  contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
 
 
   var rolodex = new Rolodex(contactData);
 
   var rolodexView = new RolodexView({
-    template: contactCardTemplate,
+    template1: contactCardTemplate,
+    template2: contactDetailsTemplate,
     model: rolodex,
     el: $('body')
   });
@@ -80,22 +64,7 @@ $(document).ready(function() {
 
 
 
-  // contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
 
 
-
-  // $('.btn-save').click(function(event){
-  //   var formData = readNewContactForm();
-  //   var contact = new Contact(formData);
-  //
-  //   // Add the Contact to the rolodex
-  //   rolodex.add(contact);
-  //   console.log("new contact:");
-  //   console.log(contact);
-  // });
-  //
-  // $('.btn-cancel').click(function(event){
-  //   clearForm();
-  // });
 
 });
