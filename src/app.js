@@ -67,7 +67,7 @@ $(document).ready(function(){
   var rolodexView = new RolodexView({
     template: rolodexTemplate,
     model: contactList,
-    el: $("main")
+    el: $("#application")
   });
   rolodexView.render();
 })

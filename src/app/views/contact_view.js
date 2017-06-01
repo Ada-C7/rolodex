@@ -8,6 +8,7 @@ var ContactView = Backbone.View.extend({
   className: 'contact-card small-11 medium-4 large-2 medium-offset-1 columns',
   initialize: function(params) {
     this.template = params.template;
+    this.listenTo(this.model, "change", this.render);
   },
   render: function() {
     var generatedHTML = this.template(this.model.toJSON());
