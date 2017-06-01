@@ -17,13 +17,18 @@ var rolodexData = [
   {
     name: "Isabel",
     email: "ilopez@mail.com",
-    phone: "562-324-9727"
+    phone: "562-325-0931"
   },
   {
     name: "Angelica",
     email: "alopez@mail.com",
     phone: "562-325-7777"
-  }
+  },
+  {
+    name: "Guillermina",
+    email: "glopez@mail.com",
+    phone: "562-324-9727"
+  },
 ];
 
 //for a single contact

@@ -19,7 +19,14 @@ var RolodexView = Backbone.View.extend({
       self.$('#contact-cards').append(contactView.render().$el);
     });
     return this;
+  },
+  events: {
+    'click: .btn-save': 'addTask'
+  },
+  addTask: function() {
+
   }
+
 });
 
 export default RolodexView;
