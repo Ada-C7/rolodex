@@ -40,16 +40,22 @@ $(document).ready(function() {
 
   contactTemplate = _.template($("#tmpl-contact-card").html());
 
-  var renderRolodex = function(rolodex) {
-    // Clear the unordered list
-    $('#contact-cards').empty();
+  // var renderRolodex = function(rolodex) {
+  //   // Clear the unordered list
+  //   $('#contact-cards').empty();
+  //
+  //   rolodex.each(function(contact) {
+  //     render(contact);
+  //   });
+  // };
+  //
+  // renderRolodex(rolodex);
 
-    rolodex.each(function(contact) {
-      render(contact);
-    });
-  };
-
-  renderRolodex(rolodex);
+  var rolodexView = new RolodexView ({
+    contactTemplate: contactTemplate,
+    model: taskList,
+    el: $('main')
+  })
 
   rolodex.on("update", function() {
     renderRolodex(rolodex);
