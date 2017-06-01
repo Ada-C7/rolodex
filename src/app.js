@@ -13,6 +13,7 @@ import _ from 'underscore';
 import Contact from './app/models/contact.js';
 
 import Rolodex from './app/collections/rolodex.js';
+import RolodexView from './app/views/rolodex_view.js';
 
 
 // Creating instance of Contact model with static data
@@ -39,6 +40,8 @@ $('#contact-cards').append(compiledHTML);
 
 
 // Collections- Wave2
+
+// This is the collection name which is the model
 var rolodexList = new Rolodex(myContact);
 
 // Read the Form data
@@ -47,12 +50,18 @@ var getInputData = function(){
 };
 
 
-
-
-
-
 $(document).ready(function() {
   console.log(myContact);
   render(myContact);
+  
+  // RolodexView matches the var name in rolodex_view.js
+  var myRolodexView = new RolodexView({
+  // this matches the collection name up , var= rolodexList
+  model: rolodexList,
+  template: _.template($("#tmpl-contact-card").html()),
+  el: 'main'
+  });
+
+  myRolodexView.render();
 
 });
