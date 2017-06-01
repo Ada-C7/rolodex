@@ -6,7 +6,7 @@ import Contact from '../models/contact.js';
 const ContactView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
-    console.log(params);
+    // console.log(params);
   },
   render: function() {
     var compiledTemplate = this.template(this.model.toJSON());

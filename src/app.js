@@ -57,19 +57,7 @@ var myRolodex = new Rolodex(contactData);
 //   });
 // };
 
-// var getFormData = function() {
-//   var formName = $("#contact-name").val();
-//   $("#contact-name").val("");
-//   var formEmail = $("#contact-email").val();
-//   $("#contact-email").val("");
-//   var formPhone = $("#contact-phone").val();
-//   $("#contact-phone").val("");
-//   return {
-//     name: formName,
-//     email: formEmail,
-//     phone: formPhone
-//   };
-// };
+
 
 $(document).ready(function() {
   // $("#contact-details").hide();
@@ -77,7 +65,7 @@ $(document).ready(function() {
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($("#tmpl-contact-card").html()),
-    el: 'main'
+    el: 'body'
   });
   console.log("before render");
   myRolodexView.render();
