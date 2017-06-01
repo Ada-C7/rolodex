@@ -28,12 +28,7 @@ var rolodexView = new RolodexView({
 $(document).ready(function(){
   $("#contact-details").hide();
 
-  $(".contact-card").click(function(event){
-    event.stopPropagation();
-  });
-
   $(window).click(function(event) {
-
     if ($("#contact-details").is(':visible')) {
         $("#contact-details").hide();
         console.log('why');
@@ -41,9 +36,8 @@ $(document).ready(function(){
 
       });
 
-  $("#contact-details").click(function(){
-    $("#contact-details").hide();
-    $("#contact-details").empty();
+  $("#contact-details").click(function(event){
+    event.stopPropagation();
   });
 
   rolodexView.render();

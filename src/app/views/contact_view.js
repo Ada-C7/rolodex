@@ -16,7 +16,8 @@ const ContactView = Backbone.View.extend({
   events: {
     'click': "showDetails"
   },
-  showDetails: function(){
+  showDetails: function(event){
+    event.stopPropagation();
     $("#contact-details").empty();
     var detailsTemplate =  _.template($('#tmpl-contact-details').html());
     var compiledTemplate = detailsTemplate(this.model.toJSON());
