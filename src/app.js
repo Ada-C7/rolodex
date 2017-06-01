@@ -79,6 +79,25 @@ var renderContacts = function(rolodex) {
   });
 };
 
+var getFormData = function() {
+  var formName = $("#name").val();
+  $("#name").val('');
+
+  // get checkbox and find out if it's checked - true/false
+  var formEmail = $("email").val();
+  $("email").val('');
+
+  // clear checkbox get the property 'checked' and force is to false
+  var formPhone = $('#phone').val();
+  $('#phone').val('');
+
+  return {
+    name: formName,
+    email: formEmail,
+    phone: formPhone
+  };
+};
+
 var myContacts = new Rolodex(contactsData);
 
 // var myContact = new Contact(taskData);
@@ -96,11 +115,17 @@ $(document).ready(function() {
   var myRolodexView = new RolodexView({
     model: myContacts,
     template: _.template($('#tmpl-contact-card').html()),
-    el: 'main'
+    el: 'div#application'
+    // el: 'div#application'
   });
 
   myRolodexView.render();
-
-
+  //
+  // $(".btn-save").click(function() {
+  //   var contact = new Contact(getFormData());
+  //
+  //   myContacts.add(contact);
+  //   // console.log(myTaskList);
+  // });
 
 });

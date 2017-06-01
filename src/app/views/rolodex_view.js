@@ -31,32 +31,48 @@ var RolodexView = Backbone.View.extend({
     // returning this view object so you can chain functions like myView.render().el
     return this;
   },
+
   events: {
-    "click #btn-save": "saveContact"
+    "click .btn-save": "saveContact",
+    "click .btn-cancel": "clearForm"
+    // "click h4": "testFunction"
   },
 
   getFormData: function() {
     var formName = this.$("#name").val();
-    this.$("#name").val('');
+    // this.$("#name").val('');
 
     // get checkbox and find out if it's checked - true/false
     var formEmail = this.$("#email").val();
-    this.$("#email").val('');
+    // this.$("#email").val('');
 
     // clear checkbox get the property 'checked' and force is to false
     var formPhone = this.$('#phone').val();
-    this.$('#phone').val('');
-
+    // this.$('#phone').val('');
+    this.clearForm();
     return {
       name: formName,
       email: formEmail,
       phone: formPhone
     };
+
+
   },
+  // testFunction: function() {
+  //   console.log("something");
+  // },
 
   saveContact: function() {
     var contact = new Contact(this.getFormData());
     this.model.add(contact);
+    console.log(contact);
+    console.log(this.model);
+  },
+
+  clearForm: function() {
+    this.$("#name").val('');
+    this.$("#email").val('');
+    this.$('#phone').val('');
   }
 });
 
