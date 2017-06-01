@@ -4,6 +4,9 @@ import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 import Contact from 'app/models/contact.js';
 import Rolodex from 'app/collections/rolodex.js';
+import ContactView from 'app/views/contact_view.js';
+import RolodexView from 'app/views/rolodex_view.js';
+
 
 var application = new Application();
 
@@ -12,30 +15,24 @@ var appView = new ApplicationView({
   model: application
 });
 
-var getContactInfo = function() {
 
-};
+var someContact = new Contact({
+  name: "Aziz Ansari",
+  email: 'aziz@mon.org',
+  phone: '212-222-2244'
 
-//create a collection for storing contacts
-var rolodexList = new Rolodex();
+});
 
-$('.btn-save').click(function(){
-  //get data from form
-  //create Contact
-  //add to list
-})
 
-//render one contact
-var renderContact = function(contact) {
+var rolodexList = new Rolodex(someContact);
 
-};
+var rolodexView = new RolodexView({
+  model: rolodexList,
+  template: _.template($("#tmpl-contact-card").html()),
+  el: "#application"
+});
 
-var renderRolodex = function(contactList) {
-  contactList.each(function(contact){
-    renderContact(contact);
-  })
-};
 
 $(document).ready(function(){
-
+  rolodexView.render();
 });
