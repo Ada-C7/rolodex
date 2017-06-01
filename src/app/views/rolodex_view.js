@@ -3,7 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 // import Rolodex from '../collections/rolodex';
 import ContactView from './contact_view';
-// import Contact from '../models/contact';
+import Contact from '../models/contact';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
@@ -36,7 +36,6 @@ var RolodexView = Backbone.View.extend({
   },
 
   addContact: function(event) {
-    console.log("In ADD CONTACT, contact data:");
     var formData = this.readContactForm();
 
     console.log("In ADD CONTACT, contact data:");

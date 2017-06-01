@@ -8,6 +8,9 @@ const Contact = Backbone.Model.extend({
   },
   initialize: function(params) {
 
+  },
+  toggleModal: function() {
+    console.log("Modal af")
   }
   // This model should have the attributes for
   // a single contact: name, phone number, and email.
