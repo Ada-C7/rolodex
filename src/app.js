@@ -5,6 +5,7 @@ import Contact from 'app/models/contact';
 import Rolodex from './app/collections/rolodex';
 
 import ContactView from './app/views/contact_view';
+import RolodexView from './app/views/rolodex_view';
 
 
 var contactCardTemplate;
@@ -30,20 +31,13 @@ var contactData =
 }
 ];
 
-var myContact = new Contact(contactData[0]);
 
-// var rolodex = new Rolodex(contactData);
-
+// From within old render function:
 // var render =  function(contact){
-//   var jsonContact = contact.toJSON();
-//
-//   var compiledCardTemplateHTML = $(contactCardTemplate(jsonContact));
+// var compiledDetailsTemplateHTML =
+// $(contactDetailsTemplate(jsonContact));
 
-  // var compiledDetailsTemplateHTML =
-  // $(contactDetailsTemplate(jsonContact));
-
-  // $('#contact-cards').append(compiledCardTemplateHTML);
-  // $('#contact-details').append(compiledDetailsTemplateHTML);
+// $('#contact-details').append(compiledDetailsTemplateHTML);
 // };
 
 // var renderRolodex = function(rolodex) {
@@ -84,14 +78,17 @@ $(document).ready(function() {
   // compiling the templates
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
 
-var contactView = new ContactView({
-  model: myContact,
-  template: contactCardTemplate
-});
+  // var myContact = new Contact(contactData[0]);
+  var rolodex = new Rolodex(contactData);
 
 
-$('#contact-cards').append(contactView.render().$el);
+  var rolodexView = new RolodexView({
+    template: contactCardTemplate,
+    model: rolodex,
+    el: $('body')
+  });
 
+  rolodexView.render();
 
 
 
@@ -99,8 +96,7 @@ $('#contact-cards').append(contactView.render().$el);
 
   // contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
 
-  // renderRolodex(rolodex);
-  //
+
   // rolodex.on("update", function() {
   //   renderRolodex(rolodex);
   // });
