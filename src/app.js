@@ -39,57 +39,6 @@ var contactData = [{
 
 var contactList;
 
-// var readNewContactForm = function() {
-//   var formName= $('#name').val();
-//   $('#name').val('');
-//   var formEmail= $('#email').val();
-//   $('#email').val('');
-//   var formPhone= $('#phone').val();
-//   $('#phone').val('');
-//   var contactData = {};
-//   if (formName && formName != ""){
-//     contactData["name"] = formName;
-//   }
-//   if (formEmail){
-//     contactData["email"] = formEmail;
-//   }
-//   if (formPhone){
-//     contactData["phone"] = formPhone;
-//   }
-//   return contactData;
-// };
-
-// var render = function(contact){
-//   $('#contact-details').empty();
-//   var generatedHTML = contactDetailsTemplate(contact.toJSON()); // give template data to generate html
-//   $('#contact-details').append(generatedHTML);
-// };
-//
-// var renderList = function(taskList) {
-//   $('#contact-cards').empty();
-//   contactList.each(function(contact) {
-//     var contactView = new ContactView({
-//       model: contact,
-//       template: _.template($('#tmpl-contact-card').html())
-//     });
-//     $('#contact-cards').append(contactView.render().$el);
-//   });
-//
-//   $('.contact-card').click(function(){
-//     var name = $(this).text().trim();
-//     var contact = contactList.find(function(model){return model.get('name') == name;});
-//     render(contact);
-//   });
-//
-// };
-// cHANGED THIS TO CODE ABOVE:
-// var renderList = function(contactList) {
-//   $('#contact-cards').empty();
-//   contactList.each(function(contact) {
-//     renderContactName(contact);
-//   });
-// };
-
 
 $(document).ready(function() {
 
@@ -105,23 +54,6 @@ $(document).ready(function() {
   });
 
   contactListView.render();
-
-
-  // $('.add-contact').click( function(){
-  //   var contact = new Contact(readNewContactForm() );
-  //   contactList.add(contact);
-  // });
-
-
-  // $('.cancel-contact').click(function(){
-  //   var contact = new Contact(readNewContactForm() );
-  // });
-
-  // renderList(contactList);
-
-  // contactList.on("update", function() {
-  //   renderList(contactList);
-  // });
 
 
 
