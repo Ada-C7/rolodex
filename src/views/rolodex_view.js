@@ -26,7 +26,8 @@ var RolodexView = Backbone.View.extend({
     return this;
   },
   events: {
-
+    "click .button.btn-save" : "addContact",
+    "click .button.btn-cancel" : "clearFields"
   },
   getFormData: function() {
     var formName = this.$('#name').val();
@@ -38,7 +39,7 @@ var RolodexView = Backbone.View.extend({
     var formPhone = this.$('#phone').val();
     this.$('#phone').val('');
 
-    if (formName === "" || formEmail === "" || formPhone === "") {
+    if (formName === "") {
       return {
         //will return default values
       };
@@ -51,10 +52,16 @@ var RolodexView = Backbone.View.extend({
     }
   },
   addContact: function() {
+    // console.log('addContact button');
     var contact = new Contact(this.getFormData());
 
     this.model.add(contact);
+  },
+  clearFields: function() {
+    this.$('#name').val('');
+    this.$('#email').val('');
+    this.$('#phone').val('');
   }
 });
 
-export default RolodexView; 
+export default RolodexView;

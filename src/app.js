@@ -1,8 +1,8 @@
 // import Application from 'app/models/application';
 // import ApplicationView from 'app/views/application_view';
 
-import _ from 'underscore';
 import $ from 'jquery';
+import _ from 'underscore';
 import Contact from './models/contact.js';
 import Rolodex from './collections/rolodex.js';
 import ContactView from './views/contact_view.js';
@@ -32,31 +32,12 @@ var contactData = [
 
 var myRolodex = new Rolodex(contactData);
 
-var renderList = function(contactList) {
-  $('#contact-cards').empty();
-  contactList.each(function(contact) {
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html())
-    });
-    $('#contact-cards').append(contactView.render().el);
-    // render(contact);
-  });
-};
 
 $(document).ready(function() {
-  renderList(myRolodex);
-  myRolodex.on("update", function() {
-    renderList(myRolodex);
+  var myRolodexView = new RolodexView({
+    model: myRolodex,
+    template: _.template($('#tmpl-contact-card').html()),
+    el: 'body'
   });
-  $('.button.btn-save').click(function() {
-    var contact = new Contact(getFormData());
-    myRolodex.add(contact);
-  });
-  $('.button.btn-cancel').click(function() {
-    // clear out form
-    console.log('cancel button pressed');
-    $('#contact-form').empty();
-  });
-
+  myRolodexView.render();
 });
