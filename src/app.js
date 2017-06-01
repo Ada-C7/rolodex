@@ -20,12 +20,12 @@ $('#contact-details').hide();
 var contactData = [
   {
     name: "Theresa",
-    phone: "1234567891",
+    phone: "123-456-7891",
     email: "theresa@yo.com"
   },
   {
     name: "Stella",
-    phone: "9876543219",
+    phone: "987-654-3219",
     email: "stella@yo.com"
   }
 ];
