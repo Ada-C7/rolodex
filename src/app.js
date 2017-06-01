@@ -40,17 +40,6 @@ var contactData =
 // $('#contact-details').append(compiledDetailsTemplateHTML);
 // };
 
-// var renderRolodex = function(rolodex) {
-//   // Clear the unordered list
-//   $('#contact-cards').empty();
-//   $('#contact-details').empty();
-//
-//   // Iterate through the list rendering each Task
-//   rolodex.each(function(contact) {
-//     render(contact);
-//   });
-// };
-
 
 
 // var readNewContactForm = function() {
@@ -78,9 +67,8 @@ $(document).ready(function() {
   // compiling the templates
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
 
-  // var myContact = new Contact(contactData[0]);
-  var rolodex = new Rolodex(contactData);
 
+  var rolodex = new Rolodex(contactData);
 
   var rolodexView = new RolodexView({
     template: contactCardTemplate,
@@ -92,14 +80,7 @@ $(document).ready(function() {
 
 
 
-
-
   // contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
-
-
-  // rolodex.on("update", function() {
-  //   renderRolodex(rolodex);
-  // });
 
 
 
