@@ -5,6 +5,7 @@ import ApplicationView from 'app/views/application_view';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
 import ContactView from './app/views/contact_view.js';
+import RolodexView from './app/views/rolodex_view.js';
 
 var application = new Application();
 
@@ -31,7 +32,7 @@ var contactData = [
   }
 ];
 
-var myContactList = new Rolodex(contactData);
+var myRolodex = new Rolodex(contactData);
 
 var renderList = function(contactList) {
   $('#contact-cards').empty();
@@ -63,15 +64,22 @@ var clearForm = function() {
 };
 
 $(document).ready(function() {
-  renderList(myContactList);
+  // renderList(myContactList);
+  //
+  // myContactList.on('update', function() {
+  //   renderList(myContactList);
+  // });
 
-  myContactList.on('update', function() {
-    renderList(myContactList);
+  var myRolodexView = new RolodexView({
+    model: myRolodex,
+    template: _.template($('#tmpl-contact-card').html()),
+    el: 'main'
   });
+  myRolodexView.render();
 
   $('.btn-save').click(function() {
     var contact = new Contact(getFormData());
-    myContactList.add(contact);
+    myRolodex.add(contact);
   });
 
   $('.btn-cancel').click(clearForm);
