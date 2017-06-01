@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import Contact from 'app/models/contact';
 import ContactList from './app/collections/rolodex';
+import ContactView from './app/views/contact_view.js';
 
 var contactTemplate;
 var contactList;
@@ -56,18 +57,25 @@ var readContactForm = function() {
 
 var myContact = new Contact(contactData[0]);
 
-var render = function(contact) {
-  var jsonContact = contact.toJSON();
-  var generatedHTML = $(contactTemplate(jsonContact));
-  console.log(generatedHTML);
-
-  $("#contact-cards").append(generatedHTML);
-};
+// var render = function(contact) {
+//   var jsonContact = contact.toJSON();
+//   var generatedHTML = $(contactTemplate(jsonContact));
+//   console.log(generatedHTML);
+//
+//   $("#contact-cards").append(generatedHTML);
+// };
 
 var renderList = function(contactList) {
   $("#contact-cards").empty();
   contactList.each(function(contact) {
-    render(contact);
+
+    var contactView = new ContactView({
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html()),
+      tagName: 'li'
+    });
+    $("#contact-cards").append(contactView.render().$el);
+    // render(contact);
   });
 };
 
