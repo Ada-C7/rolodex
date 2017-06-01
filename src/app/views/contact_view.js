@@ -26,16 +26,8 @@ const ContactView = Backbone.View.extend({
 
   // on the right track...
   showDetails: function(event) {
-    console.log("show the contact details");
-    var compiledTemplateDetails = this.templateDetails( this.model.toJSON() );
-    console.log(compiledTemplateDetails);
-
-    // chaining the methods works
-    $("#contact-details").html(compiledTemplateDetails).show();
-    // $("#contact-details").show();
-
-  },
-
+    this.trigger("showDetails");
+  }
 });
 
 export default ContactView;

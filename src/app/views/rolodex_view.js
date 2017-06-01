@@ -24,6 +24,7 @@ var RolodexView = Backbone.View.extend({
       });
 
       that.$('#contact-cards').append(contactView.render().$el);
+      that.listenTo(contactView, "showDetails", that.displayDetails());
     });
     return this;
   },
@@ -65,8 +66,22 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val("");
   },
 
+  displayDetails: function() {
+    console.log("show the contact details");
+    // console.log(this.model);
+    var compiledTemplateDetails = this.templateDetails( this.model.toJSON() );
+    console.log(compiledTemplateDetails);
+    // this.removeClass('classname').addClass('newclass')
+
+    // chaining the methods works
+    $("#contact-details").html(compiledTemplateDetails).show();
+    // $("#contact-details").show();
+  },
+
   // can't get this to work in the contact view
   hideDetails: function(event) {
+
+    // event delegation - use a condtional to check if the box is showing
     console.log("hide the details");
     $("#contact-details").hide();
   }
