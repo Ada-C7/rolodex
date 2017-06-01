@@ -3,6 +3,9 @@ import _ from 'underscore';
 
 import Contact from 'app/models/contact';
 import Rolodex from './app/collections/rolodex';
+
+import RolodexView from './app/views/rolodex_view.js';
+
 var contactTemplate;
 
 var contactData = [
@@ -35,27 +38,28 @@ var render = function(contact) {
   // });
 };
 
+var rolodexView = new RolodexView ({
+  contactTemplate: contactTemplate,
+  model: rolodex,
+  el: $('main')
+});
 
 $(document).ready(function() {
 
   contactTemplate = _.template($("#tmpl-contact-card").html());
 
-  // var renderRolodex = function(rolodex) {
-  //   // Clear the unordered list
-  //   $('#contact-cards').empty();
-  //
-  //   rolodex.each(function(contact) {
-  //     render(contact);
-  //   });
-  // };
-  //
-  // renderRolodex(rolodex);
+  var renderRolodex = function(rolodex) {
+    // Clear the unordered list
+    $('#contact-cards').empty();
 
-  var rolodexView = new RolodexView ({
-    contactTemplate: contactTemplate,
-    model: taskList,
-    el: $('main')
-  })
+    rolodex.each(function(contact) {
+      render(contact);
+    });
+  };
+
+  renderRolodex(rolodex);
+
+
 
   rolodex.on("update", function() {
     renderRolodex(rolodex);
