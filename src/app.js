@@ -3,6 +3,8 @@ import _ from 'underscore';
 
 import Contact from 'app/models/contact';
 import Rolodex from './app/collections/rolodex.js';
+import RolodexView from './app/views/rolodex_view.js';
+
 var contactTemplate;
 
 var contactData = [
@@ -24,13 +26,7 @@ var newContact = new Contact({
     phone: "555-555-5555"
 });
 
-var rolodex = new Rolodex(contactData);
 
-var rolodexView = new rolodexView({
-  contactTemplate: contactTemplate,
-  model: rolodex,
-  el: $('main')
-});
 
 var render = function(contact) {
   var generatedHTML = $(contactTemplate(contact.toJSON()));
@@ -44,6 +40,14 @@ var render = function(contact) {
 
 
 $(document).ready(function() {
+
+  var rolodex = new Rolodex(contactData);
+
+  var rolodexView = new RolodexView({
+    contactTemplate: contactTemplate,
+    model: rolodex,
+    el: $('main')
+  });
 
   contactTemplate = _.template($('#tmpl-contact-card').html());
 
