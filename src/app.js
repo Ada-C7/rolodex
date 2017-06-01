@@ -42,19 +42,20 @@ var getFormData = function() {
   };
 };
 
-var render = function(contact) {
+var render = function(contacts) {
+  console.log(contacts.toJSON());
   var templateName = $('#tmpl-contact-card').html();
 
   var templateObject = _.template(templateName);
 
-  var compiledHTML = $(templateObject(contact.toJSON()));
+  _.each(contacts.toJSON(), function(contact) {
+    var compiledHTML = $(templateObject(contact));
+    $('#contact-cards').append(compiledHTML);
 
-  $('#contact-cards').append(compiledHTML);
-
-  compiledHTML.find('button.success').click({contactToAdd: contact}, function(params) {
-    myRolodex.add(params.data.contactToAdd);
+    compiledHTML.find('button.success').click({contactToAdd: contact}, function(params) {
+      myRolodex.add(params.data.contactToAdd);
+    });
   });
-
 };
 
 
@@ -84,6 +85,10 @@ $(document).ready(function() {
   $("#add-contact").click(function() {
     var contact = new Contact(getFormData());
 
+    myRolodex.add(contact);
+
+  });
+  
   $("#cancel-contact").click(function(){
     var formName = $("#name").val();
     $("#name").val('');
@@ -93,10 +98,6 @@ $(document).ready(function() {
 
     var formEmail = $("#email").val();
     $("#email").val('');
-  });
-
-    myRolodex.add(contact);
-
   });
 
   var application = new Application();
