@@ -28,41 +28,45 @@ var newContact = new Contact({
 
 
 
-var render = function(contact) {
-  var generatedHTML = $(contactTemplate(contact.toJSON()));
-
-  $('#contact-cards').append(generatedHTML);
-
-  // generatedHTML.find(“button.alert”).click({task: task}, function(params) {
-  //   taskList.remove(params.data.task);
-  // });
-};
+// var render = function(contact) {
+//   var generatedHTML = $(contactTemplate(contact.toJSON()));
+//
+//   $('#contact-cards').append(generatedHTML);
+//
+//   // generatedHTML.find(“button.alert”).click({task: task}, function(params) {
+//   //   taskList.remove(params.data.task);
+//   // });
+// };
 
 
 $(document).ready(function() {
 
+  contactTemplate = _.template($('#tmpl-contact-card').html());
+
   var rolodex = new Rolodex(contactData);
 
   var rolodexView = new RolodexView({
-    contactTemplate: contactTemplate,
+    template: contactTemplate,
     model: rolodex,
     el: $('main')
   });
 
-  contactTemplate = _.template($('#tmpl-contact-card').html());
+  rolodexView.render();
 
-  var renderRolodex = function(rolodex) {
-    // Clear the unordered list
-    $('#contact-cards').empty();
 
-    rolodex.each(function(contact) {
-      render(contact);
-    });
-  };
-  // renderRolodex(rolodex);
 
+//   var renderRolodex = function(rolodex) {
+//     // Clear the unordered list
+//     $('#contact-cards').empty();
+//
+//     rolodex.each(function(contact) {
+//       render(contact);
+//     });
+//   };
+//   // renderRolodex(rolodex);
+//
   rolodex.on("update", function() {
-  renderRolodex(rolodex);
+  rolodexView.render();
 });
 rolodex.add(newContact);
 });
