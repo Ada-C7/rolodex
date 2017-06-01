@@ -23,7 +23,7 @@ var contactsData = [
     phone: 6172779340
   },
   {
-    name: "Katherine",
+    name: "Kat",
     email: "kat@ada.org",
     phone: 6178358880
   },
