@@ -4,6 +4,7 @@ import _ from 'underscore';
 import Contact from 'app/models/contact';
 import Rolodex from 'app/collections/rolodex';
 import ContactView from 'app/views/contact_view.js';
+import ContactListView from 'app/views/contact_list_view.js';
 
 var contactCardTemplate;
 var contactList;
@@ -25,35 +26,35 @@ var contactData = [{
 }];
 
 
-var render = function(myContact){
-  var jsoncontactCard = myContact.toJSON();
-  var generatedHTML = contactCardTemplate(jsoncontactCard);
+// var render = function(myContact){
+//   var jsoncontactCard = myContact.toJSON();
+//   var generatedHTML = contactCardTemplate(jsoncontactCard);
+//
+//   $('#contact-cards').append(generatedHTML);
+// };
 
-  $('#contact-cards').append(generatedHTML);
-};
 
-
-var renderList = function() {
-  $('#contact-cards').empty();
-  contactList.each(function(contact) {
-    // render(contact);
-    // Create a new TaskView with the model & template
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html()),
-      tagname: 'li'
-    });
-    // Then render the TaskView
-    // And append the resulting HTML to the DOM.
-    var target = $('#contact-cards')
-    console.log(target);
-
-    contactView.render();
-    console.log(contactView.$el);
-
-    target.append(contactView.$el);
-  });
-};
+// var renderList = function() {
+//   $('#contact-cards').empty();
+//   contactList.each(function(contact) {
+//     // render(contact);
+//     // Create a new TaskView with the model & template
+//     var contactView = new ContactView({
+//       model: contact,
+//       template: _.template($('#tmpl-contact-card').html()),
+//       tagname: 'li'
+//     });
+//     // Then render the TaskView
+//     // And append the resulting HTML to the DOM.
+//     var target = $('#contact-cards')
+//     console.log(target);
+//
+//     contactView.render();
+//     console.log(contactView.$el);
+//
+//     target.append(contactView.$el);
+//   });
+// };
 
 $(document).ready(function() {
 
@@ -62,10 +63,19 @@ $(document).ready(function() {
   contactList = new Rolodex(contactData);
   // renderList(contactList);
 
-  contactList.on("update", function(){
-    renderList(contactList);
-  });
-  renderList(contactList);
+  // contactList.on("update", function(){
+  //   renderList(contactList);
+  // });
+  // renderList(contactList);
+  var contactListViewParams = {
+    contactTemplate: contactCardTemplate,
+    model: contactList,
+    el: $('#application')
+  };
+
+  var contactListView = new ContactListView(contactListViewParams);
+
+  contactListView.render();
 
   // contactData.forEach(function(contactData){
   //   var contact = new Contact(contactData);
