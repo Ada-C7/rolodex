@@ -9,7 +9,8 @@ var RolodexView = Backbone.View.extend({
     this.template = params.template;
 
     this.listenTo(this.model, "update", this.render);
-    // listenTo contact triggered
+    this.listenTo(this.model, "showDetails", this.fillModal         );
+    // listenTo showdetail triggered, show modal
   },
   render: function() {
     // alert('render me bb');
@@ -62,7 +63,11 @@ var RolodexView = Backbone.View.extend({
     this.$("input[name='name']").val('');
     this.$("input[name='email']").val('');
     this.$("input[name='phone']").val('');
-  }
+  },
+  // modal info - clear, then gets info of clicked contact
+  // show modal - toggles show
+  // hide modal - toggles hide
+  // other click?
 });
 
 export default RolodexView;

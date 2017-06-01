@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
+// import Modal from 'backbone.modal';
 
 const ContactView = Backbone.View.extend({
   initialize: function(params) {
@@ -17,7 +18,12 @@ const ContactView = Backbone.View.extend({
     return this;
   },
   events: {
+    // click card, trigger 'showdetails'
+    "click .contact-card" : "selectedHandler"
     // edit contact
+  },
+  selectedHandler: function(event) {
+    this.trigger("showDetails", this.model);
   }
 });
 
