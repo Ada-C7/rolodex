@@ -26,16 +26,39 @@ var contactData = [
     email: 'jenni@email.com'
   }];
 
+var readContactForm = function() {
+  var nameData = $("#name").val();
+  $("#name").val("");
+
+  var phoneNumberData = $("phoneNumber").val();
+  $("phoneNumber").val("");
+
+  var emailData = $("email");
+  $("email").val("");
+
+  var formData = {};
+
+  if (nameData && nameData != "") {
+    formData["name"] = nameData
+  }
+  if (phoneNumberData && phoneNumberData != "") {
+    formData["phoneNumberData"] = phoneNumberData
+  }
+  if (emailData && emailData != "") {
+    formData["emailData"] = emailData
+  }
+  return formData;
+};
   // var readContactForm = function() {
   //   var nameData = $("name").val();
   //   $("#name").val("");
   // }
 
-// var myContact = new Contact(contactData[0]);
+var myContact = new Contact(contactData[0]);
 
 var render = function(contact) {
   var jsonContact = contact.toJSON();
-  var generatedHTML = contactTemplate(jsonContact);
+  var generatedHTML = $(contactTemplate(jsonContact));
   console.log(generatedHTML);
 
   $("#contact-cards").append(generatedHTML);
@@ -55,7 +78,21 @@ $(document).ready(function() {
 
   contactTemplate = _.template($('#tmpl-contact-card').html());
 
+  contactList.on("update", function(){
+    renderList(contactList);
+  });
+
   renderList(contactList);
+
+  $(".btn-save").click(function(event) {
+    var contactData = readContactForm();
+    console.log(contactData);
+
+    var contact = new Contact(contactData);
+
+    contactList.add(contact);
+
+  });
 
   // render(myContact);
 });
