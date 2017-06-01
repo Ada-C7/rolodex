@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Contact from '../spec/app/models/contact.js';
-import Rolodex from '../spec/app/collections/rolodex';
+import Contact from './app/models/contact.js';
+import Rolodex from './app/collections/rolodex';
 
 var contactTemplate;
 var rolodex;
