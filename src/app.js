@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
+import ContactView from './app/views/contact_view';
 
 
 var contactData = [
@@ -28,19 +29,25 @@ var renderList = function(contactList) {
   $('#contact-cards').empty();
 
   contactList.each(function(task) {
-    
+    var contactView = new ContactView({
+      model: Contact,
+      template: _.template($('#tmpl-contact-card').html()),
+      // tagName: 'li'
+    });
+    $('#contact-cards').append(contactView.render().el);
   });
 };
 
 
 
 $(document).ready(function() {
-  // select template
-  var templateText = $('#tmpl-contact-card').html();
-  //get compiled template object
-  var templateObject = _.template(templateText);
-  // use template and model data to generate obj into html
-  var compiledHTML = templateObject(myContact.toJSON());
-
-  $('#contact-cards').append(compiledHTML);
+  renderList(myContactList);
+  // // select template
+  // var templateText = $('#tmpl-contact-card').html();
+  // //get compiled template object
+  // var templateObject = _.template(templateText);
+  // // use template and model data to generate obj into html
+  // var compiledHTML = templateObject(myContact.toJSON());
+  //
+  // $('#contact-cards').append(compiledHTML);
 });
