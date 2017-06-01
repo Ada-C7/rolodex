@@ -10,6 +10,7 @@ const ContactView = Backbone.View.extend({
   },
   render: function() {
     var compiledTemplate = this.template(this.model.toJSON());
+    console.log(compiledTemplate);
     this.$el.html(compiledTemplate);
     return this;
   }

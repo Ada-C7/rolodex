@@ -18,7 +18,7 @@ var contactData = [{
   email: "Ting@adadevelopersacademy.org"
 },
 {
-  name: "Emma",
+  name: "Emma Lovelace",
   phone: "(416) 733-2223",
   email: "Emma@adadevelopersacademy.org"
 }];
@@ -40,14 +40,14 @@ var renderList = function(contactList) {
 
     // Create a new TaskView with the model & template
     var contactView = new ContactView({
-      model: Contact,
-      template: _.template($('#tmpl-contact-details').html()),
+      model: contact,
+      template: _.template($('#tmpl-contact-card').html()),
       tagName: 'li'
     });
 
     // Then render the TaskView
     // And append the resulting HTML to the DOM.
-    // $('.todo-items').append(taskView.render().$el);
+    $('#contact-card').append(contactView.render().$el);
   });
 };
 
