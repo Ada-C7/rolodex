@@ -40,6 +40,4 @@ $(document).ready(function () {
   });
 
   rolodexView.render();
-
-  console.log(rolodex);
 });
