@@ -27,86 +27,12 @@ var contactData = [
 
 var myContacts = new Rolodex(contactData);
 
-// --------------render cards or rolodex--------------------
-// var renderCard = function(contact){
-//   var templateText = $('#tmpl-contact-card').html();
-//   var templateObject = _.template(templateText);
-//   var compiledHTML = $(templateObject(contact.toJSON()));
-//   $('#contact-cards').append(compiledHTML);
-// };
-
-// var renderRolodex = function(rolodex){
-//   $('#contact-cards').empty();
-//
-//   rolodex.each(function(contact) {
-//     // renderCard(contact);
-//     // replacing render cards with contact view
-//     var contactView = new ContactView({
-//       model: contact,
-//       template: _.template($('#tmpl-contact-card').html()),
-//     });
-//
-//     $('#contact-cards').append(contactView.render().$el);
-//
-//   });
-// };
-
-// --------------get form data--------------------
-//
-// var getFormData = function(){
-//   var formName = $('#name').val();
-//   $('#name').val('');
-//
-//   var formEmail = $('#email').val();
-//   $('#email').val('');
-//
-//   var formPhone = $('#phone').val();
-//   $('#phone').val('');
-//
-//   return {
-//     name: formName,
-//     email: formEmail,
-//     phone: formPhone
-//   };
-// };
-
-// --------------clear form data--------------------
-//
-// var clearFormData = function(){
-//   $('#name').val('');
-//   $('#email').val('');
-//   $('#phone').val('');
-// };
-
-
-// --------------Document Ready--------------------
-
-// var myRolodex = new Rolodex();
+var myRolodexView = new RolodexView({
+  model: myContacts,
+  template: _.template($('#tmpl-contact-card').html()),
+  el: '#application'
+});
 
 $(document).ready(function() {
-  // renderCard(newContact);
-
-  // $('.btn-save').click(function(){
-  //   var formData = getFormData();
-  //   var newContact = new Contact(formData);
-  //
-  //   myContacts.add(newContact);
-  // });
-
-  // $('.btn-save').click(function(){
-  //   console.log("here");
-  // });
-
-  // $('.btn-cancel').click(function(){
-  //   clearFormData();
-  // });
-  //
-
-
-  var myRolodexView = new RolodexView({
-    model: myContacts,
-    template: _.template($('#tmpl-contact-card').html()),
-    el: '#application'
-  });
   myRolodexView.render();
 });
