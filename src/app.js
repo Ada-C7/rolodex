@@ -31,7 +31,7 @@ $(document).ready(function() {
   var clvParams = {
     contactTemplate: contactCardTemplate,
     model: contactList,
-    el: $('#application')
+    el: $('div#application')
   };
   var contactListView = new ContactListView(clvParams);
 
