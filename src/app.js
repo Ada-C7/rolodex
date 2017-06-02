@@ -8,6 +8,7 @@ import ContactListView from 'app/views/contact_list_view.js';
 
 var contactCardTemplate;
 var contactList;
+var detailsTemplate;
 
 var contactData = [{
   name: "Sofia",
@@ -60,6 +61,8 @@ $(document).ready(function() {
 
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
 
+    detailsTemplate = _.template($('#tmpl-contact-details').html());
+
   contactList = new Rolodex(contactData);
   // renderList(contactList);
 
@@ -69,8 +72,9 @@ $(document).ready(function() {
   // renderList(contactList);
   var contactListViewParams = {
     contactTemplate: contactCardTemplate,
+    contactDetailsTemplate: detailsTemplate,
     model: contactList,
-    el: $('#application')
+    el: $('body')
   };
 
   var contactListView = new ContactListView(contactListViewParams);

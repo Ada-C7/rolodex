@@ -7,6 +7,7 @@ import ContactView from './contact_view';
 var ContactListView = Backbone.View.extend({
   initialize: function(params) {
     this.contactTemplate = params.contactTemplate;
+    this.contactDetailsTemplate = params.contactDetailsTemplate,
 
     this.listenTo(this.model, "update", this.render);
   },
@@ -41,7 +42,23 @@ var ContactListView = Backbone.View.extend({
 
   events: {
     'click .btn-save': 'addContact',
-    'click .btn-cancel': 'clearForm'
+    'click .btn-cancel': 'clearForm',
+    'contactClicked': 'triggerModal',
+    'click': 'hideModal',
+    'click #contact-details': 'dontHide'
+  },
+  dontHide: function(event) {
+    event.stopPropagation();
+  },
+
+  hideModal: function(event){
+    this.$('#contact-details').hide();
+  },
+
+  triggerModal: function(event, contact){
+    var detailsTemplateHTML = this.contactDetailsTemplate(contact.toJSON());
+    this.$('#contact-details').html(detailsTemplateHTML).show();
+    // this.selectedContact = contact;
   },
 
   addContact: function(event) {

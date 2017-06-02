@@ -12,7 +12,17 @@ const ContactView = Backbone.View.extend({
     console.log(compiledTemplate);
     this.$el.html(compiledTemplate);
     return this;
+  },
+
+  events: {
+    'click': 'showContact',
+  },
+  
+  showContact: function(event) {
+    this.$el.trigger('contactClicked', this.model);
+    event.stopPropagation();
   }
+
 });
 
 
