@@ -23,7 +23,7 @@ const ModalView = Backbone.View.extend({
   },
   updateContact: function(event) {
     var formData = this.getFormData();
-    console.log(formData);
+    this.model.updateContact(formData);
     // call model method of update.
   },
   getFormData: function() {
