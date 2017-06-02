@@ -21,6 +21,7 @@ const ContactView = Backbone.View.extend({
     // edit contact
   },
   selectedHandler: function(event) {
+    event.stopPropagation();
     this.trigger("showDetails", this.model);
   }
 });

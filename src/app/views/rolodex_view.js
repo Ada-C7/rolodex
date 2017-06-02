@@ -29,7 +29,8 @@ var RolodexView = Backbone.View.extend({
   },
   events: {
     "click .btn-save" : "saveContact",
-    "click .btn-cancel" : "cancel"
+    "click .btn-cancel" : "cancel",
+    "click" : "hideModal"
   },
   getFormData: function() {
     var inputName = this.$("input[name='name']");
@@ -70,8 +71,8 @@ var RolodexView = Backbone.View.extend({
   renderModal: function(contact) {
     // modal info - clear, then gets info of clicked contact
     console.log(contact);
-    
     $("#contact-details").empty();
+    $("#contact-details").show();
 
     var detailsView = new ContactView({
       model: contact,
@@ -79,11 +80,9 @@ var RolodexView = Backbone.View.extend({
     });
     this.$('#contact-details').append(detailsView.render().el);
   },
-  clickOutside: function() {
-
-  },
   hideModal: function() {
-    // hide modal - toggles hide
+    // alert("hiii its me");
+    $("#contact-details").hide();
   }
 });
 
