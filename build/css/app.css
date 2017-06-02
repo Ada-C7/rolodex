@@ -32,7 +32,7 @@ header {
   z-index: 10;
   position: fixed;
   width: 30%;
-  height: 25%;
+  height: 30%;
   top: 30%;
   left: 30%;
   background-color: #538ca3;
@@ -64,4 +64,8 @@ header {
 
 .contact-card:hover h3 {
   color: white;
+}
+
+.button {
+  background-color: midnightBlue;
 }

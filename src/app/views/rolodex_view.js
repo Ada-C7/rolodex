@@ -70,13 +70,15 @@ var RolodexView = Backbone.View.extend({
 
   // what ever info you sent along with trigger can be accessed here - cause listenTo calls this function
   displayDetails: function(contactCard) {
-    event.preventDefault();
+    // event.preventDefault();
     console.log("show the contact details");
 
     var compiledTemplateDetails = this.templateDetails( contactCard.model.toJSON() );
     console.log(compiledTemplateDetails);
 
     $("#contact-details").html(compiledTemplateDetails).show();
+    this.listenTo( ".btn-delete", contactCard.model.destroy() );
+    this.listenTo(".btn-edit", "editContact", contactCard.model)
   },
 
   hideDetails: function(event) {
