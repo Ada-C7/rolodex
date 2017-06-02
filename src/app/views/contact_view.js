@@ -5,50 +5,24 @@ import Contact from '../models/contact';
 
 
 var ContactView = Backbone.View.extend({
+  tagName: 'li',
+  className: 'contact-card small-11 medium-4 large-2 medium-offset-1 columns',
+  // tagName: 'section',
+  // className: 'columns',
   initialize: function(params) {
     console.log(params);
     this.model = params.model;
     this.template = params.template;
+    console.log(this);
 
-    var test1 = this.listenTo(this.model, 'change', this.render);
-    console.log(this.render);
-
-    console.log("test1");
-    console.log(test1);
-    console.log("test1");
-
+    this.listenTo(this.model, 'change', this.render);
   },
   render: function() {
-    console.log("Inside render");
-    console.log(this.model);
+    console.log(this);
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
+
     return this;
-  },
-  events: {
-    'click button.btn-save': 'saveContact',
-    'click button.btn-cancel': 'cancelContact'
-  },
-  saveContact: function(event) {
-
-    alert("Inside saveContact");
-    console.log("working");
-
-    // this.model.save({
-    //   name: $('#name').val(),
-    //   email: $('#email').val(),
-    //   phone: $('#phone').val()
-    // });
-    // this.render();
-
-  },
-  cancelContact: function(event) {
-    // console.log("working");
-    //
-    // $('#name').val('');
-    // $('#email').val('');
-    // $('#phone').val('');
-
   }
 });
 

@@ -2,9 +2,8 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex';
-import ContactView from './app/views/contact_view';
-
-var contactTemplate;
+// import ContactView from './app/views/contact_view';
+import RolodexView from './app/views/rolodex_view.js';
 
 var contactData = [
   {
@@ -66,39 +65,47 @@ var contactData = [
 // };
 
 $(document).ready(function() {
-  // contactTemplate = _.template($('#tmpl-contact-card').html());
+  var contactTemplate = _.template($('#tmpl-contact-card').html());
   var rolodex = new Rolodex(contactData);
   // var contact = new ContactView(contactData);
 
-  rolodex.each(function(contact) {
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html())
-    });
-    contactView.render();
-    $('#contact-cards').append(contactView.$el);
+  // rolodex.each(function(contact) {
+  //   var contactView = new ContactView({
+  //     model: contact,
+  //     template: _.template($('#tmpl-contact-card').html()),
+  //     // el: $('')
+  //   });
+
+  var rolodexView = new RolodexView({
+    contactTemplate: contactTemplate,
+    model: rolodex,
+    el: $('body')
   });
 
-  // contact.on('update', function() {
-  //   render(contact);
-  // });
+  rolodexView.render();
+  // $('#contact-cards').append(contactView.$el);
+// });
 
-  // rolodex.on('update', function() {
-  //   renderRolodex(rolodex);
-  // });
+// contact.on('update', function() {
+//   render(contact);
+// });
 
-  // renderRolodex(rolodex);
+// rolodex.on('update', function() {
+//   renderRolodex(rolodex);
+// });
 
-  // contact.render();
+// renderRolodex(rolodex);
 
-  console.log("Working.");
+// contact.render();
 
-  // $('.btn-save').click(function(event) {
-  //   var formData = readContactForm();
-  //   console.log(formData);
-  //
-  //   //Changed from Rolodex to Contact
-  //   var contact = new Contact(formData);
-  //   rolodex.add(contact);
-  // });
+console.log("Working.");
+
+// $('.btn-save').click(function(event) {
+//   var formData = readContactForm();
+//   console.log(formData);
+//
+//   //Changed from Rolodex to Contact
+//   var contact = new Contact(formData);
+//   rolodex.add(contact);
+// });
 });
