@@ -11,17 +11,9 @@ const ContactView = Backbone.View.extend({
     this.listenTo(this.model, 'change', this.render);
   },
   render: function() {
-    this.$('#contact-cards').empty();
+    var compiledTemplate = this.template(this.model.toJSON());
 
-    var that = this;
-    this.model.each(function(contact) {
-      var contactView = new ContactView({
-        model: contact,
-        template: that.template,
-        tagName: 'li'
-      });
-      that.$('#contact-cards').append(contactView.render().$el);
-    });
+    this.$el.html(compiledTemplate);
     return this;
   }
 });

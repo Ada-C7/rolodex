@@ -11,3 +11,16 @@ const RolodexView = Backbone.View.extend({
 });
 
 export default RolodexView;
+
+// this.$('#contact-cards').empty();
+//
+// var that = this;
+// this.model.each(function(contact) {
+//   var contactView = new ContactView({
+//     model: contact,
+//     template: that.template,
+//     tagName: 'li'
+//   });
+//   that.$('#contact-cards').append(contactView.render().$el);
+// });
+// return this;
