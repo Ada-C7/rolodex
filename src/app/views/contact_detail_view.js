@@ -32,11 +32,11 @@ const ContactDetailView = Backbone.View.extend({
     $("#contact-details").hide();
   },
 
-  getInput: function(event) {
-    $('input').click(function(event) {
-      event.preventDefault();
-    });
-  },
+  // getInput: function(event) {
+  //   $('input').click(function(event) {
+  //     event.preventDefault();
+  //   });
+  // },
 
   editCard: function() {
 
@@ -47,7 +47,14 @@ const ContactDetailView = Backbone.View.extend({
     });
     $("#contact-details").empty();
     $("#contact-details").append(editContactView.render().el);
+    this.listenTo(editContactView, "showCard", this.refreshCard);
+
     return false;
+  },
+
+  refreshCard: function(event) {
+    this.trigger("showCard", this);
+    event.stopPropagation();
   }
 
 

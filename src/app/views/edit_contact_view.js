@@ -17,7 +17,7 @@ const EditContactView = Backbone.View.extend({
   },
 
   events: {
-    "click button#edit-contact" : "saveChanges",
+    "click button.btn-save-edit" : "saveChanges",
     "click button#cancel-edit" : "cancel"
   },
 
@@ -36,8 +36,10 @@ const EditContactView = Backbone.View.extend({
 
   saveChanges: function(event) {
     event.stopPropagation();
-    // this.$el.html("");
-    this.set(this.model.attributes, this.getFormData());
+    event.preventDefault();
+    var data = this.getFormData();
+    this.model.set(data);
+    this.trigger("showCard", this);
   },
 
   clearForm: function() {
@@ -47,11 +49,14 @@ const EditContactView = Backbone.View.extend({
   },
 
   cancel: function() {
-    var contactDetailView = new ContactDetailView({
-      model: this.model,
-      template: _.template($("#tmpl-contact-details").html())
-    });
-    $("#contact-details").append(contactDetailView.render().el).show();
+    event.stopPropagation();
+    this.trigger("showCard", this);
+    
+    // var contactDetailView = new ContactDetailView({
+    //   model: this.model,
+    //   template: _.template($("#tmpl-contact-details").html())
+    // });
+    // $("#contact-details").append(contactDetailView.render().el).show();
   }
 
 

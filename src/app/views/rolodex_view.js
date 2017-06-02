@@ -28,6 +28,8 @@ var RolodexView = Backbone.View.extend({
       });
       that.$("#contact-cards").append(contactView.render().el);
       that.listenTo(contactView, "showCard", that.showCard)
+      // that.listenTo(contactView, "updateContact", that.updateContact)
+
 
     });
 
@@ -38,6 +40,11 @@ var RolodexView = Backbone.View.extend({
     "click #cancel-form" : "clearForm",
     "click" : "hideCard"
   },
+
+  // updateContact: function(contact) {
+  //   console.log("inside updateContact");
+  //   this.set(model, contact);
+  // },
 
   getFormData: function() {
     var formName = $("#name").val();
