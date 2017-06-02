@@ -9,12 +9,12 @@ const Contact = Backbone.Model.extend({
     email: ''
   },
   logStatus: function() {
-    // console.log("Name " + this.cid);
-    // console.log("Phone: " + this.get("phone"));
-    // console.log("Email: " + this.get("email"));
+    console.log("Name " + this.cid);
+    console.log("Phone: " + this.get("phone"));
+    console.log("Email: " + this.get("email"));
   },
   initialize: function(params) {
-    // console.log("Starting", params);
+    console.log("Starting", params);
     this.logStatus();
   },
   toggleComplete: function() {
