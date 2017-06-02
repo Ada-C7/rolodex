@@ -31,7 +31,7 @@ header {
   z-index: 10;
   position: fixed;
   width: 40%;
-  height: 40%;
+  height: auto;
   top: 30%;
   left: 30%;
   background-color: #538ca3;
@@ -40,6 +40,7 @@ header {
   margin-left: 20%;
   border-radius: 20%;
   display: none;
+
 }
 
 #contact-cards {
@@ -64,4 +65,9 @@ header {
 
 .contact-card:hover h3 {
   color: white;
+}
+
+#edit-form {
+  width: 80%;
+  text-align: center;
 }

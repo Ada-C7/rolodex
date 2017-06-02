@@ -27,8 +27,7 @@ var RolodexView = Backbone.View.extend({
         template: that.template
       });
       that.$("#contact-cards").append(contactView.render().el);
-      that.listenTo(contactView, "showCard", that.showCard)
-      // that.listenTo(contactView, "updateContact", that.updateContact)
+      that.listenTo(contactView, "showCard", that.showCard);
 
 
     });
@@ -61,15 +60,9 @@ var RolodexView = Backbone.View.extend({
 
   hideCard: function() {
     console.log("tried to hide card");
-    // console.log(this);
     $("#contact-details").hide();
-    // $("#contact-details").remove();
   },
 
-  // stopEvent: function(event) {
-  //   event.stopPropagation();
-  //   console.log("prop stopped");
-  // },
 
   addContact: function() {
     console.log("clicked add");
