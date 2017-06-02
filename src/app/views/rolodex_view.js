@@ -3,6 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact.js';
 import ContactView from './contact_view.js';
+import ContactDetailsView from './contact_details_view.js'
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
@@ -20,6 +21,7 @@ var RolodexView = Backbone.View.extend({
         template: that.template,
         tagName: 'li'
       });
+      that.listenTo(contactView, "contactClick", that.displayDetails);
       that.$('#contact-cards').append(contactView.render().$el);
     });
     return this;
@@ -37,9 +39,6 @@ var RolodexView = Backbone.View.extend({
     var formName = this.$('#name').val();
     var formEmail = this.$('#email').val();
     var formPhone = this.$('#phone').val();
-    // this.$('#name').val('');
-    // this.$('#email').val('');
-    // this.$('#phone').val('');
     this.clearForm();
     return {
       name: formName,
@@ -51,6 +50,16 @@ var RolodexView = Backbone.View.extend({
     var contactData = this.getFormData();
     var contact = new Contact(contactData);
     this.model.add(contact);
+  },
+  displayDetails: function(contact) {
+    var details = new ContactDetailsView({
+      model: contact,
+      template: _.template($('#tmpl-contact-details').html())
+    });
+    this.$('#contact-details').empty();
+    this.$('#contact-details').append(details.render().$el);
+
+
   }
 });
 
