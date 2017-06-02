@@ -16,7 +16,8 @@ const ModalView = Backbone.View.extend({
   },
   events: {
     'click h3.button.btn-edit': 'showEditForm',
-    'click h3.button.btn-update': 'updateContact'
+    'click h3.button.btn-update': 'updateContact',
+    'click h3.button.btn-cancel': 'hideModal'
   },
   showEditForm: function(e) {
     this.$("#edit-form").show();
@@ -32,16 +33,16 @@ const ModalView = Backbone.View.extend({
   },
   getFormData: function() {
     var formName = this.$("#update-contact-name").val();
-    // this.$("#update-contact-name").val("");
     var formEmail = this.$("#update-contact-email").val();
-    // this.$("#update-contact-email").val("");
     var formPhone = this.$("#update-contact-phone").val();
-    // this.$("#update-contact-phone").val("");
     return {
       name: formName,
       email: formEmail,
       phone: formPhone
     };
+  },
+  hideModal: function() {
+    this.trigger("hide details", this);
   }
   // ,
   // addContact: function(event) {

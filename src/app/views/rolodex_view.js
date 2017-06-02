@@ -23,7 +23,7 @@ var RolodexView = Backbone.View.extend({
         template: that.template,
         tagName: 'li'
       });
-      // listen from trigger to each contactView, name of it, function
+      // creating a listener in that which is the rolodex view listen from trigger to each contactView, name of it, function
       that.listenTo(contactView, "show details", function(contact) {
         that.$("#contact-details").empty();
         that.$("#contact-details").show();
@@ -32,6 +32,10 @@ var RolodexView = Backbone.View.extend({
            template: _.template($("#tmpl-contact-details").html())
          });
          $("#contact-details").append(popUp.render().$el);
+        //  cleaner way to do this?
+         that.listenTo(popUp, "hide details", function() {
+           $("#contact-details").hide();
+         });
       });
       that.$('#contact-cards').append(contactView.render().$el);
     });
