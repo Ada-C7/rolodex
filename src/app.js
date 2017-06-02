@@ -26,43 +26,48 @@ var newContact = new Contact ({
   phone: "111-111-1111"
 });
 
-var  rolodex = new Rolodex(contactData);
 
-var render = function(contact) {
-  var generatedHTML = $(contactTemplate(contact.toJSON()));
+// var render = function(contact) {
+//   var generatedHTML = $(contactTemplate(contact.toJSON()));
+//
+//   $('#contact-cards').append(generatedHTML);
+//
+// generatedHTML.find("button.alert").click({task: task}, function(params) {
+//   taskList.remove(params.data.task);
+// });
+// };
 
-  $('#contact-cards').append(generatedHTML);
-
-  // generatedHTML.find("button.alert").click({task: task}, function(params) {
-  //   taskList.remove(params.data.task);
-  // });
-};
-
-var rolodexView = new RolodexView ({
-  contactTemplate: contactTemplate,
-  model: rolodex,
-  el: $('main')
-});
 
 $(document).ready(function() {
 
   contactTemplate = _.template($("#tmpl-contact-card").html());
 
-  var renderRolodex = function(rolodex) {
-    // Clear the unordered list
-    $('#contact-cards').empty();
+  var  rolodex = new Rolodex(contactData);
 
-    rolodex.each(function(contact) {
-      render(contact);
-    });
-  };
-
-  renderRolodex(rolodex);
+  var rolodexView = new RolodexView ({
+    template: contactTemplate,
+    model: rolodex,
+    el: $('body')
+  });
 
 
+  rolodexView.render();
 
+  // var renderRolodex = function(rolodex) {
+  //   // Clear the unordered list
+  //   $('#contact-cards').empty();
+  //
+  //   rolodex.each(function(contact) {
+  //     render(contact);
+  //   });
+  // };
+  //
+  // renderRolodex(rolodex);
+  //
+  //
+  //
   rolodex.on("update", function() {
-    renderRolodex(rolodex);
+    rolodexView.render();
   });
   rolodex.add(newContact);
 
