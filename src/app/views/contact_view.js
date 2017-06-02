@@ -22,17 +22,6 @@ const ContactView = Backbone.View.extend({
   showTaskInfo: function () {
     this.trigger("show details", this.model);
   }
-
-  // function(e){
-  //   $("#contact-details").show();
-  //   $("#contact-details").empty();
-  //   var popUp = new ModalView({
-  //     model: this.model,
-  //     template: _.template($("#tmpl-contact-details").html())
-  //   });
-  //   $("#contact-details").append(popUp.render().$el);
-  // }
-
 });
 
 export default ContactView;

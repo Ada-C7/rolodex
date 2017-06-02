@@ -25,8 +25,8 @@ var RolodexView = Backbone.View.extend({
       });
       // listen from trigger to each contactView, name of it, function
       that.listenTo(contactView, "show details", function(contact) {
-        $("#contact-details").show();
-        $("#contact-details").empty();
+        that.$("#contact-details").empty();
+        that.$("#contact-details").show();
          var popUp = new ModalView({
            model: contact,
            template: _.template($("#tmpl-contact-details").html())
@@ -38,8 +38,16 @@ var RolodexView = Backbone.View.extend({
     return this;
   },
   events: {
+    'click ': 'hidePopup',
     'click h3.button.btn-save': 'addContact',
     'click h3.button.btn-cancel': 'emptyFormData'
+  },
+  hidePopup: function(event) {
+    if ($(event.target).is('li') || $(event.target).is('h4')) {
+      return;
+    } else {
+      this.$("#contact-details").hide();
+    }
   },
   getFormData: function() {
     var formName = this.$("#contact-name").val();
