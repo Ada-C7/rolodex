@@ -10,7 +10,8 @@ const ContactView = Backbone.View.extend({
     this.$el.addClass('contact-card small-11 medium-4 large-2 medium-offset-1 columns');
     this.listenTo(this.model, "change", this.render);
     console.log(this.$el);
-    this.listenTo(this.$el, 'click', this.showContactDetails);
+    this.trigger("selected", this.model);
+    // this.listenTo(this.$el, 'click', this.showContactDetails);
   },
 
   render: function() {
@@ -21,23 +22,14 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    // 'click .btn-save': 'saveContact',
-    'click': 'showContactDetails'
+    'click': 'selectedTrigger'
   },
 
-  showContactDetails: function() {
-    
-    $('#contact-details').show();
-    console.log("CLICKED");
-    console.log(this.model);
-    console.log(this.model.get("name"));
+  selectedTrigger: function(event) {
+    this.trigger("showDetails", this.model);
   },
 
-  // saveContact: function() {
-  //   console.log("HELLO");
-  //   var contact = new Contact(getContactInfo);
-  //   rolodexList.add(contact);
-  // }
+
 
 });
 

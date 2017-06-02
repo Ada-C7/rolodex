@@ -34,6 +34,6 @@ var rolodexView = new RolodexView({
 
 
 $(document).ready(function(){
-  $('#contact-details').hide();
+  // $('#contact-details').hide();
   rolodexView.render();
 });
