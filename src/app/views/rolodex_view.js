@@ -71,16 +71,16 @@ var RolodexView = Backbone.View.extend({
   },
 
   // what ever info you sent along with trigger can be accessed here - cause listenTo calls this function
-  // should you make the model card it's own view?
+  // should you make the model card it's own view? - make new Detail view here
+  // in detail view have the html rendered
   displayDetails: function(contactCard) {
-    // event.preventDefault();
+
     console.log("show the contact details");
+    this.selectedContact = contactCard;
 
     var compiledTemplateDetails = this.templateDetails( contactCard.model.toJSON() );
-    // console.log(compiledTemplateDetails);
     $("#contact-details").html(compiledTemplateDetails).show();
 
-    this.selectedContact = contactCard;
     $(".button.btn-delete").click( this.deleteContact.bind(this) );
   },
 
@@ -98,7 +98,6 @@ var RolodexView = Backbone.View.extend({
     console.log("hide the details");
     $("#contact-details").hide();
   }
-
 });
 
 export default RolodexView;
