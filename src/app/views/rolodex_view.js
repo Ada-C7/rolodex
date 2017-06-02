@@ -26,6 +26,8 @@ var RolodexView = Backbone.View.extend({
 
       // rendered the view and appended it to 'contact-cards'
       that.$('#contact-cards').append(contactView.render().el);
+      // listenTo showdetails, listens to instances of ContactView
+      that.listenTo(contactView, "showDetails", that.showModal);
     });
     return this; /* returning this view object so that we can chain, like if we did myView.render().el */
   },
@@ -58,6 +60,33 @@ var RolodexView = Backbone.View.extend({
     this.$("input[name=name]").val('');
     this.$("input[name=email]").val('');
     this.$("input[name=phone]").val('');
+  },
+  // fill modal info - clears old details, gets info of clicked contact, show modal
+  showModal: function(contact) {
+    $("#contact-details").empty();
+
+    console.log(contact);
+
+    // model: contact
+    var render = function(contact) {
+
+      var templateText = $('#tmpl-contact-details').html();
+
+      var templateObject = _.template(templateText);
+
+      var compiledHTML = templateObject(contact.toJSON());
+
+      $("#contact-details").append(compiledHTML);
+    };
+    return this;
+  },
+  // hide modal
+  hideModal: function() {
+
+  },
+  // other click
+  clickElsewhere: function() {
+
   }
 });
 
