@@ -25,6 +25,8 @@ var RolodexView = Backbone.View.extend({
       });
 
       that.$('#contact-cards').append(contactView.render().$el);
+      // this is the second part to trigger - it is expecting listening for the event "displayDetails"
+      // when this event happens it will call the displayDetails function
       that.listenTo( contactView, "displayDetails", that.displayDetails );
     });
     return this;
@@ -34,7 +36,6 @@ var RolodexView = Backbone.View.extend({
     'click .btn-save': "addContact",
     'click .btn-cancel': "clearForm",
     'click': "hideDetails"
-    // 'click #contact-details': "hideDetails"
   },
 
   addContact: function(event){
@@ -60,7 +61,7 @@ var RolodexView = Backbone.View.extend({
     };
   },
 
-  // how to clear the  input from the text field
+  // how to clear the input from the input fields
   clearForm: function(event){
     this.$("#name").val("");
     this.$('#email').val("");
@@ -79,11 +80,7 @@ var RolodexView = Backbone.View.extend({
   },
 
   hideDetails: function(event) {
-    // event.preventDefault();
-    // event delegation - use a condtional to check if the box is showing
-    console.log("hide the details");
-    // var css = $("#contact-details").css('display');
-    // console.log( css );
+    // console.log("hide the details");
     if ( $("#contact-details").css('display') == 'block' ) {
       $("#contact-details").hide();
     }

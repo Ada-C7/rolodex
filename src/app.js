@@ -19,7 +19,7 @@ var templateDetails;
 var templateCard;
 
 var contacts = [{
-  name: "cyn",
+  name: "Cyn",
   phone: "123-456-7890",
   email: "cyn@test.com"
 }];
