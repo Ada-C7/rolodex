@@ -48,7 +48,7 @@ $(document).ready(function() {
   var rolodexView = new RolodexView({
     template: contactTemplate,
     model: rolodex,
-    el: $('main')
+    el: $('div#application')
   });
 
   rolodexView.render();
