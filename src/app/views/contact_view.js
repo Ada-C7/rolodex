@@ -15,6 +15,7 @@ const ContactView = Backbone.View.extend({
   },
   clicked: function() {
     this.trigger('details', this.model);
+    return false;
   }
 });
 

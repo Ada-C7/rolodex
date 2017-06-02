@@ -35,10 +35,12 @@ var contactData = [
 var myRolodex = new Rolodex(contactData);
 
 $(document).ready(function() {
+  $('#contact-details').hide();
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($('#tmpl-contact-card').html()),
-    el: '#application'
+    detailsTemplate: _.template($('#tmpl-contact-details').html()),
+    el: 'body'
   });
   myRolodexView.render();
 });
