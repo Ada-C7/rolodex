@@ -2,11 +2,13 @@ import _ from 'underscore';
 import $ from 'jquery';
 
 import Contact from 'app/models/contact';
-import ContactList from './app/collections/rolodex';
+import Rolodex from './app/collections/rolodex';
 import ContactView from './app/views/contact_view.js';
+import RolodexView from './app/views/contact_list_view.js';
 
 var contactTemplate;
 var contactList;
+var contactCardDetailsTemplate;
 
 var contactData = [
   {
@@ -27,86 +29,27 @@ var contactData = [
     email: 'jenni@email.com'
   }];
 
-var readContactForm = function() {
-  var nameData = $("#name").val();
-  $("#name").val("");
-
-  var phoneNumberData = $("phoneNumber").val();
-  $("#phoneNumber").val("");
-
-  var emailData = $("email");
-  $("#email").val("");
-
-  var formData = {};
-
-  if (nameData && nameData != "") {
-    formData["name"] = nameData
-  }
-  if (phoneNumberData && phoneNumberData != "") {
-    formData["phoneNumberData"] = phoneNumberData
-  }
-  if (emailData && emailData != "") {
-    formData["emailData"] = emailData
-  }
-  return formData;
-};
-  // var readContactForm = function() {
-  //   var nameData = $("name").val();
-  //   $("#name").val("");
-  // }
-
-var myContact = new Contact(contactData[0]);
-
-// var render = function(contact) {
-//   var jsonContact = contact.toJSON();
-//   var generatedHTML = $(contactTemplate(jsonContact));
-//   console.log(generatedHTML);
-//
-//   $("#contact-cards").append(generatedHTML);
-// };
-
-var renderList = function(contactList) {
-  $("#contact-cards").empty();
-  contactList.each(function(contact) {
-
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html()),
-      tagName: 'li'
-    });
-    $("#contact-cards").append(contactView.render().$el);
-    // render(contact);
-  });
-};
-
-contactList = new ContactList(contactData);
+  $("#contact-details").hide();
 
 $(document).ready(function() {
-  // console.log(myContact.get("name"));
 
   contactTemplate = _.template($('#tmpl-contact-card').html());
+  contactCardDetailsTemplate = _.template($('#tmpl-contact-details').html());
+  
+  contactList = new Rolodex(contactData);
 
-  contactList.on("update", function(){
-    renderList(contactList);
+  var contactListView = new RolodexView({
+    contactTemplate: contactTemplate,
+    model: contactList,
+    el: $('#application')
   });
 
-  renderList(contactList);
+$(window).click(function(event) {
+  if(event.target.id !== 'contact-details'){
+    $("#contact-details").hide();
+  }
+})
 
-  $(".btn-save").click(function(event) {
-    var contactData = readContactForm();
-    console.log(contactData);
+contactListView.render();
 
-    var contact = new Contact(contactData);
-
-    contactList.add(contact);
-
-  });
-
-  $(".btn-cancel").click(function(event) {
-      $("#name").val("");
-      $("#phoneNumber").val("");
-      $("#email").val("");
-  });
-
-  // render(myContact);
 });
