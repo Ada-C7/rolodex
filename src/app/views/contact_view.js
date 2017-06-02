@@ -2,55 +2,40 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 
-var ContactView = Backbone.View.extend({
+import Contact from 'app/models/contact';
 
-  tagname: "li"
-  template: _.template($('#contact-template').html()),
+const ContactView = Backbone.View.extend({
+  initialize: function(options){
 
-  events: {
-    "click .toggle"   : "toggleDone",
-    "dblclick .view"  : "edit",
-    "click a.destroy" : "clear",
-    "keypress .edit"  : "updateOnEnter",
-    "blur .edit"      : "close"
+    this.template = options.template;
+
+    this.detailsTemplate = _.template($('#tmpl-contact-details').html());
+    this.listElement = $('#contact-details');
+
+    this.listenTo(this.model, 'change', this.render);
   },
 
-  initialize: function() {
-    this.listenTo(this.model, 'change', this.render);
-    this.listenTo(this.model, 'destroy', this.remove);
+  events: {
+    'click .contact-card': 'showDetails',
   },
 
   render: function(){
-    this.$el.html(this.template(this.model.toJSON()));
-    this.$el.toggleClass('save', this.model.get('save'));
-    this.input = this.$('.edit');
+    this.delegateEvents();
+
+    var html = this.template(this.model.toJSON)
+    this.$el.html(html)
+
     return this;
   },
 
-  toggleDone: function(){
-    this.model.toggle();
-  },
+  showDetails: function(event){
+    var popupHTML = this.detailsTemplate({
+      name: this.model.get("name"), phone: this.model.get("phone"), email: this.model.get("email")});
 
-    edit: function(){
-      this.$el.addClass("editing");
-      this.input.focus();
-    },
+      this.listElement.html(popupHTML)
+    }
 
-    close: function(){
-      var value = this.input.val();
-      if (!value) {
-        this.clear();
-      } else {
-        this.model.save({titleL value});
-        this.$el.removeClass("editing");
-      }
-    },
-
-    updateOnEnter: function(e){
-      if (e.keyCode == 13) this.close();
-    },
-
-)
+  )});
 
 
   export default ContactView;

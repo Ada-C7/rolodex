@@ -5,53 +5,32 @@ import Contact from 'app/models/contact';
 import Rolodex from 'app/Collections/rolodex';
 import ContactView from 'app/models/contact_view.js';
 
+
 var AppView = Backbone.View.extend({
+var readContactCard = function(){
 
-  el: $("#applicqtion")
+  var nameData = $('#name').val();
+  $('#name').val('');
 
-  contactTemplate: _.template($('#tmpl-contact-card').html()),
+  var emailData = $('#email').val();
+  $('#email').val('');
 
-  events: {
-    "keypress #tmpl-contact-details": "createOnEnter",
-    "click #clear-completed": "clearCompleted",
-    "click #toggle-all": "toggleAllComplte"
-  },
-
-  initialize: function(){
-
-    this.input = this.$("#new-contact");
-    this.allCheckbox = this.$("#toggle-all")[0];
-
-    this.listenTo(Contact, 'add', this.addOne);
-    this.listenTo(Contact, 'reset', this.addAll);
-    this.listenTo(Contact, 'all', this.render);
-
-    //footer line missing
-    this.main = $('main');
-
-    Contacts.fetch();
+  var formData = {};
+  if (nameData && emailData != ""){
+    return formData;
   }
 
-  render: function(){
-    var save = Contact.save().length;
+  $(document).ready(function(){
 
-  },
+    contactTemplate = _.template($('#tmpl-contact-details').html());
+    Contact = new Contact()
+    //rolodex template missing
 
-  addOne: function(contact){
-    var view = new ContactView({model: contact});
-    this.$("#contact-cards").append(view.render().el);
-  },
+    var ContactView = new ContactView({
+      contactTemplate: contactTemplate,
+      model: ContactView,
+      el: $('main')
 
-  createOnEnter: function(e){
-    if (e.keyCode != 13) return;
-    if (!this.input.val('')) return;
-
-    Contact.create({title: this.input.val()});
-    this.input.val('');
-  }
-
-
-
-});
-export default AppView;
-var App = new AppView;
+    });
+    ContactView.render();
+  })
