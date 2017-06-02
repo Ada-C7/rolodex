@@ -69,7 +69,6 @@ var RolodexView = Backbone.View.extend({
   },
 
   hideDetails: function(event) {
-    console.log("hide the details");
     $("#contact-details").hide();
   },
 

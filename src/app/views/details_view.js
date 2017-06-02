@@ -5,8 +5,7 @@ import ContactView from '../views/contact_view';
 import Contact from '../models/contact';
 import RolodexView from '../views/rolodex_view';
 
-// the RolodexView includes the cards but also adding new cards - save/cancel button)
-// and displaying the details
+// this view is responsble for the  modal box
 var DetailsView = Backbone.View.extend({
 
   initialize: function(params) {
@@ -30,19 +29,20 @@ var DetailsView = Backbone.View.extend({
   deleteContact: function(event){
     event.stopPropagation();
     console.log("you want to delete this contact");
+    this.hide();
     this.model.destroy();
-    // $("#contact-details").hide();
-    // code below only hides the text
-    this.$el.hide();
   },
 
   editContact: function(event){
     event.stopPropagation();
     console.log("you want to edit this contact");
     this.trigger("fillInForm", this)
+    this.hide();
+  },
+
+  hide: function(){
     this.$el.hide();
   }
-
 });
 
 export default DetailsView;
