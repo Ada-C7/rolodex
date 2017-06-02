@@ -9,6 +9,7 @@ var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
     this.listenTo(this.model, 'update', this.render);
+
   },
 
   render: function(){
@@ -22,8 +23,10 @@ var RolodexView = Backbone.View.extend({
         template: that.template
       });
       that.$("#contact-cards").append(contactView.render().el);
+      that.listenTo(contactView, 'showDetails', that.displayModal);
     });
     return this;
+
   },
 
   events: {
@@ -57,7 +60,43 @@ var RolodexView = Backbone.View.extend({
     this.$('#name').val('');
     this.$('#email').val('');
     this.$('#phone').val('');
+  },
+
+  // ----------------//
+
+  displayModal: function(contact){
+    console.log(contact);
+    $('#contact-details').empty();
+    var contactDetails = this.generateHTML(contact);
+    $("#contact-details").append(contactDetails);
+
+  },
+
+  getData: function(contact){
+    var name = contact.get('name');
+    var email = contact.get('email');
+    var phone = contact.get('phone');
+
+    return {
+      name: name,
+      email: email,
+      phone: phone
+    };
+  },
+  generateHTML: function(contact){
+    var contactDetailsData = this.getData(contact);
+
+    var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+
+    var generatedHTML = contactDetailsTemplate({
+      name: contactDetailsData.name,
+      email: contactDetailsData.email,
+      phone: contactDetailsData.phone
+    });
+
+    return generatedHTML;
   }
+
 
 });
 

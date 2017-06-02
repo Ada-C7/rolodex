@@ -18,40 +18,13 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    "click .contact-card": "displayModal"
+    "click": "selected",
   },
 
-  displayModal: function(){
-    $('#contact-details').empty();
-    var contactDetails = this.generateHTML();
-    $("#contact-details").append(contactDetails);
-
+  selected: function(event){
+    var model = this.model;
+    this.trigger("showDetails", model);
   },
-
-  getData: function(){
-    var name = this.model.get('name');
-    var email = this.model.get('email');
-    var phone = this.model.get('phone');
-
-    return {
-      name: name,
-      email: email,
-      phone: phone
-    };
-  },
-  generateHTML: function(){
-    var contactDetailsData = this.getData();
-
-    var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
-
-    var generatedHTML = contactDetailsTemplate({
-      name: contactDetailsData.name,
-      email: contactDetailsData.email,
-      phone: contactDetailsData.phone
-    });
-
-    return generatedHTML;
-  }
 
 });
 
