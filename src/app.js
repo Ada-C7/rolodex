@@ -1,10 +1,9 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Contact from '../spec/app/models/contact.js';
-import Rolodex from '../spec/app/collections/rolodex';
-
-var contactTemplate;
-var rolodex;
+import Contact from './app/models/contact.js';
+import Rolodex from './app/collections/rolodex';
+// import ContactView from './app/views/contact_view';
+import RolodexView from './app/views/rolodex_view.js';
 
 var contactData = [
   {
@@ -24,59 +23,89 @@ var contactData = [
   }
 ];
 
-var render = function(contact) {
-  var newContact = contact.toJSON();
-  console.log(newContact);
+// var render = function(contact) {
+//   var newContact = contact.toJSON();
+//   console.log(newContact);
+//
+//   var generatedHTML = $(contactTemplate(newContact));
+//   console.log(generatedHTML);
+//
+//   $('#contact-cards').append(generatedHTML);
+// };
 
-  var generatedHTML = $(contactTemplate(newContact));
-  console.log(generatedHTML);
+// var renderRolodex = function(rolodex) {
+//   $('#contact-cards').empty();
+//
+//   rolodex.each(function(contact) {
+//
+//     var contactView = new ContactView({
+//       model: contact,
+//       template: _.template($('#tmpl-contact-card').html())
+//     });
+//
+//     $('#contact-cards').append(contactView.render().$el);
+//   });
+// };
 
-  $('#contact-cards').append(generatedHTML);
-};
-
-var renderRolodex = function(rolodex) {
-  $('#contact-cards').empty();
-
-  rolodex.each(function(contact) {
-    render(contact);
-  });
-};
-
-var readContactForm = function() {
-  var name = $('#name').val();
-  $('#name').val('');
-
-  var email = $('#email').val();
-  $('#email').val('');
-
-  var phone = $('#phone').val();
-  $('#phone').val('');
-
-  return {
-    name: name,
-    email: email,
-    phone: phone
-  };
-};
+// var readContactForm = function() {
+//   var name = $('#name').val();
+//   $('#name').val('');
+//
+//   var email = $('#email').val();
+//   $('#email').val('');
+//
+//   var phone = $('#phone').val();
+//   $('#phone').val('');
+//
+//   return {
+//     name: name,
+//     email: email,
+//     phone: phone
+//   };
+// };
 
 $(document).ready(function() {
-  contactTemplate = _.template($('#tmpl-contact-card').html());
-  rolodex = new Rolodex(contactData);
+  var contactTemplate = _.template($('#tmpl-contact-card').html());
+  var rolodex = new Rolodex(contactData);
+  // var contact = new ContactView(contactData);
 
-  rolodex.on('update', function() {
-    renderRolodex(rolodex);
+  // rolodex.each(function(contact) {
+  //   var contactView = new ContactView({
+  //     model: contact,
+  //     template: _.template($('#tmpl-contact-card').html()),
+  //     // el: $('')
+  //   });
+
+  var rolodexView = new RolodexView({
+    contactTemplate: contactTemplate,
+    model: rolodex,
+    el: $('body')
   });
 
-  renderRolodex(rolodex);
+  rolodexView.render();
+  // $('#contact-cards').append(contactView.$el);
+// });
 
-  console.log("Working.");
+// contact.on('update', function() {
+//   render(contact);
+// });
 
-  $('.btn-save').click(function(event) {
-    var formData = readContactForm();
-    console.log(formData);
+// rolodex.on('update', function() {
+//   renderRolodex(rolodex);
+// });
 
-    //Changed from Rolodex to Contact
-    var contact = new Contact(formData);
-    rolodex.add(contact);
-  });
+// renderRolodex(rolodex);
+
+// contact.render();
+
+console.log("Working.");
+
+// $('.btn-save').click(function(event) {
+//   var formData = readContactForm();
+//   console.log(formData);
+//
+//   //Changed from Rolodex to Contact
+//   var contact = new Contact(formData);
+//   rolodex.add(contact);
+// });
 });
