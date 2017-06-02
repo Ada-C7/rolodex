@@ -1,9 +1,11 @@
 import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
-import $ from 'jquery';
 import _ from 'underscore';
+import $ from 'jquery';
 import Contact from 'app/models/contact.js';
 import Rolodex from 'app/collections/rolodex.js';
+import ContactView from 'app/views/contact_view.js';
+import RolodexView from 'app/views/rolodex_view.js';
 
 var application = new Application();
 
@@ -38,23 +40,6 @@ var secondContact = new Contact({});
 
 var myRolodex = new Rolodex(contactData);
 
-var getFormData = function() {
-  var formName = $("input[name=name]").val();
-  $("input[name=name]").val('');
-
-  var formEmail = $("input[name=email]").val();
-  $("input[name=email]").val('');
-
-  var formPhone = $("input[name=phone]").val();
-  $("input[name=phone]").val('');
-
-  return {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
-};
-
 // var render = function(contact) {
 //   var templateText = $("#tmpl-contact-card").html();
 //   var templateObject = _.template(templateText);
@@ -63,8 +48,13 @@ var getFormData = function() {
 // };
 
 $(document).ready(function(){
-  render(myContact);
-  render(secondContact);
 
-  
+  var myRolodexView = new RolodexView({
+    model: myRolodex,
+    template: _.template($('#tmpl-contact-card').html()),
+    el: '#application',
+  });
+  console.log(myRolodexView);
+
+  myRolodexView.render();
 });
