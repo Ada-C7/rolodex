@@ -53,17 +53,19 @@ var RolodexView = Backbone.View.extend({
     var formPhone = this.$('#phone').val();
     this.$('#phone').val('');
 
-    if (formName === "") {
-      return {
-        //will return default values
-      };
-    } else {
+    if (formName !== "") {
       return {
         name: formName,
         email: formEmail,
         phone: formPhone
       };
-    }
+    } //else {
+      // return {
+      //   name: formName,
+      //   email: formEmail,
+      //   phone: formPhone
+      // };
+    //}
   },
   addContact: function() {
     // console.log('addContact button');
