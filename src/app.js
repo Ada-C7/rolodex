@@ -1,10 +1,10 @@
 import $ from 'jquery';
 import _ from 'underscore';
 // can use any name for 'the thing we are importing'. It's just convenient to use the same name as used when it was exported.
-import Contact from 'app/models/contact';
+// import Contact from 'app/models/contact';
 import Rolodex from './app/collections/rolodex';
 
-import ContactView from './app/views/contact_view';
+// import ContactView from './app/views/contact_view';
 import RolodexView from './app/views/rolodex_view';
 
 
@@ -33,16 +33,6 @@ var contactData =
 ];
 
 
-// From within old render function:
-// var render =  function(contact){
-// var compiledDetailsTemplateHTML =
-// $(contactDetailsTemplate(jsonContact));
-
-// $('#contact-details').append(compiledDetailsTemplateHTML);
-// };
-
-
-
 
 $(document).ready(function() {
 
@@ -65,10 +55,6 @@ $(document).ready(function() {
   });
 
   rolodexView.render();
-
-
-
-
 
 
 });

@@ -39,10 +39,10 @@ var RolodexView = Backbone.View.extend({
     'click .btn-save-edit': "saveEdit",
     'click .btn-cancel-edit': "cancelEdit"
   },
-  getAddContactData: function(){
-    var nameData = this.$('.contact-form .name').val();
-    var emailData = this.$('.contact-form .email').val();
-    var phoneData = this.$('.contact-form .phone').val();
+  getFormData: function(formName){
+    var nameData = this.$(formName+' .name').val();
+    var emailData = this.$(formName+' .email').val();
+    var phoneData = this.$(formName+' .phone').val();
 
     return {
       name: nameData,
@@ -50,15 +50,15 @@ var RolodexView = Backbone.View.extend({
       phone: phoneData
     };
   },
-  clearForm: function(){
+  clearForm: function(event){
     this.$('.input').val('');
   },
-  addContact: function() {
-    var formValues = this.getAddContactData();
+  addContact: function(event) {
+    var formValues = this.getFormData('.contact-form');
     this.model.add(formValues);
     this.clearForm();
   },
-  cancelContact: function() {
+  cancelContact: function(event) {
     this.clearForm();
   },
   triggerModal: function(event, contact){
@@ -77,17 +77,15 @@ var RolodexView = Backbone.View.extend({
     this.$('#contact-details').addClass("edit-form");
     var editTemplateHTML = this.editTemplate(this.selectedContact.toJSON());
     this.$('#contact-details').html(editTemplateHTML).show();
-},
-saveEdit: function(event){
-
-},
-cancelEdit: function(event){
-  this.triggerModal(event, this.selectedContact);
-}
-// console.log(this.selectedContact);
-//
-// this.selectedContact.set(formValues);
-//
+  },
+  saveEdit: function(event){
+    var formValues = this.getFormData('.edit-form');
+    this.selectedContact.set(formValues);
+    this.triggerModal(event, this.selectedContact);
+  },
+  cancelEdit: function(event){
+    this.triggerModal(event, this.selectedContact);
+  }
 
 });
 
