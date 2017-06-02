@@ -4,9 +4,9 @@ import $ from 'jquery';
 import ContactView from './contact_view';
 import Contact from '../models/contact';
 
-var RolodexView = Backbone.View.extend({
+const RolodexView = Backbone.View.extend({
   initialize: function(params) {
-    this.template = params.template;
+    this.template = params.rolodexTemplate;
     this.listenTo(this.model, "update", this.render);
   },
   render: function(){
@@ -27,28 +27,21 @@ var RolodexView = Backbone.View.extend({
     'click .btn-cancel': 'cancelContact'
   },
   addContact: function(event) {
-    //create variable called formdata that will grab the values from another method called readRolodexForm, which is grabbing the values from the form for us.
     var formData = this.readRolodexForm();
-
-    //create a variable called contact and create a new instance of contact but pass in the formData into that instance, so it has the contact information.
     var contact = new Contact(formData);
-    console.log(contact);
-    // call the model (this) and call .add(contact)
+    // console.log(contact);
     this.model.add(contact);
   },
   cancelContact: function(event) {
     $('#name').val('');
     $('#email').val('');
     $('#phone').val('');
-    // console.log("I'm in cancel");
   },
   readRolodexForm: function() {
     var nameData = this.$('#name').val();
     this.$('#name').val('');
-
     var emailData = this.$('#email').val();
     this.$('#email').val('');
-
     var phoneData = this.$('#phone').val();
     this.$('#phone').val('');
 

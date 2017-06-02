@@ -5,67 +5,38 @@ import Rolodex from 'app/collections/rolodex.js';
 import ContactView from 'app/views/contact_view.js';
 import RolodexView from './app/views/rolodex_view.js';
 
-var rolodexTemplate;
+var appleTemplate;
 var contactList;
 
 var rolodexData = [
   {
-    name: "Marisol",
-    email: "mlopez@mail.com",
-    phone: "562-320-9014"
+    name: "Mark",
+    email: "mrolling@mail.com",
+    phone: "818-320-8765"
   },
   {
-    name: "Isabel",
-    email: "ilopez@mail.com",
-    phone: "562-325-0931"
+    name: "April",
+    email: "acurray@mail.com",
+    phone: "213-913-7766"
   },
   {
-    name: "Angelica",
-    email: "alopez@mail.com",
-    phone: "562-325-7777"
+    name: "Nancy",
+    email: "nroberts@mail.com",
+    phone: "562-699-9109"
   },
   {
-    name: "Guillermina",
-    email: "glopez@mail.com",
-    phone: "562-324-9727"
-  },
+    name: "Fructuoso",
+    email: "fdelosangeles@mail.com",
+    phone: "706-432-5555"
+  }
 ];
 
-//for a single contact
-// var myContact = new Contact(rolodexData[0]);
-
-// var contactList = new Rolodex(rolodexData);
-
-// var render = function(contact) {
-//   var jsonContact = contact.toJSON();
-//   var generatedHTML = rolodexTemplate(jsonContact);
-//   console.log(generatedHTML);
-//   $("#contact-cards").append(generatedHTML);
-// };
-
-// var renderList = function(contactList) {
-//   $("#contact-details").empty();
-//   contactList.each(function() {
-//     render(contact)
-//   });
-
-// }
-
 $(document).ready(function(){
-  rolodexTemplate = _.template($("#tmpl-contact-card").html());
+  appleTemplate = _.template($("#tmpl-contact-card").html());
   contactList = new Rolodex(rolodexData);
 
-  // render(myContact);
-  // rolodexList = new Contact(myContact);
-  // var contactView = new ContactView({
-  //   template: rolodexTemplate,
-  //   model: myContact
-  // });
-  // contactView.render();
-  // $("#contact-cards").append(contactView.$el);
-
   var rolodexView = new RolodexView({
-    template: rolodexTemplate,
+    rolodexTemplate: appleTemplate,
     model: contactList,
     el: $("#application")
   });
