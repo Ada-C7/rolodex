@@ -23,7 +23,8 @@ var RolodexView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click .btn-save': 'addContact'
+    'click .btn-save': 'addContact',
+    'click .btn-cancel': 'clearForm'
   },
   addContact: function(event) {
     var formData = this.renderContactForm();
