@@ -21,6 +21,26 @@ var RolodexView = Backbone.View.extend({
       $('#contact-cards').append(contactView.render().$el);
     });
     return this;
+  },
+  events: {
+    'click .btn-save': 'addContact'
+  },
+  addContact: function(event) {
+    var formData = this.renderContactForm();
+    this.model.add(formData);
+  },
+  renderContactForm: function() {
+    // An empty string is falsy in JS, so when changed to undefined, the model
+    // defaults will be invoked.
+    var name = this.$('#name').val() || undefined;
+    var email = this.$('#email').val() || undefined;
+    var number = this.$('#phone').val() || undefined;
+
+    return {
+      name: name,
+      email: email,
+      number: number
+    };
   }
 });
 
