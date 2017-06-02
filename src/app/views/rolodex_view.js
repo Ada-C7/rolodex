@@ -33,14 +33,13 @@ var RolodexView = Backbone.View.extend({
     return this;
   },
 
+// backbone event handler
   viewModal: function(contact){
     $('#contact-details').empty();
     var generatedModalTemplate= this.modalTemplate(contact.toJSON());
     // this.$el.html(generatedModalTemplate);
     this.$('#contact-details').append(generatedModalTemplate);
   },
-
-
   events: {
     // the event hash listen to the event listener
     'click .btn-save' : "saveContact",
@@ -73,7 +72,6 @@ var RolodexView = Backbone.View.extend({
     this.$('#email').val('');
     this.$('#phone').val('');
   }
-
 });
 
 export default RolodexView;
