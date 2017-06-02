@@ -4,6 +4,8 @@ import $ from 'jquery';
 import ContactView from '../views/contact_view';
 import Contact from '../models/contact';
 import Rolodex from '../collections/rolodex';
+import DetailsView from '../views/details_view';
+
 
 // the RolodexView includes the cards but also adding new cards - save/cancel button)
 // and displaying the details
@@ -75,13 +77,16 @@ var RolodexView = Backbone.View.extend({
   // in detail view have the html rendered
   displayDetails: function(contactCard) {
 
-    console.log("show the contact details");
-    this.selectedContact = contactCard;
+    console.log("create the details view");
 
-    var compiledTemplateDetails = this.templateDetails( contactCard.model.toJSON() );
-    $("#contact-details").html(compiledTemplateDetails).show();
+    var that = this;
+    var detailsView = new DetailsView ({
+      model: contactCard.model,
+      templateDetails: that.templateDetails
+    });
 
-    $(".button.btn-delete").click( this.deleteContact.bind(this) );
+    console.log(detailsView);
+    this.$('#contact-details').html(detailsView.render().$el).show();
   },
 
   deleteContact: function(event) {
@@ -94,7 +99,6 @@ var RolodexView = Backbone.View.extend({
   },
 
   hideDetails: function(event) {
-    // console.log( event.isPropagationStopped() );
     console.log("hide the details");
     $("#contact-details").hide();
   }
