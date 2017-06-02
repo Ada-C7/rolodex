@@ -36,7 +36,7 @@
 
       <main>
         <ul id="contact-cards" class="row small-up-1 medium-up-2 large-up-3 align-center"></ul>
-        <section id="contact-details" class="hidden"></section>
+        <section id="contact-details"></section>
       </main>
     </div>
 
@@ -48,9 +48,11 @@
     </script>
 
     <script type="text/template" id="tmpl-contact-details">
-      <h3><%- name %></h3>
-      <h4><%- email %></h4>
-      <h4><%- phone %></h4>
+      <div class="details">
+        <h3><%- name %></h3>
+        <h4><%- email %></h4>
+        <h4><%- phone %></h4>
+      </div>
     </script>
 
     <!-- Entire JS project built by Webpack -->

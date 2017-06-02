@@ -16,7 +16,8 @@ const ContactView = Backbone.View.extend({
   events: {
     'click li': 'getDetails',
   },
-  getDetails: function() {
+  getDetails: function(event) {
+    event.stopPropagation();
     this.trigger("contactClick", this.model);
   }
 });
