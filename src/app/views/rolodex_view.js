@@ -14,6 +14,7 @@ var RolodexView = Backbone.View.extend({
 
   render: function(){
     this.$('#contact-cards').empty();
+    this.$('#contact-details').addClass('hidden');
 
     var that = this;
 
@@ -31,8 +32,13 @@ var RolodexView = Backbone.View.extend({
 
   events: {
     "click .btn-save": "saveTask",
-    "click .btn-cancel": "clearFormData"
+    "click .btn-cancel": "clearFormData",
+    "click": "hideModal",
+
   },
+
+
+  // ------------------//
 
   getFormData: function(){
     var formName = this.$('#name').val();
@@ -64,8 +70,12 @@ var RolodexView = Backbone.View.extend({
 
   // ----------------//
 
+  hideModal: function(){
+      $("#contact-details").addClass('hidden');
+  },
+
   displayModal: function(contact){
-    console.log(contact);
+    $("#contact-details").removeClass('hidden');
     $('#contact-details').empty();
     var contactDetails = this.generateHTML(contact);
     $("#contact-details").append(contactDetails);

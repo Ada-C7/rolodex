@@ -30,7 +30,7 @@ var myContacts = new Rolodex(contactData);
 var myRolodexView = new RolodexView({
   model: myContacts,
   template: _.template($('#tmpl-contact-card').html()),
-  el: '#application'
+  el: 'body'
 });
 
 $(document).ready(function() {
