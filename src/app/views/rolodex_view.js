@@ -3,6 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import ContactView from '../views/contact_view';
 import Contact from '../models/contact';
+import Rolodex from '../collections/rolodex';
 
 // the RolodexView includes the cards but also adding new cards - save/cancel button)
 // and displaying the details
@@ -35,6 +36,7 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': "addContact",
     'click .btn-cancel': "clearForm",
+    // 'click .btn-delete': "deleteContact",
     'click': "hideDetails"
   },
 
@@ -69,24 +71,34 @@ var RolodexView = Backbone.View.extend({
   },
 
   // what ever info you sent along with trigger can be accessed here - cause listenTo calls this function
+  // should you make the model card it's own view?
   displayDetails: function(contactCard) {
     // event.preventDefault();
     console.log("show the contact details");
 
     var compiledTemplateDetails = this.templateDetails( contactCard.model.toJSON() );
-    console.log(compiledTemplateDetails);
-
+    // console.log(compiledTemplateDetails);
     $("#contact-details").html(compiledTemplateDetails).show();
-    this.listenTo( ".btn-delete", contactCard.model.destroy() );
-    this.listenTo(".btn-edit", "editContact", contactCard.model)
+
+    this.selectedContact = contactCard;
+    $(".button.btn-delete").click( this.deleteContact.bind(this) );
+  },
+
+  deleteContact: function(event) {
+    event.stopPropagation();
+    console.log(event);
+    console.log("you want to delete the contact");
+    console.log(this.selectedContact);
+    this.selectedContact.model.destroy();
+    this.hideDetails();
   },
 
   hideDetails: function(event) {
-    // console.log("hide the details");
-    if ( $("#contact-details").css('display') == 'block' ) {
-      $("#contact-details").hide();
-    }
+    // console.log( event.isPropagationStopped() );
+    console.log("hide the details");
+    $("#contact-details").hide();
   }
+
 });
 
 export default RolodexView;

@@ -22,6 +22,10 @@ var contacts = [{
   name: "Cyn",
   phone: "123-456-7890",
   email: "cyn@test.com"
+}, {
+  name: "chris",
+  phone: "987-654-3211",
+  email: "test@test.com"
 }];
 
 var rolodex = new Rolodex(contacts);

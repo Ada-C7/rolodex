@@ -13,11 +13,15 @@ const Contact = Backbone.Model.extend({
     console.log("Task initialized: " + this.get("name"));
     // to see what params looks like
     console.log(params);
+
+    
   },
 
   logStatus: function() {
     console.log("Contact: " + this.get("name"));
   }
+
+
 
   // put validations here - there is a backbone knows to look for validations key LOOK THIS UP
 });
