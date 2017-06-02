@@ -1,8 +1,7 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
-import ContactView from './contact_detail_view.js';
-import ContactDetailView from './contact_view.js';
+import ContactView from './contact_view.js';
 import Contact from '../models/contact.js';
 
 var RolodexView = Backbone.View.extend({
@@ -23,7 +22,9 @@ var RolodexView = Backbone.View.extend({
       that.$('#contact-cards').append(contactView.render().el);
 
       // sets up listener for modal trigger
-      that.listenTo(contactView, "showDetails", that.showModal);
+      that.listenTo(contactView, "showDetails", that.renderModal);
+
+      return this;
     });
   },
   events: {
@@ -66,12 +67,13 @@ var RolodexView = Backbone.View.extend({
     this.$("input[name='email']").val('');
     this.$("input[name='phone']").val('');
   },
-  showModal: function(contact) {
+  renderModal: function(contact) {
     // modal info - clear, then gets info of clicked contact
     console.log(contact);
+    
     $("#contact-details").empty();
 
-    var detailsView = new ContactDetailView({
+    var detailsView = new ContactView({
       model: contact,
       template: _.template($('#tmpl-contact-details').html())
     });

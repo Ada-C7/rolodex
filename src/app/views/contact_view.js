@@ -5,9 +5,8 @@ import $ from 'jquery';
 const ContactView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
-    // this.listenTo(this.model, "change", this.render);
 
-    // listenTo trigger for more details
+    // this.listenTo(this.model, "change", this.render);
   },
   render: function() {
     var compiledTemplate = this.template(this.model.toJSON());
