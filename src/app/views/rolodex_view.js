@@ -25,8 +25,8 @@ var RolodexView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click button.btn-save': 'saveContact',
-    'click button.btn-cancel': 'cancelContact'
+    'click h3.button.btn-save': 'saveContact',
+    'click h3.button.btn-cancel': 'cancelContact'
   },
   saveContact: function(event) {
 
@@ -42,6 +42,8 @@ var RolodexView = Backbone.View.extend({
 
   },
   cancelContact: function(event) {
+    alert("Inside cancelContact");
+    console.log("working");
     // console.log("working");
     //
     // $('#name').val('');
