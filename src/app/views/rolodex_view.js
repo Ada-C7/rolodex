@@ -24,12 +24,13 @@ const RolodexView = Backbone.View.extend({
   },
   events: {
     'click .btn-save': 'addContact',
-    'click .btn-cancel': 'cancelContact'
+    'click .btn-cancel': 'cancelContact',
+    'click .contact-card': 'showModalBox',
+    'click .application' : 'hideModalBox'
   },
   addContact: function(event) {
     var formData = this.readRolodexForm();
     var contact = new Contact(formData);
-    // console.log(contact);
     this.model.add(contact);
   },
   cancelContact: function(event) {
@@ -56,6 +57,14 @@ const RolodexView = Backbone.View.extend({
       formData["phone"] = phoneData;
     }
     return formData;
+  },
+  showModalBox: function(event) {
+    //if you don't have this here then it will not appear because it's default
+    event.stopPropagation();
+    $("#contact-details").show();
+  },
+  hideModalBox: function(event) {
+    $('#contact-details').hide();
   }
 
 });

@@ -5,8 +5,9 @@ import Rolodex from 'app/collections/rolodex.js';
 import ContactView from 'app/views/contact_view.js';
 import RolodexView from './app/views/rolodex_view.js';
 
-var appleTemplate;
+var rolodexTemplate;
 var contactList;
+var contactCardDetailsTemplate;
 
 var rolodexData = [
   {
@@ -31,14 +32,26 @@ var rolodexData = [
   }
 ];
 
-$(document).ready(function(){
-  appleTemplate = _.template($("#tmpl-contact-card").html());
-  contactList = new Rolodex(rolodexData);
+//this is how to hide the box
+  $("#contact-details").hide();
 
+$(document).ready(function(){
+  rolodexTemplate = _.template($("#tmpl-contact-card").html());
+  contactCardDetailsTemplate = _.template($("#tmpl-contact-details").html());
+
+  contactList = new Rolodex(rolodexData);
   var rolodexView = new RolodexView({
-    rolodexTemplate: appleTemplate,
+    rolodexTemplate: rolodexTemplate,
     model: contactList,
     el: $("#application")
   });
+
+  //this is where I am hiding it if I click anywhere else on the screen.
+  $(window).click(function(event){
+    if(event.target.id !== 'contact-details') {
+      $("#contact-details").hide();
+    }
+  })
+
   rolodexView.render();
 })
