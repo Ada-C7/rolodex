@@ -1,9 +1,9 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Contact from './app/models/contact.js';
+import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
 // import ContactView from './app/views/contact_view';
-import RolodexView from './app/views/rolodex_view.js';
+import RolodexView from 'app/views/rolodex_view';
 
 var contactData = [
   {

@@ -11,17 +11,15 @@ var RolodexView = Backbone.View.extend({
 
   },
   render: function() {
-    // var self = this; //Change this.
-    var self = this;
-    self.$('#contact-cards').empty();
+    this.$('#contact-cards').empty();
 
-    self.model.each(function(contact) {
+    this.model.each(function(contact) {
       var contactView = new ContactView({
         model: contact,
-        template: self.contactTemplate
+        template: this.contactTemplate
       });
-      self.$('#contact-cards').append(contactView.render().$el);
-    });
+      this.$('#contact-cards').append(contactView.render().$el);
+    }.bind(this));
     return this;
   },
   events: {
@@ -29,24 +27,45 @@ var RolodexView = Backbone.View.extend({
     'click h3.button.btn-cancel': 'cancelContact'
   },
   saveContact: function(event) {
-
-    alert("Inside saveContact");
-    // console.log("working");
     console.log(event);
 
-    var name = $('#name').val();
-    var email = $('#email').val();
-    var phone = $('#phone').val();
+    var formData = this.readContactForm();
+    this.model.add(formData);
 
-    var newContact = new Contact ({
-      name: $('#name').val(),
-      email: $('#email').val(),
-      phone: $('#phone').val()
-    });
-    // debugger
+    // alert("Inside saveContact");
+    // console.log("working");
+
+    // var name = $('#name').val();
+    // var email = $('#email').val();
+    // var phone = $('#phone').val();
+    //
+    // var newContact = new Contact ({
+    //   name: $('#name').val(),
+    //   email: $('#email').val(),
+    //   phone: $('#phone').val()
+    // });
+
     console.log(newContact);
-    this.render();
+    // this.model.add
+    return this.render();
+    // return this;
 
+  },
+  readContactForm: function() {
+      var name = $('#name').val();
+      $('#name').val('');
+
+      var email = $('#email').val();
+      $('#email').val('');
+
+      var phone = $('#phone').val();
+      $('#phone').val('');
+
+      return {
+        name: name,
+        email: email,
+        phone: phone
+      };
   },
   cancelContact: function(event) {
     // console.log("working");
