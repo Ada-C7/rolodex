@@ -25,20 +25,6 @@ var myContact = new Contact({
   phone: "614-517-6803"
 });
 
-var renderList = function(contactList) {
-  $('#contact-cards').empty();
-
-  contactList.each(function(task) {
-    var contactView = new ContactView({
-      model: Contact,
-      template: _.template($('#tmpl-contact-card').html()),
-      // tagName: 'li'
-    });
-    $('#contact-cards').append(contactView.render().el);
-  });
-};
-
-
 
 $(document).ready(function() {
   renderList(myContactList);

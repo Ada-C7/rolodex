@@ -8,11 +8,25 @@ const ContactView = Backbone.View.extend({
     this.template = params.template;
   },
   render: function() {
+
     var compiledTemplate = this.template(this.model.toJSON());
+
     this.$el.html(compiledTemplate);
     return this;
-
   }
 });
 
 export default ContactView;
+
+// var renderList = function(contactList) {
+//   $('#contact-cards').empty();
+//
+//   contactList.each(function(contact) {
+//     var contactView = new ContactView({
+//       model: contact,
+//       template: _.template($('#tmpl-contact-card').html()),
+//       // tagName: 'li'
+//     });
+//     $('#contact-cards').append(contactView.render().el);
+//   });
+// };
