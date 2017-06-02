@@ -1,23 +1,20 @@
 import Backbone from 'backbone';
-import _ from 'underscore';
-import $ from 'jquery';
+// import _ from 'underscore';
+// import $ from 'jquery';
 
-// const Contact = Backbone.Model.extend({
+const Contact = Backbone.Model.extend({
 
-var Contact = Backbone.Model.extend({
   defaults: function(){
     return {
-      name: "name",
-      phone: "phone",
-      email: "email"
-    };
-  },
-  toggle: function(){
-    this.save({done: !this.get("save")});
-  }
-})
+      name: "example name",
+      phone: "example phone",
+      email: "example email"
+    },
 
+    initialize: function(){
+      alert("created new contact!")
+    }
 
-
+});
 
 export default Contact;
