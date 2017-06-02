@@ -6,7 +6,7 @@ import ContactView from './contact_view';
 var ContactListView = Backbone.View.extend({
   initialize: function(params) {
     this.contactTemplate = params.contactTemplate;
-
+    this.detailsTemplate =   params.detailsTemplate;
     this.listenTo(this.model, "update", this.render);
   },
 
@@ -31,7 +31,18 @@ var ContactListView = Backbone.View.extend({
 
   events: {
     'click .btn-save': 'addContact',
-    'click .btn-cancel': 'clearForm'
+    'click .btn-cancel': 'clearForm',
+    'contactSelected': 'triggerModal',
+    'click': 'hideModal',
+    'click #contact-details': 'doNothing'
+  },
+
+  doNothing: function(event){
+    event.stopPropagation();
+  },
+
+  hideModal: function(event){
+    this.$('#contact-details').hide();
   },
 
   addContact: function(event) {
@@ -39,13 +50,6 @@ var ContactListView = Backbone.View.extend({
 
     console.log("In add contact, form data:");
     console.log(formData);
-
-    // Create a contact from the form data and add it to the collection
-    // var contact = new Contact(formData);
-    // this.model.add(contact);
-
-    // Can just pass the form data directly, because
-    // the collection knows what its model is
     this.model.add(formData);
   },
 
@@ -78,6 +82,12 @@ var ContactListView = Backbone.View.extend({
       formData["phone"] = phoneData
     }
     return formData;
+  },
+
+  triggerModal: function(event, contact) {
+    var detailsHTML = this.detailsTemplate(contact.toJSON());
+    this.$('#contact-details').html(detailsHTML).show();
+
   }
 
 });

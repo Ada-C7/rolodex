@@ -7,6 +7,7 @@ import ContactListView from 'app/views/contact_list_view.js';
 
 var contactCardTemplate;
 var contactList;
+var detailsCardTemplate;
 
 var contactData = [{
   name: "Ada Lovelace",
@@ -26,12 +27,14 @@ var contactData = [{
 
 $(document).ready(function() {
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
+  detailsCardTemplate = _.template($('#tmpl-contact-details').html());
   contactList = new Rolodex(contactData);
 
   var clvParams = {
     contactTemplate: contactCardTemplate,
+    detailsTemplate: detailsCardTemplate,
     model: contactList,
-    el: $('div#application')
+    el: $('body')
   };
   var contactListView = new ContactListView(clvParams);
 
