@@ -2,6 +2,7 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact';
+import ContactInfoView from './contact_info_view'
 
 const ContactView = Backbone.View.extend({
   tagName: 'li',
@@ -14,6 +15,24 @@ const ContactView = Backbone.View.extend({
     var generatedHTML = this.template(this.model.toJSON());
     this.$el.html(generatedHTML);
     return this;
+  },
+  events: {
+    'click': "showInfo"
+  },
+  showInfo: function(event) {
+    this.trigger('openModule', this.model);
+    event.stopPropagation();
+
+    // this.$el.trigger('event', this.model)
+    // event.stopPropagation();
+    // var contactInfoTemplate = _.template($('#tmpl-contact-details').html());
+    // $('#contact-details').show();
+    // $('#contact-details').empty();
+    // var contactInfoView = new ContactInfoView({
+    //   model: contact,
+    //   template: contactInfoTemplate
+    // })
+    // $('#contact-details').append(contactInfoView.render().$el);
   }
 });
 
