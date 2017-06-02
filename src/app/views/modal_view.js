@@ -6,6 +6,7 @@ import Contact from '../models/contact.js';
 const ModalView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
+    this.listenTo(this.model, "change", this.render);
   },
   render: function() {
     var compiledTemplate = this.template(this.model.toJSON());
@@ -23,16 +24,19 @@ const ModalView = Backbone.View.extend({
   },
   updateContact: function(event) {
     var formData = this.getFormData();
-    this.model.updateContact(formData);
     // call model method of update.
+    this.model.updateContact(formData);
+    // show changes in modal
+    this.$("#edit-form").hide();
+    this.$("#name-email-phone-deets").show();
   },
   getFormData: function() {
     var formName = this.$("#update-contact-name").val();
-    this.$("#update-contact-name").val("");
+    // this.$("#update-contact-name").val("");
     var formEmail = this.$("#update-contact-email").val();
-    this.$("#update-contact-email").val("");
+    // this.$("#update-contact-email").val("");
     var formPhone = this.$("#update-contact-phone").val();
-    this.$("#update-contact-phone").val("");
+    // this.$("#update-contact-phone").val("");
     return {
       name: formName,
       email: formEmail,
