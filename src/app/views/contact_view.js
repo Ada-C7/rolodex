@@ -10,15 +10,15 @@ var ContactView = Backbone.View.extend({
   // tagName: 'section',
   // className: 'columns',
   initialize: function(params) {
-    console.log(params);
+    // console.log(params);
     this.model = params.model;
     this.template = params.template;
-    console.log(this);
+    // console.log(this);
 
     this.listenTo(this.model, 'change', this.render);
   },
   render: function() {
-    console.log(this);
+    // console.log(this);
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
 

@@ -31,19 +31,24 @@ var RolodexView = Backbone.View.extend({
   saveContact: function(event) {
 
     alert("Inside saveContact");
-    console.log("working");
+    // console.log("working");
+    console.log(event);
 
-    // this.model.save({
-    //   name: $('#name').val(),
-    //   email: $('#email').val(),
-    //   phone: $('#phone').val()
-    // });
-    // this.render();
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
+
+    var newContact = new Contact ({
+      name: $('#name').val(),
+      email: $('#email').val(),
+      phone: $('#phone').val()
+    });
+    // debugger
+    console.log(newContact);
+    this.render();
 
   },
   cancelContact: function(event) {
-    alert("Inside cancelContact");
-    console.log("working");
     // console.log("working");
     //
     // $('#name').val('');
