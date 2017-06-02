@@ -1,25 +1,19 @@
 import _ from 'underscore';
 import $ from 'jquery';
-import Application from 'app/models/application';
-import ApplicationView from 'app/views/application_view';
+// import Application from 'app/models/application';
+// import ApplicationView from 'app/views/application_view';
 import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
+import RolodexView from './app/views/rolodex_view.js';
 
 
-var application = new Application();
-
-var appView = new ApplicationView({
-  el: '#application',
-  model: application
-});
-
-// var newContactData = {
-//   name: 'Dr. Seuss',
-//   email: 'thing1@catinthehat.net',
-//   phone: '888-888-8888'
-// };
+// var application = new Application();
 //
-// var newContact = new Contact(newContactData);
+// var appView = new ApplicationView({
+//   el: '#application',
+//   model: application
+// });
+
 
 var newContactData = [{
   name: 'Dr. Seuss',
@@ -39,24 +33,14 @@ var newContactData = [{
 
 var rolodex = new Rolodex(newContactData)
 
-var render = function(contact) {
-  var templateText = $('#tmpl-contact-card').html();
-  var templateObject = _.template(templateText);
-  var compiledHTML = templateObject(contact.toJSON());
-  $('#contact-cards').append(compiledHTML);
-};
+var rolodexView = new RolodexView({
+  model: rolodex,
+  template: _.template($('#tmpl-contact-card').html()),
+  el: '#application'
+});
 
-var renderRolodex = function(rolodex) {
-  $('#contact-cards').empty();
-  rolodex.each(function(contact) {
-    render(contact);
-  });
-};
 
 $(document).ready( function(){
-  renderRolodex(rolodex);
+  rolodexView.render();
 
-  rolodex.on('update', function() {
-    renderRolodex(rolodex);
-  });
 });
