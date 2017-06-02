@@ -9,6 +9,12 @@ const ContactView = Backbone.View.extend({
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
+  },
+  events: {
+    'click': 'clicked'
+  },
+  clicked: function() {
+    this.trigger('details', this.model);
   }
 });
 

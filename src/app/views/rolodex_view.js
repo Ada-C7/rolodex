@@ -19,6 +19,9 @@ var RolodexView = Backbone.View.extend({
         tagName: 'li'
       });
       that.$('#contact-cards').append(contactView.render().el);
+      that.listenTo(contactView, 'details', function(model) {
+        console.log(model);
+      });
     });
     return this;
   },
