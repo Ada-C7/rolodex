@@ -35,12 +35,21 @@ var RolodexView = Backbone.View.extend({
     var name = this.$('#name').val() || undefined;
     var email = this.$('#email').val() || undefined;
     var number = this.$('#phone').val() || undefined;
+    this.clearForm();
 
     return {
       name: name,
       email: email,
       number: number
     };
+  },
+  clearForm: function() {
+    ['#name','#email','#phone'].forEach(function(field) {
+      $(field).val('');
+    });
+    // $('#name').val('');
+    // $('#email').val('');
+    // $('#phone').val('');
   }
 });
 
