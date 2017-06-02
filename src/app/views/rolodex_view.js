@@ -13,7 +13,7 @@ var RolodexView = Backbone.View.extend({
     this.template = params.template;
     this.listenTo(this, "click", this.hideCard);
     this.listenTo(this.model, "update", this.render);
-    this.on("delete:card", this.hideCard);
+    // this.on("delete:card", this.hideCard);
   },
 
 
