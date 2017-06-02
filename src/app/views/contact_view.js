@@ -20,12 +20,12 @@ const ContactView = Backbone.View.extend({
     'click': 'showTaskInfo'
   },
   showTaskInfo: function(e){
-    console.log("clicked");
-    // var popUp = new ModalView({
-    //   model: this.model,
-    //   template: _.template($("#tmpl-contact-details").html())
-    // });
-    // $("#contact-details").append(popUp.render().$el);
+    $("#contact-details").show();
+    var popUp = new ModalView({
+      model: this.model,
+      template: _.template($("#tmpl-contact-details").html())
+    });
+    $("#contact-details").append(popUp.render().$el);
   }
 
 });
