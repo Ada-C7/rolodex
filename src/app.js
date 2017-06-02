@@ -15,6 +15,8 @@ import RolodexView from './views/rolodex_view.js';
 //   model: application
 // });
 
+$('#contact-details').hide();
+
 var contactData = [
   {
     name: "Theresa",

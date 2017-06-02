@@ -9,8 +9,8 @@ var ContactView = Backbone.View.extend( {
   initialize: function(params) {
     this.template = params.myTemplate;
 
-    this.detailsTemplate = _.template($('#tmpl-contact-details').html());
-    this.listElement = $('#contact-details');
+    // this.detailsTemplate = _.template($('#tmpl-contact-details').html());
+    // this.listElement = $('#contact-details');
 
     // Bellow is code that will be used for updating a single attribute
     // change - changing a single attribute  (changing a phone number etc... )
@@ -23,13 +23,18 @@ var ContactView = Backbone.View.extend( {
   },
   events: {
     "click" : "onClick"
-
   },
   onClick: function() {
-    //take this.model and make it so it can be passed onto the rolodex view
-    var modalHTML = this.detailsTemplate({ name: this.model.get("name"), phone: this.model.get("phone"), email: this.model.get("email")});
+    // better way that will send messages to rolodex view using trigger
+    var click = this.trigger('selected', this.model);
+    console.log('click', click);
 
-    this.listElement.html(modalHTML);
+    // this works.. not how I want it to though...
+    //take this.model and make it so it can be passed onto the rolodex view
+    // var modalHTML = this.detailsTemplate({ name: this.model.get("name"), phone: this.model.get("phone"), email: this.model.get("email")});
+
+    //Doesnt work...
+    // this.listElement.html(modalHTML);
     // $('#contact-details').show();
 
     // var click = this.trigger("selected", this.model);
