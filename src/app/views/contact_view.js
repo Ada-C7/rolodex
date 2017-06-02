@@ -2,6 +2,7 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact.js';
+import ContactDetailsView from './contact_details.js';
 
 var ContactView = Backbone.View.extend({
 
@@ -17,11 +18,15 @@ var ContactView = Backbone.View.extend({
   },
 
   events: {
-    "click img" : "clicked"
+    "click img" : "showContactDetails"
   },
 
-  clicked: function(){
-    this.trigger("selected", this.model);
+  showContactDetails: function(){
+    var contactDetailsView = new ContactDetailsView({
+      model: this.model,
+    });
+    contactDetailsView.render();
+    contactDetailsView.show();
   }
 });
 
