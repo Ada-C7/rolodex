@@ -1,7 +1,8 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
-import ContactView from './contact_view.js';
+import ContactView from './contact_detail_view.js';
+import ContactDetailView from './contact_view.js';
 import Contact from '../models/contact.js';
 
 var RolodexView = Backbone.View.extend({
@@ -9,8 +10,6 @@ var RolodexView = Backbone.View.extend({
     this.template = params.template;
 
     this.listenTo(this.model, "update", this.render);
-    this.listenTo(this.model, "showDetails", this.fillModal         );
-    // listenTo showdetail triggered, show modal
   },
   render: function() {
     // alert('render me bb');
@@ -22,6 +21,9 @@ var RolodexView = Backbone.View.extend({
         template: that.template
       });
       that.$('#contact-cards').append(contactView.render().el);
+
+      // sets up listener for modal trigger
+      that.listenTo(contactView, "showDetails", that.showModal);
     });
   },
   events: {
@@ -64,10 +66,23 @@ var RolodexView = Backbone.View.extend({
     this.$("input[name='email']").val('');
     this.$("input[name='phone']").val('');
   },
-  // modal info - clear, then gets info of clicked contact
-  // show modal - toggles show
-  // hide modal - toggles hide
-  // other click?
+  showModal: function(contact) {
+    // modal info - clear, then gets info of clicked contact
+    console.log(contact);
+    $("#contact-details").empty();
+
+    var detailsView = new ContactDetailView({
+      model: contact,
+      template: _.template($('#tmpl-contact-details').html())
+    });
+    this.$('#contact-details').append(detailsView.render().el);
+  },
+  clickOutside: function() {
+
+  },
+  hideModal: function() {
+    // hide modal - toggles hide
+  }
 });
 
 export default RolodexView;
