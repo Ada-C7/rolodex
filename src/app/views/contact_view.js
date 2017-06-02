@@ -28,14 +28,16 @@ const ContactView = Backbone.View.extend({
     return this;
   },
 
-  showDetails: function(event){
+  showDetails: function(event) {
     var popupHTML = this.detailsTemplate({
-      name: this.model.get("name"), phone: this.model.get("phone"), email: this.model.get("email")});
-
+      name: this.model.get("name"),
+      phone: this.model.get("phone"),
+      email: this.model.get("email")
+    });
       this.listElement.html(popupHTML)
     }
 
-  )});
+});
 
 
-  export default ContactView;
+export default ContactView;

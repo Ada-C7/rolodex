@@ -4,15 +4,15 @@ import Backbone from 'backbone';
 
 const Contact = Backbone.Model.extend({
 
-  defaults: function(){
-    return {
-      name: "example name",
-      phone: "example phone",
-      email: "example email"
-    },
+  defaults: {
+    name: "example name",
+    phone: "example phone",
+    email: "example email"
+  },
+
 
     initialize: function(){
-      alert("created new contact!")
+      // alert("created new contact!")
     }
 
 });
