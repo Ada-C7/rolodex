@@ -2,6 +2,7 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 import ContactView from './contact_view.js';
+import ContactDetailsView from './contact_details_view.js';
 import Contact from '../models/contact.js';
 
 var RolodexView = Backbone.View.extend({
@@ -19,12 +20,14 @@ var RolodexView = Backbone.View.extend({
         tagName: 'li'
       });
       that.$("#contact-cards").append(contactView.render().el);
+      that.listenTo(contactView, "showCard", that.showCard);
     });
     return this;
   },
   events: {
     "click .btn-save" : "addContact",
-    "click .btn-cancel" : "clearForm"
+    "click .btn-cancel" : "clearForm",
+    "click" : "hideDetails"
   },
   clearForm: function () {
     this.$("input[name=name]").val('');
@@ -46,6 +49,17 @@ var RolodexView = Backbone.View.extend({
   addContact: function() {
     var contact = new Contact(this.getFormData());
     this.model.add(contact);
+  },
+  showCard: function (event) {
+    var contactDetailsView = new ContactDetailsView({
+      model: event.model,
+      el: '#contact-details'
+    });
+    contactDetailsView.render();
+    return this;
+  },
+  hideDetails: function () {
+    $('#contact-details').hide();
   }
 });
 

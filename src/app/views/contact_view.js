@@ -15,13 +15,9 @@ const ContactView = Backbone.View.extend({
   events: {
     "click" : "showDetails"
   },
-  showDetails: function () {
-    var contactDetailsView = new ContactDetailsView({
-      model: this.model,
-      el: '#contact-details'
-    });
-    contactDetailsView.render();
-    return this;
+  showDetails: function (event) {
+    this.trigger('showCard', this);
+    event.stopPropagation();
   }
 });
 
