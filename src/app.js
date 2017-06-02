@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact';
+import Rolodex from './app/collections/rolodex';
 import ContactView from './app/views/contact_view';
 
 
@@ -45,11 +46,21 @@ var contactData = [
 $(document).ready(function() {
   var contactTemplate = _.template($('#tmpl-contact-card').html());
 
-  var contact = new Contact(contactData[0]);
-  var contactView = new ContactView({
-    model: contact,
-    template: contactTemplate
+  var contactList = new Rolodex(contactData);
+  contactList.each(function(contact) {
+    var contactView = new ContactView({
+      model: contact,
+      template: contactTemplate
+    });
+    // var generatedHTML = contactTemplate(contact.toJSON());
+    $('#contact-cards').append(contactView.render().$el);
   });
-  // var generatedHTML = contactTemplate(contact.toJSON());
-  $('#contact-cards').append(contactView.render().$el);
+
+  // var contact = new Contact(contactData[0]);
+  // var contactView = new ContactView({
+  //   model: contact,
+  //   template: contactTemplate
+  // });
+  // // var generatedHTML = contactTemplate(contact.toJSON());
+  // $('#contact-cards').append(contactView.render().$el);
 });
