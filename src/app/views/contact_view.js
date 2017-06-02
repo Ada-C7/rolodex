@@ -19,16 +19,3 @@ const ContactView = Backbone.View.extend({
 });
 
 export default ContactView;
-
-// var renderList = function(contactList) {
-//   $('#contact-cards').empty();
-//
-//   contactList.each(function(contact) {
-//     var contactView = new ContactView({
-//       model: contact,
-//       template: _.template($('#tmpl-contact-card').html()),
-//       // tagName: 'li'
-//     });
-//     $('#contact-cards').append(contactView.render().el);
-//   });
-// };
