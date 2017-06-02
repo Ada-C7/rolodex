@@ -14,11 +14,11 @@ var appView = new ApplicationView({
   model: application
 });
 
-var myContact = new Contact({
-  name: "Lynn",
-  phone: 2062401029,
-  email: "lynn@test.com"
-});
+// var myContact = new Contact({
+//   name: "Lynn",
+//   phone: 2062401029,
+//   email: "lynn@test.com"
+// });
 
 var contactData = [
   {
@@ -40,27 +40,10 @@ var contactData = [
 
 var myRolodex = new Rolodex(contactData);
 
-// var render = function(contact) {
-//   var templateText = $("#tmpl-contact-card").html();
-//
-//   var templateObject = _.template(templateText);
-//
-//   var compiledHTML = templateObject(contact.toJSON());
-//
-//   $("#contact-cards").append(compiledHTML);
-// };
-
-// var renderCollection = function(collection) {
-//   $("#contact-cards").empty();
-//   collection.each(function(contact) {
-//     render(contact);
-//   });
-// };
-
 
 
 $(document).ready(function() {
-  // $("#contact-details").hide();
+  $("#contact-details").hide();
 
   var myRolodexView = new RolodexView({
     model: myRolodex,
@@ -69,18 +52,4 @@ $(document).ready(function() {
   });
   // console.log("before render");
   myRolodexView.render();
-
 });
-
-
-// renderCollection(myRolodex);
-//
-// myRolodex.on("update", function() {
-//   renderCollection(myRolodex);
-// });
-//
-// $("h3.btn-save").click(function() {
-//   var formData = getFormData();
-//   var newContact = new Contact(formData);
-//   myRolodex.add(newContact);
-// });

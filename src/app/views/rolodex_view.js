@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Contact from '../models/contact.js';
 import Rolodex from '../collections/rolodex.js';
 import ContactView from '../views/contact_view.js';
+import ModalView from '../views/modal_view.js';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
