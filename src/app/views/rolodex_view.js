@@ -43,7 +43,7 @@ var RolodexView = Backbone.View.extend({
     'click h3.button.btn-cancel': 'emptyFormData'
   },
   hidePopup: function(event) {
-    if ($(event.target).is('li') || $(event.target).is('h4')) {
+    if ($(event.target).is('li') || $(event.target).is('h4') || $(event.target).is('h3')) {
       return;
     } else {
       this.$("#contact-details").hide();

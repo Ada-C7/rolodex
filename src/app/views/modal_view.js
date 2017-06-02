@@ -13,6 +13,13 @@ const ModalView = Backbone.View.extend({
     this.$("#edit-form").hide();
     return this;
   },
+  events: {
+    'click h3.button.btn-edit': 'showEditForm'
+  },
+  showEditForm: function(e) {
+    this.$("#edit-form").show();
+    this.$("#name-email-phone-deets").hide();
+  }
 });
 
 export default ModalView;
