@@ -2,8 +2,8 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
-import ContactView from '/app/views/contact_view';
-// import RolodexView from './app/views/rolodex_view';
+import ContactView from './app/views/contact_view';
+import RolodexView from './app/views/rolodex_view';
 
 
 var contactData = [
@@ -28,10 +28,17 @@ var myContact = new Contact({
 
 
 $(document).ready(function() {
-var myContactView = new ContactView({
-  model: myContact,
+// var myContactView = new ContactView({
+//   model: myContact,
+//   template: _.template($('#tmpl-contact-card').html()),
+//   el: 'ul'
+// });
+// myContactView.render();
+
+var myRoloView = new RolodexView({
+  model: myContactList,
   template: _.template($('#tmpl-contact-card').html()),
-  el: 'ul'
+  el: '#application'
 });
-myContactView.render();
+myRoloView.render();
 });
