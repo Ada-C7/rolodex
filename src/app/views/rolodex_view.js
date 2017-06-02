@@ -7,6 +7,7 @@ import ContactInfoView from './contact_info_view';
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.contactTemplate = params.contactTemplate;
+    this.contactInfoTemplate = params.contactInfoTemplate;
     this.listenTo(this.model, "update", this.render);
   },
   render: function() {
@@ -26,7 +27,8 @@ var RolodexView = Backbone.View.extend({
   },
   events: {
     'click .btn-save': 'addContact',
-    'click .btn-cancel': 'clearForm'
+    'click .btn-cancel': 'clearForm',
+    'click': 'clearContactInfo'
     // 'openModule': 'renderContactInfo'
   },
   addContact: function(event) {
@@ -38,13 +40,13 @@ var RolodexView = Backbone.View.extend({
     // defaults will be invoked.
     var name = this.$('#name').val() || undefined;
     var email = this.$('#email').val() || undefined;
-    var number = this.$('#phone').val() || undefined;
+    var phone = this.$('#phone').val() || undefined;
     this.clearForm();
 
     return {
       name: name,
       email: email,
-      number: number
+      phone: phone
     };
   },
   clearForm: function() {
@@ -53,14 +55,17 @@ var RolodexView = Backbone.View.extend({
     });
   },
   renderContactInfo: function(contact) {
-    var contactInfoTemplate = _.template($('#tmpl-contact-details').html());
+    // var contactInfoTemplate = _.template($('#tmpl-contact-details').html());
     $('#contact-details').show();
     $('#contact-details').empty();
     var contactInfoView = new ContactInfoView({
       model: contact,
-      template: contactInfoTemplate
-    })
+      template: this.contactInfoTemplate
+    });
     $('#contact-details').append(contactInfoView.render().$el);
+  },
+  clearContactInfo: function(event) {
+    $('#contact-details').hide();
   }
 });
 

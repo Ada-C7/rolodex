@@ -4,8 +4,6 @@ import $ from 'jquery';
 import Contact from '../models/contact.js'
 
 const ContactInfoView = Backbone.View.extend({
-  // tagName: 'section',
-  // className: '',
   initialize: function(params) {
     this.template = params.template;
     // this.listenTo(this.model, "change", this.render);

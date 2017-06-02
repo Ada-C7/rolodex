@@ -24,7 +24,6 @@ const ContactView = Backbone.View.extend({
     event.stopPropagation();
 
     // this.$el.trigger('event', this.model)
-    // event.stopPropagation();
     // var contactInfoTemplate = _.template($('#tmpl-contact-details').html());
     // $('#contact-details').show();
     // $('#contact-details').empty();
