@@ -6,3 +6,28 @@ const Contact = Backbone.Model.extend({
 });
 
 export default Contact;
+
+
+var Contact = Backbone.Model.extend({
+  defaults: {
+    name: 'DEFAULT',
+    email: "",
+    phone: ""
+  },
+  logStatus: function() {
+    console.log("Model " + this.cid);
+    console.log("Name: " +   this.get("name"));
+    console.log("email: " + this.get("email"));
+    console.log("phone: " + this.get("phone"));
+  },
+  initialize: function(params) {
+    console.log("Starting", params);
+    this.logStatus();
+  },
+});
+
+
+
+
+
+export default Contact;
