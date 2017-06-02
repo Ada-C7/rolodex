@@ -1,7 +1,7 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
-import Rolodex from '../models/task.js';
+import Rolodex from '../models/contact_view.js';
 
 const ContactView = Backbone.View.extend({
 });

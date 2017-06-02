@@ -19,13 +19,6 @@ var contactData = [
 
 var myContactList = new ContactList(contactData);
 
-var individualContactData = {
-  name: "Create a Model!",
-  email: "",
-  phone: ""
-};
-var myContact = new Contact(individualContactData);
-
 var getFormData = function() {
   var formName = $("#name").val();
   $("#name").val('');
@@ -35,10 +28,6 @@ var getFormData = function() {
 
   var formPhone= $("#phone").val();
   $("#phone").val('');
-  // // Get Checkbox Checked
-  // var formCompleted = $('#completed-checkbox').is(":checked");
-  // // Clear Checkbox
-  // $('#completed-checkbox').prop('checked', false);
 
   return {
     name: formName,
@@ -47,35 +36,34 @@ var getFormData = function() {
   };
 };
 
-var render = function(task) {
-  // Get the Template using jQuery
-  var templateText = $('#contactListTemplate').html();
-
-  // Create an Underscore Template Object
-  var templateObject = _.template(templateText);
-
-  // Fill in the ERB with data from
-  // our task.
-  //console.log(templateObject(task.toJSON()));
-  var compiledHTML = $(templateObject(contact.toJSON()));
+// var render = function(contact) {
+//   // Get the Template using jQuery
+//   var templateText = $('#contactListTemplate').html();
+//
+//   // Create an Underscore Template Object
+//   var templateObject = _.template(templateText);
+//
+//   // Fill in the ERB with data from
+//   // our contact.
+//   //console.log(templateObject(contact.toJSON()));
+//   var compiledHTML = $(templateObject(contact.toJSON()));
 
   // Append the result to the DOM
   // $('.todo-items').append(compiledHTML);
 
-  compiledHTML.find('button.alert').click({contactToRemove: contact}, function(params){
-    myContactList.remove(params.data.contactToRemove);
-  });
-
+//   compiledHTML.find('button.alert').click({contactToRemove: contact}, function(params){
+//     myContactList.remove(params.data.contactToRemove);
+//   });
+//
 };
-
 
 var renderList = function(contactList) {
   // Clear the list
   $(".contacts").empty();
 
-  // Loop Through rendering each task
+  // Loop Through rendering each contact
   contactList.each(function(contact) {
-    // Create a TaskView
+    // Create a ContactView
     var contactView = new ContactView({
       model: contact, // get model
       // the template
@@ -106,15 +94,15 @@ myContactList.on("update", function() {
 });
 
 $("#add-contact").click(function() {
-  // Creating a new Task
+  // Creating a new Contact
   // With the form data
-  var task = new Contact(getFormData());
+  var contact = new Contact(getFormData());
 
   // Add it to the list
   myContactList.add(contact);
 
   // re-render the list
-  // renderList(myTaskList);
+  // renderList(myContactList);
 });
 
 });
