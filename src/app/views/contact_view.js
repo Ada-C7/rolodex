@@ -7,7 +7,6 @@ var ContactView = Backbone.View.extend({
 
   initialize: function(params){
     this.template = params.template;
-    // this.$el.addClass("task-item column column-block");
     this.listenTo(this.model, "change", this.render);
   },
 
@@ -18,8 +17,11 @@ var ContactView = Backbone.View.extend({
   },
 
   events: {
-    // will want to include click handler event
-    // to display more contact info on click
+    "click img" : "clicked"
+  },
+
+  clicked: function(){
+    this.trigger("selected", this.model);
   }
 });
 

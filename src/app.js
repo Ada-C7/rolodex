@@ -35,12 +35,6 @@ var myContacts = [
     phone: "555-555-5555",
     image: "imgs/kelly.png"
   },
-  // {
-  //   name: "Ryan Howard",
-  //   email: "rhoward@wupf.edu",
-  //   phone: "666-666-6666",
-  //   image: "imgs/ryan.png"
-  // },
   {
     name: "Andy Bernard",
     email: "narddog@cornell.edu",
@@ -60,12 +54,6 @@ var myContacts = [
     phone: "999-999-9999",
     image: "imgs/angela.png"
   },
-  // {
-  //   name: "Toby Flenderson",
-  //   email: "chadflenderson@flendersonfiles.com",
-  //   phone: "1-111-111-1111",
-  //   image: "imgs/toby.png"
-  // },
   {
     name: "Creed Bratton",
     email: "notcreedbratton@creedthoughts.gov",
@@ -73,11 +61,23 @@ var myContacts = [
     image: "imgs/creed.png"
   }
   // {
+  //   name: "Toby Flenderson",
+  //   email: "chadflenderson@flendersonfiles.com",
+  //   phone: "1-111-111-1111",
+  //   image: "imgs/toby.png"
+  // },
+  // {
   //   name: "David Wallace",
   //   email: "dwallace@suckit.com",
   //   phone: "3-333-333-3333",
   //   image: "imgs/david.png"
   // }
+  // {
+  //   name: "Ryan Howard",
+  //   email: "rhoward@wupf.edu",
+  //   phone: "666-666-6666",
+  //   image: "imgs/ryan.png"
+  // },
 ];
 
 var myRolodex = new Rolodex(myContacts);
@@ -98,6 +98,6 @@ $(document).ready(function() {
 
 
   $('.staff-pic').hover(function(){
-    $(this).toggleClass('grayscale');
+    $(this).toggleClass('grayscale'); // broken when new contact added
   });
 });

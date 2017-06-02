@@ -9,18 +9,6 @@ var Contact = Backbone.Model.extend({
     image: "imgs/andy.png"
   },
 
-  getRandomImage: function(){
-    var officeImages = [
-      "imgs/andy.png",
-      "imgs/angela.png",
-      "imgs/creed.png",
-      "imgs/dwight.png",
-      "imgs/gabe.png",
-      "imgs/pam.png"
-    ];
-    return _.sample(officeImages);
-  },
-
   logStatus: function(){
     console.log("Name: " + this.get("name"));
     console.log("Phone: " + this.get("phone"));
@@ -28,12 +16,10 @@ var Contact = Backbone.Model.extend({
   },
 
   initialize: function(params){
-    console.log("starting", params);
+    this.name = params.name;
+    this.phone = params.phone;
+    this.email = params.email;
     this.logStatus();
-  },
-
-  showAllInfo: function(){
-
   }
 
 });
