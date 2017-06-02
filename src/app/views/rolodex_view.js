@@ -45,7 +45,7 @@ var RolodexView = Backbone.View.extend({
     this.model.add(contact);
   },
   getFormData: function() {
-    var formName = this.$('#name').val();
+    var formName = this.$('#name').val() ? this.$('#name').val() : undefined;
     var formEmail = this.$('#email').val();
     var formPhone = this.$('#phone').val();
     this.clearForm();
