@@ -8,7 +8,7 @@ var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.contactTemplate = params.template;
     this.listenTo(this.model, "update", this.render);
-    // Wave3
+    // Wave3, compling modal template and adding it to html
     this.modalTemplate = _.template($('#tmpl-contact-details').html());
     console.log('this modalTemplate ', this.modalTemplate);
   },
@@ -23,29 +23,52 @@ var RolodexView = Backbone.View.extend({
         myTemplate: that.contactTemplate,
         // tagName: 'li'
       });
-      // wave3 create listener for each contact
+      // Wave3 create listener for each contact to be filled in the modal
       that.listenTo(contactView, "selected", that.viewModal);
 
-      // this is wave2
+      // Wave2, displaying list of contacts using rolodex collection
       that.$("#contact-cards").append(contactView.render().$el);
     });
 
     return this;
   },
 
-// backbone event handler
+// Wave3 backbone modal event handler
   viewModal: function(contact){
+    $('#contact-details').show();
     $('#contact-details').empty();
     var generatedModalTemplate= this.modalTemplate(contact.toJSON());
     // this.$el.html(generatedModalTemplate);
-    this.$('#contact-details').append(generatedModalTemplate);
+    this.$('#contact-details').append(generatedModalTemplate).$el;
   },
   events: {
-    // the event hash listen to the event listener
-    'click .btn-save' : "saveContact",
-    'click .btn-cancel' : "cancelContact",
+    'click .btn-save' : 'saveContact',
+    'click .btn-cancel' : 'cancelContact',
+    'click body' : 'hideModal'
   },
 
+  hideModal: function(){
+    console.log("hideModal");
+  $('#contact-details').hide()
+
+
+  // hideModal: $(function(event){
+  //
+	// 			var $win = $(body); // or $box parent container
+	// 			var $modal = $("#contact-details");
+  //
+  //
+	// 			 $win.on("click", function(event){
+	// 				if ( $modal.has(event.target).length === 0 &&
+  //           !$modal.is(event.target)) { $('#contact-details').show();
+  //         }else{
+  //           $('#contact-details').hide();
+  //         }
+  // };
+
+  },
+
+  // Read the Form data to create new contact
   getFormData: function(){
     var inputName = this.$('#name').val();
     this.$('#name').val('');

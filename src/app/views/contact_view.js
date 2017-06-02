@@ -3,7 +3,6 @@ import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact.js';
 
-
 const ContactView = Backbone.View.extend({
 
   initialize: function(params) {
@@ -21,7 +20,10 @@ const ContactView = Backbone.View.extend({
     'click' : 'onClick'
   },
   onClick: function(){
-    // selected is a custom event
+    // Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.
+    event.stopPropagation();
+
+    // selected is a custom backbone event
     var clicked = this.trigger("selected", this.model);
     console.log(clicked);
   }
