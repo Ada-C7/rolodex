@@ -10,22 +10,37 @@ const ContactView = Backbone.View.extend({
 
   initialize: function(params) {
     this.template = params.template;
+    this.detailTemplate = params.detailTemplate;
     this.listenTo(this.model, "change", this.render);
   },
 
-  render: function(){
+  render: function() {
     // console.log("HERE: inside contactView render");
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
   },
 
-// .contact-form section to add new contact
+  showDetails: function(event) {
+    console.log(event);
+    event.stopPropagation();
+    console.log("single contact clicked!");
 
-// button.btn-save on click saves a new contact AND clear form
+    var compiledDetailTemplate = this.detailTemplate(this.model.toJSON());
+    $('#contact-details').html(compiledDetailTemplate);
+    $('#contact-details').show();
+    return this;
+  },
 
-// button.btn-cancel on click clears the new contact form
+  hideDetails: function() {
+    console.log("hello");
+    // if (('#contact-details').show(true)) {
+  },
 
+  events: {
+    'click .contact-card': 'showDetails',
+    'click body': 'hideDetails',
+  },
 });
 
 export default ContactView;

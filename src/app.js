@@ -8,6 +8,7 @@ import RolodexView from 'app/views/rolodex_view';
 
 var contactTemplate;
 var rolodex;
+var detailTemplate;
 
 var contactData = [{
   name: "Anacelia",
@@ -19,27 +20,30 @@ var contactData = [{
   email: "anacelia2@ugh.com"
 }];
 
-// var firstContact = new Contact(contactData);
-
-// var render = function(contact) {
-//   var myContact = contact.toJSON();
-//   var generatedHTML = contactTemplate(myContact);
-//   $('#contact-cards').append(generatedHTML);
-// };
-
 $(document).ready(function(){
+  $("#contact-details").hide();
+
+  $(window).on("click", function(event) {
+    if ($("#contact-details").is(':hidden')) {
+      console.log("it's hidden");
+    } else {
+      console.log("is visible");
+      $("#contact-details").hide();
+    }
+  });
+
   contactTemplate = _.template($("#tmpl-contact-card").html());
+  detailTemplate = _.template($("#tmpl-contact-details").html());
 
   rolodex = new Rolodex(contactData);
 
   var rolodexView = new RolodexView({
     contactTemplate: contactTemplate,
+    detailTemplate: detailTemplate,
     model: rolodex,
     el: $('#application'),
   });
 
   rolodexView.render();
-  // render(firstContact);
 
-  $("#contact-details").hide();
 });
