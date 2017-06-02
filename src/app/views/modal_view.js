@@ -10,6 +10,7 @@ const ModalView = Backbone.View.extend({
   render: function() {
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
+    this.$("#edit-form").hide();
     return this;
   },
 });
