@@ -1,5 +1,8 @@
 import Backbone from 'backbone';
 import $ from 'jquery';
+import _ from 'underscore';
+
+import Contact from '../models/contact';
 
 const ContactView = Backbone.View.extend({
   // contact_view is in <ul> w/ id=contact-cards
@@ -11,11 +14,11 @@ const ContactView = Backbone.View.extend({
   },
 
   render: function(){
+    // console.log("HERE: inside contactView render");
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
   },
-
 
 // .contact-form section to add new contact
 

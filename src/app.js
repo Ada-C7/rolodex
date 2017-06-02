@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import _ from 'underscore';
+
 import Contact from 'app/models/contact';
 import Rolodex from 'app/collections/rolodex';
 import ContactView from 'app/views/contact_view';
@@ -34,8 +35,10 @@ $(document).ready(function(){
   var rolodexView = new RolodexView({
     contactTemplate: contactTemplate,
     model: rolodex,
-    el: $('application'),
+    el: $('#application'),
   });
+
+  rolodexView.render();
   // render(firstContact);
 
   $("#contact-details").hide();
