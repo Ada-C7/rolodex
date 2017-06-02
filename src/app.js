@@ -56,6 +56,22 @@ var rolodex = new Rolodex(contactsData);
 //   });
 // };
 
+var readNewContactForm = function() {
+  // Get the values from the fields
+  var formName = $('#name').val();
+  $('#name').val('');
+  var formEmail = $('#email').val();
+  $('#email').val('');
+  var formPhone = $('#phone').val();
+  $('#phone').val('');
+
+  return {
+    name: formName,
+    email: formEmail,
+    phone: formPhone
+  };
+};
+
 $(document).ready(function() {
 
   var rolodexView = new RolodexView({
@@ -65,4 +81,14 @@ $(document).ready(function() {
   });
 
   rolodexView.render();
+
+  $('.btn-save').click(function(event) {
+    var formData = readNewContactForm();
+    console.log(formData);
+
+    var contact = new Contact(formData);
+    rolodex.add(contact);
+
+    rolodexView.render();
+  });
 });
