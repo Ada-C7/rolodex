@@ -29,7 +29,7 @@ var rolodexList = new Rolodex(someContact);
 var rolodexView = new RolodexView({
   model: rolodexList,
   template: _.template($("#tmpl-contact-card").html()),
-  el: "#application"
+  el: "body"
 });
 
 
