@@ -19,14 +19,19 @@ const ContactView = Backbone.View.extend({
   events: {
     'click': 'showTaskInfo'
   },
-  showTaskInfo: function(e){
-    $("#contact-details").show();
-    var popUp = new ModalView({
-      model: this.model,
-      template: _.template($("#tmpl-contact-details").html())
-    });
-    $("#contact-details").append(popUp.render().$el);
+  showTaskInfo: function () {
+    this.trigger("show details", this.model);
   }
+
+  // function(e){
+  //   $("#contact-details").show();
+  //   $("#contact-details").empty();
+  //   var popUp = new ModalView({
+  //     model: this.model,
+  //     template: _.template($("#tmpl-contact-details").html())
+  //   });
+  //   $("#contact-details").append(popUp.render().$el);
+  // }
 
 });
 

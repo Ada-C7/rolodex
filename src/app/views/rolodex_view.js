@@ -23,8 +23,17 @@ var RolodexView = Backbone.View.extend({
         template: that.template,
         tagName: 'li'
       });
-
-    that.$('#contact-cards').append(contactView.render().$el);
+      // listen from trigger to each contactView, name of it, function
+      that.listenTo(contactView, "show details", function(contact) {
+        $("#contact-details").show();
+        $("#contact-details").empty();
+         var popUp = new ModalView({
+           model: contact,
+           template: _.template($("#tmpl-contact-details").html())
+         });
+         $("#contact-details").append(popUp.render().$el);
+      });
+      that.$('#contact-cards').append(contactView.render().$el);
     });
     return this;
   },
