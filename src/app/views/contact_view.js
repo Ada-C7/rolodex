@@ -15,13 +15,16 @@ const ContactView = Backbone.View.extend({
   },
 
   toggleModal: function(event) {
-    this.model.toggleModal();
+    this.$el.trigger('contactSelected', this.model);
+    event.stopPropagation();
   },
   render: function() {
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
   }
+  // this.$el.trigger('contactSelected', this.model(),
+//  event.stopPropagation()
 });
 
 export default ContactView;

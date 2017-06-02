@@ -3,7 +3,7 @@ import _ from 'underscore';
 import Contact from 'app/models/contact';
 import Rolodex from 'app/collections/rolodex';
 
-import ContactView from 'app/views/contact_view';
+import ContactView from '../src/app/views/contact_view.js';
 import RolodexView from 'app/views/rolodex_view';
 
 var contactDetailTemplate;
@@ -63,6 +63,7 @@ $(document).ready(function() {
 
   var rolodexView = new RolodexView({
     contactTemplate: contactTemplate,
+    detailTemplate: contactDetailTemplate,
     model: rolodex,
     el: $('body')
   });
