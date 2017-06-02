@@ -11,17 +11,15 @@ var RolodexView = Backbone.View.extend({
 
   },
   render: function() {
-    // var self = this; //Change this.
-    var self = this;
-    self.$('#contact-cards').empty();
+    this.$('#contact-cards').empty();
 
-    self.model.each(function(contact) {
+    this.model.each(function(contact) {
       var contactView = new ContactView({
         model: contact,
-        template: self.contactTemplate
+        template: this.contactTemplate
       });
-      self.$('#contact-cards').append(contactView.render().$el);
-    });
+      this.$('#contact-cards').append(contactView.render().$el);
+    }.bind(this));
     return this;
   },
   events: {
@@ -29,27 +27,28 @@ var RolodexView = Backbone.View.extend({
     'click h3.button.btn-cancel': 'cancelContact'
   },
   saveContact: function(event) {
+    var formData = this.readContactForm();
+    this.model.add(formData);
 
-    alert("Inside saveContact");
-    console.log("working");
+    return this.render();
+  },
+  readContactForm: function() {
+      var name = $('#name').val();
+      var email = $('#email').val();
+      var phone = $('#phone').val();
 
-    // this.model.save({
-    //   name: $('#name').val(),
-    //   email: $('#email').val(),
-    //   phone: $('#phone').val()
-    // });
-    // this.render();
+      this.cancelContact();
 
+      return {
+        name: name,
+        email: email,
+        phone: phone
+      };
   },
   cancelContact: function(event) {
-    alert("Inside cancelContact");
-    console.log("working");
-    // console.log("working");
-    //
-    // $('#name').val('');
-    // $('#email').val('');
-    // $('#phone').val('');
-
+    $('#name').val('');
+    $('#email').val('');
+    $('#phone').val('');
   }
 });
 
