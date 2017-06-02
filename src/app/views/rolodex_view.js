@@ -43,11 +43,13 @@ var RolodexView = Backbone.View.extend({
     'click h3.button.btn-cancel': 'emptyFormData'
   },
   hidePopup: function(event) {
-    if ($(event.target).is('li') || $(event.target).is('h4') || $(event.target).is('h3')) {
-      return;
-    } else {
-      this.$("#contact-details").hide();
+    if ($(event.target).is('li') || $(event.target).is('h4') || $(event.target).is('h3') || $(event.target).is('input') || $(event.target).is('label')) {
+     return;
     }
+    this.$("#contact-details").hide();
+    // else if (this.$('#contact-details').has(event.target).length === 0) {
+    //
+    // } CANT GET THIS WORKING.
   },
   getFormData: function() {
     var formName = this.$("#contact-name").val();
@@ -63,7 +65,6 @@ var RolodexView = Backbone.View.extend({
     };
   },
   addContact: function(event) {
-    console.log("inside add contact");
     var formData = this.getFormData();
     var contact = new Contact(formData);
     this.model.add(contact);

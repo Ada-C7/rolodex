@@ -14,12 +14,37 @@ const ModalView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click h3.button.btn-edit': 'showEditForm'
+    'click h3.button.btn-edit': 'showEditForm',
+    'click h3.button.btn-update': 'updateContact'
   },
   showEditForm: function(e) {
     this.$("#edit-form").show();
     this.$("#name-email-phone-deets").hide();
+  },
+  updateContact: function(event) {
+    var formData = this.getFormData();
+    console.log(formData);
+    // call model method of update.
+  },
+  getFormData: function() {
+    var formName = this.$("#update-contact-name").val();
+    this.$("#update-contact-name").val("");
+    var formEmail = this.$("#update-contact-email").val();
+    this.$("#update-contact-email").val("");
+    var formPhone = this.$("#update-contact-phone").val();
+    this.$("#update-contact-phone").val("");
+    return {
+      name: formName,
+      email: formEmail,
+      phone: formPhone
+    };
   }
+  // ,
+  // addContact: function(event) {
+  //   var formData = this.getFormData();
+  //   var contact = new Contact(formData);
+  //   this.model.add(contact);
+  // }
 });
 
 export default ModalView;
