@@ -8,9 +8,6 @@ import Rolodex from '../collections/rolodex.js';
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
-    // console.log(params);
-    // console.log(this);
-    // console.log(this.template);
     this.listenTo(this.model, "update", this.render);
   },
   render: function() {
@@ -24,6 +21,13 @@ var RolodexView = Backbone.View.extend({
       });
 
       that.$("#contact-cards").append(contactView.render().$el);
+      that.listenTo(contactView, "selected", function(view) {
+        console.log(view);
+        
+
+        // .html
+        // .show()
+      });
     });
     return this;
   },

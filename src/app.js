@@ -54,7 +54,7 @@ $(document).ready(function(){
     template: _.template($('#tmpl-contact-card').html()),
     el: '#application',
   });
-  console.log(myRolodexView);
+  // console.log(myRolodexView);
 
   myRolodexView.render();
 });
