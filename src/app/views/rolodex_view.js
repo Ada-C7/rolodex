@@ -1,21 +1,18 @@
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
-// import Rolodex from '../collections/rolodex';
+
 import ContactView from './contact_view';
 import Contact from '../models/contact';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
-    // console.log(params);
-    // console.log(this);
     this.template = params.contactTemplate;
     this.detailTemplate = params.detailTemplate;
 
     this.listenTo(this.model, "update", this.render);
   },
   render: function() {
-    // console.log("Inside rolodex.render()");
     var self = this;
 
     self.$('#contact-cards').empty();
@@ -26,6 +23,7 @@ var RolodexView = Backbone.View.extend({
         template: self.template
       });
       $('#contact-cards').append(contactView.render().$el);
+      self.listenTo(contactView, 'openModal', self.triggerModal);
     });
 
     return this;
@@ -34,17 +32,11 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': 'addContact',
     'click .btn-cancel': 'clearForm',
-    'contactSelected': "triggerModal",
-    'click': "hideModal",
-    'click #contact-details': "keepModal"
+    'click': "hideModal"
   },
 
   addContact: function(event) {
     var formData = this.readContactForm();
-
-    console.log("In ADD CONTACT, contact data:");
-    console.log(formData);
-
     this.model.add(formData);
   },
 
@@ -55,7 +47,6 @@ var RolodexView = Backbone.View.extend({
   },
 
   readContactForm: function() {
-    console.log("Made it");
   var nameData = this.$('#name').val();
   this.$('#name').val('');
 
@@ -78,17 +69,17 @@ var RolodexView = Backbone.View.extend({
   return formData;
 },
 
-triggerModal: function(event, contact) {
-  var generatedHTML = $(this.detailTemplate(contact.toJSON()));
-  // create template (contact.JSON())
-  this.$('#contact-details').html(generatedHTML).show();
+triggerModal: function(contact) {
+  var contactView = new ContactView({
+    model: contact,
+    template: this.detailTemplate
+  });
+  this.$('#contact-details').append(contactView.render().$el).show();
 },
+
 hideModal: function(event) {
   this.$('#contact-details').hide();
 },
-keepModal: function(event) {
-  event.stopPropagation();
-}
 });
 
 export default RolodexView;

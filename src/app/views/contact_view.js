@@ -11,11 +11,11 @@ const ContactView = Backbone.View.extend({
   },
 
   events: {
-    'click .contact-card': 'toggleModal'
+    'click': 'openModal'
   },
 
-  toggleModal: function(event) {
-    this.$el.trigger('contactSelected', this.model);
+  openModal: function(event) {
+    this.trigger('openModal', this.model);
     event.stopPropagation();
   },
   render: function() {
@@ -23,8 +23,6 @@ const ContactView = Backbone.View.extend({
     this.$el.html(compiledTemplate);
     return this;
   }
-  // this.$el.trigger('contactSelected', this.model(),
-//  event.stopPropagation()
 });
 
 export default ContactView;
