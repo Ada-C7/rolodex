@@ -11,7 +11,7 @@ const ContactView = Backbone.View.extend({
     this.listenTo(this.model, "change", this.render);
   },
 
-  render:function() {
+  render: function() {
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
