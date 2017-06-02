@@ -40,7 +40,7 @@ var RolodexView = Backbone.View.extend({
   events: {
     "click .button.btn-save" : "addContact",
     "click .button.btn-cancel" : "clearFields",
-    "click header" : "hideModal"
+    "click" : "hideModal"
     // "click .contact-card" : "contactDetails"
   },
   getFormData: function() {
@@ -102,18 +102,16 @@ var RolodexView = Backbone.View.extend({
     // if ($('#contact-details')) {
     //   $('#contact-details').hide();
     // }
-    $('#contact-details').hide();
+    // $('#contact-details').hide();
 
     // if (event.target == $('#contact-details')) {
     //   $('#contact-details').hide();
     //
     // }
-    // if ($('#contact-details').has(event.target).length === 0 && !$('#contact-details').is(event.target)) {
-    //   $('#contact-cards').text('you clicked outside the box');
-    // } else {
-    //   $('#contact-cards').text('you clicked inside the box');
-    // }
+    if ($('#contact-details').has(event.target).length === 0 && !$('#contact-details').is(event.target)) {
+      $('#contact-details').hide();
 
+    }
   }
 });
 

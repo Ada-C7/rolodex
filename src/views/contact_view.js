@@ -23,8 +23,12 @@ var ContactView = Backbone.View.extend( {
   },
   events: {
     "click" : "onClick"
+
   },
   onClick: function() {
+    // Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.
+    event.stopPropagation();
+    
     // better way that will send messages to rolodex view using trigger
     var click = this.trigger('selected', this.model);
     console.log('click', click);
