@@ -19,47 +19,47 @@ var contactData = [
 var myRolodex = new Rolodex(contactData);
 
 
-var getFormData = function() {
-  var formName = $("#name").val();
-  $("#name").val(''); // clearing the value
+// var getFormData = function() {
+//   var formName = $("#name").val();
+//   $("#name").val(''); // clearing the value
+//
+//   var formEmail = $("#email").val();
+//   $("#email").val('');
+//
+//   var formPhone = $("#phone").val();
+//   $("#phone").val('');
+//
+//   var info = {
+//     name: formName,
+//     email: formEmail,
+//     phone: formPhone
+//   };
+//   console.log(info);
+//   return info;
+// };
 
-  var formEmail = $("#email").val();
-  $("#email").val('');
-
-  var formPhone = $("#phone").val();
-  $("#phone").val('');
-
-  var info = {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
-  console.log(info);
-  return info;
-};
-
-var render = function(contact) {
-  var templateName = $('#tmpl-contact-card').html(); // getting the template using jQuery
-
-  var templateObject = _.template(templateName); // creating an underscore template object
-
-  // compile the template (fill in all the data fields with the values from my contact)
-  var compiledHTML = $(templateObject(contact));
-  $('#contact-cards').append(compiledHTML); // appending results to the DOM
-
-  compiledHTML.find('button.success').click({contactToAdd: contact}, function(params) {
-    myRolodex.add(params.data.contactToAdd);
-  });
-};
-
-
-var renderList = function(rolodex) {
-  $("#contact-cards").empty();
-
-  rolodex.each(function(contact) {
-    render(contact.attributes);
-  });
-};
+// var render = function(contact) {
+//   var templateName = $('#tmpl-contact-card').html(); // getting the template using jQuery
+//
+//   var templateObject = _.template(templateName); // creating an underscore template object
+//
+//   // compile the template (fill in all the data fields with the values from my contact)
+//   var compiledHTML = $(templateObject(contact));
+//   $('#contact-cards').append(compiledHTML); // appending results to the DOM
+//
+//   compiledHTML.find('button.success').click({contactToAdd: contact}, function(params) {
+//     myRolodex.add(params.data.contactToAdd);
+//   });
+// };
+//
+//
+// var renderList = function(rolodex) {
+//   $("#contact-cards").empty();
+//
+//   rolodex.each(function(contact) {
+//     render(contact.attributes);
+//   });
+// };
 
 $(document).ready(function() {
   var myRolodexView = new RolodexView({
@@ -89,16 +89,16 @@ $(document).ready(function() {
   //
   // });
 
-  $("#cancel-contact").click(function(){
-    var formName = $("#name").val();
-    $("#name").val('');
-
-    var formPhone = $("#phone").val();
-    $("#phone").val('');
-
-    var formEmail = $("#email").val();
-    $("#email").val('');
-  });
+  // $("#cancel-contact").click(function(){
+  //   var formName = $("#name").val();
+  //   $("#name").val('');
+  //
+  //   var formPhone = $("#phone").val();
+  //   $("#phone").val('');
+  //
+  //   var formEmail = $("#email").val();
+  //   $("#email").val('');
+  // });
 
   var application = new Application();
 
