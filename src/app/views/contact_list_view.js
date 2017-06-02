@@ -9,7 +9,9 @@ var ContactListView = Backbone.View.extend({
   initialize: function(params) {
     this.contactTemplate = params.contactTemplate;
     this.listenTo(this.model, "update", this.render);
+
   },
+
   render: function() {
     var self = this;
     self.$('#contact-cards').empty();
@@ -36,15 +38,17 @@ var ContactListView = Backbone.View.extend({
     var contactData = this.readNewContactForm();
   },
   seeContactDetails: function(e){
+    $('#contact-details').show();
     $('#contact-details').empty();
     var self = this
     var name = $(e.target).text().trim()
     var contact =  this.model.find(function(model) { return model.get('name') === name; });
-      var contactView = new ContactView({
-        model: contact,
-        template: self.contactTemplate
-      });
-      this.$('#contact-details').append(contactView.render().$el);
+    var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+    var contactView = new ContactView({
+      model: contact,
+      template: contactDetailsTemplate
+    });
+    this.$('#contact-details').append(contactView.render().$el);
     return this;
   },
 
@@ -56,16 +60,16 @@ var ContactListView = Backbone.View.extend({
     var formPhone = this.$('#phone').val();
     this.$('#phone').val('');
     var contactData = {};
-      if (formName && formName != ""){
-        contactData["name"] = formName;
-      }
-      if (formEmail){
-        contactData["email"] = formEmail;
-      }
-      if (formPhone){
-        contactData["phone"] = formPhone;
-      }
-      return contactData;
+    if (formName && formName != ""){
+      contactData["name"] = formName;
+    }
+    if (formEmail){
+      contactData["email"] = formEmail;
+    }
+    if (formPhone){
+      contactData["phone"] = formPhone;
+    }
+    return contactData;
   }
 });
 

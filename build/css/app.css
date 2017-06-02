@@ -32,8 +32,7 @@ header {
   position: fixed;
   width: 30%;
   height: 30%;
-  top: 70%;
-  /*set back to 30*/
+  top: 30%;
   left: 30%;
   background-color: #538ca3;
   text-align: center;
@@ -65,11 +64,3 @@ header {
 .contact-card:hover h3 {
   color: white;
 }
-/*
-#contact-details{
-  border-color: red;
-}
-
-#contact-cards{
-  border-color: yellow;
-}*/

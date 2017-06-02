@@ -1,6 +1,5 @@
 import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
-//===================================
 import _ from 'underscore';
 import $ from 'jquery';
 // import 'jquery-colpick';
@@ -10,14 +9,12 @@ import ContactView from 'app/views/contact_view.js';
 import ContactListView from 'app/views/contact_list_view';
 
 
-//===================================
 var application = new Application();
 
 var appView = new ApplicationView({
   el: '#application',
   model: application
 });
-//===================================
 
 var contactTemplate;
 
@@ -39,11 +36,7 @@ var contactData = [{
 
 var contactList;
 
-
 $(document).ready(function() {
-
-  // contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
-
   contactTemplate = _.template($('#tmpl-contact-card').html());
   contactList = new Rolodex(contactData);
 
@@ -55,9 +48,10 @@ $(document).ready(function() {
 
   contactListView.render();
 
-
-
-
-
+  window.onclick = function(event) {
+    if (event.target.nodeName == "BODY") {
+      $('#contact-details').hide();
+    }
+  }
 
 });
