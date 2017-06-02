@@ -20,18 +20,9 @@ const ContactView = Backbone.View.extend({
     'click': "showInfo"
   },
   showInfo: function(event) {
-    this.trigger('openModule', this.model);
+    this.trigger('openModal', this.model);
     event.stopPropagation();
-
     // this.$el.trigger('event', this.model)
-    // var contactInfoTemplate = _.template($('#tmpl-contact-details').html());
-    // $('#contact-details').show();
-    // $('#contact-details').empty();
-    // var contactInfoView = new ContactInfoView({
-    //   model: contact,
-    //   template: contactInfoTemplate
-    // })
-    // $('#contact-details').append(contactInfoView.render().$el);
   }
 });
 

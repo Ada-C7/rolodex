@@ -12,6 +12,12 @@ const ContactInfoView = Backbone.View.extend({
     var generatedHTML = this.template(this.model.toJSON());
     this.$el.html(generatedHTML);
     return this;
+  },
+  events: {
+    'click': "keepModal"
+  },
+  keepModal: function(event) {
+    event.stopPropagation();
   }
 })
 

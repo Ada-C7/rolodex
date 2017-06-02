@@ -11,7 +11,6 @@ var RolodexView = Backbone.View.extend({
     this.listenTo(this.model, "update", this.render);
   },
   render: function() {
-    $('#contact-details').hide();
     var self = this;
     self.$('#contact-cards').empty();
 
@@ -21,7 +20,7 @@ var RolodexView = Backbone.View.extend({
         template: self.contactTemplate
       });
       $('#contact-cards').append(contactView.render().$el);
-      self.listenTo(contactView, "openModule", self.renderContactInfo);
+      self.listenTo(contactView, "openModal", self.renderContactInfo);
     });
     return this;
   },
@@ -29,7 +28,7 @@ var RolodexView = Backbone.View.extend({
     'click .btn-save': 'addContact',
     'click .btn-cancel': 'clearForm',
     'click': 'clearContactInfo'
-    // 'openModule': 'renderContactInfo'
+    // 'openModal': 'renderContactInfo'
   },
   addContact: function(event) {
     var formData = this.renderContactForm();
@@ -55,14 +54,12 @@ var RolodexView = Backbone.View.extend({
     });
   },
   renderContactInfo: function(contact) {
-    // var contactInfoTemplate = _.template($('#tmpl-contact-details').html());
     $('#contact-details').show();
-    $('#contact-details').empty();
     var contactInfoView = new ContactInfoView({
       model: contact,
       template: this.contactInfoTemplate
     });
-    $('#contact-details').append(contactInfoView.render().$el);
+    $('#contact-details').html(contactInfoView.render().$el);
   },
   clearContactInfo: function(event) {
     $('#contact-details').hide();

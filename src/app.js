@@ -45,7 +45,7 @@ var contactData = [
 ];
 
 $(document).ready(function() {
-  // $('#contact-details').hide();
+  $('#contact-details').hide();
   var contactTemplate = _.template($('#tmpl-contact-card').html());
   var contactInfoTemplate = _.template($('#tmpl-contact-details').html());
 
@@ -58,20 +58,4 @@ $(document).ready(function() {
   });
 
   rolodexView.render();
-  // contactList.each(function(contact) {
-  //   var contactView = new ContactView({
-  //     model: contact,
-  //     template: contactTemplate
-  //   });
-  //   // var generatedHTML = contactTemplate(contact.toJSON());
-  //   $('#contact-cards').append(contactView.render().$el);
-  // });
-
-  // var contact = new Contact(contactData[0]);
-  // var contactView = new ContactView({
-  //   model: contact,
-  //   template: contactTemplate
-  // });
-  // // var generatedHTML = contactTemplate(contact.toJSON());
-  // $('#contact-cards').append(contactView.render().$el);
 });
