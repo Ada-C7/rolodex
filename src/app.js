@@ -1,34 +1,45 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Application from 'app/models/application';
-import ApplicationView from 'app/views/application_view';
 import Contact from './app/models/contact.js';
 import Rolodex from './app/collections/rolodex.js';
 import ContactView from './app/views/contact_view.js';
 import RolodexView from './app/views/rolodex_view.js';
 
-var application = new Application();
-
-var appView = new ApplicationView({
-  el: '#application',
-  model: application
-});
-
 var contactData = [
   {
-    name: 'Ada',
-    email: 'ada@example.com',
+    name: 'Ada LoveLace',
+    email: 'lovelace@example.com',
     phone: '555-555-5555'
   },
   {
-    name: 'Galois',
+    name: 'Évariste Galois',
     email: 'galois@example.com',
     phone: '444-555-5555'
   },
   {
-    name: 'Turing',
+    name: 'Alan Turing',
     email: 'turing@example.com',
     phone: '333-555-5555'
+  },
+  {
+    name: 'Paul Erdős',
+    email: 'erdős@example.com',
+    phone: '222-555-5555'
+  },
+  {
+    name: 'Emmy Noether',
+    email: 'noether@example.com',
+    phone: '777-555-5555'
+  },
+  {
+    name: 'Leonhard Euler',
+    email: 'euler@example.com',
+    phone: '888-555-5555'
+  },
+  {
+    name: 'Kurt Gödel',
+    email: 'gödel@example.com',
+    phone: '999-555-5555'
   }
 ];
 
