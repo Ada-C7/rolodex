@@ -91,4 +91,9 @@ $(document).ready(function() {
 
     rolodexView.render();
   });
+
+  $('.btn-cancel').click(function(event) {
+    var formData = readNewContactForm();
+  });
+
 });
