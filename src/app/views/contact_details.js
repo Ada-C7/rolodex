@@ -9,9 +9,6 @@ var ContactDetailsView = Backbone.View.extend({
     },
 
     render: function() {
-      // reconnect all Event Handlers
-      this.delegateEvents();
-
       var html = this.template(this.model.toJSON());
 
       this.$el.html(html);
@@ -23,10 +20,6 @@ var ContactDetailsView = Backbone.View.extend({
 
     show: function() {
       this.element.show();
-    },
-
-    hide: function() {
-      this.element.hide();
     }
  });
 
