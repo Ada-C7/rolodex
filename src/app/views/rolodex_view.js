@@ -1,3 +1,5 @@
+// add modal view
+
 import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
@@ -21,6 +23,15 @@ var RolodexView = Backbone.View.extend({
         tagName: 'li'
       });
       that.$("#contact-cards").append(contactView.render().el);
+      that.listenTo(contactView, "selected",   // listening to the contactView
+        function(contact) {
+         var modal = that.$('#contact-details'); // access modal
+          modal.show();
+          var templateCode = $('#tmpl-contact-details').html(); //using jqurey to select the proper element pulling the contents from within it as a string
+          var detailsBuilder = _.template(templateCode); // generate little custom mad lib machine
+          var details = detailsBuilder(contact.toJSON()); // converting into what our machine needs
+          modal.html(details);
+        });
     });
     return this;
   },

@@ -20,8 +20,12 @@ var ContactView = Backbone.View.extend({
     return this; // returning the view object so we can chain
   },
   events: {
-    'click button.success': "toggleComplete"
+    'click button.success': "toggleComplete",
+    'click li': 'selected'
   },
+  selected: function(view) {
+    this.trigger("selected", this.model); // new code, does it work?!??!?!?!??!?!??!?!!???!?!?!?!??
+  }
  });
 
 export default ContactView;
