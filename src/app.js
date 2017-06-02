@@ -34,7 +34,6 @@ var myContactListView = new ContactListView({
     model: myContacts,
     template: _.template($('#tmpl-contact-card').html()),
     el: 'div#application'
-
 })
 
 $(document).ready(function(){
