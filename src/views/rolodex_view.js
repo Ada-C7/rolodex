@@ -108,6 +108,11 @@ var RolodexView = Backbone.View.extend({
     //   $('#contact-details').hide();
     //
     // }
+    // if ($('#contact-details').has(event.target).length === 0 && !$('#contact-details').is(event.target)) {
+    //   $('#contact-cards').text('you clicked outside the box');
+    // } else {
+    //   $('#contact-cards').text('you clicked inside the box');
+    // }
 
   }
 });
