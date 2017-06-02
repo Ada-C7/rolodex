@@ -13,9 +13,7 @@ var RolodexView = Backbone.View.extend({
     this.template = params.template;
     this.listenTo(this, "click", this.hideCard);
     this.listenTo(this.model, "update", this.render);
-    // this.on("delete:card", this.hideCard);
   },
-
 
   render: function() {
     this.$('#contact-cards').empty();
@@ -28,22 +26,15 @@ var RolodexView = Backbone.View.extend({
       });
       that.$("#contact-cards").append(contactView.render().el);
       that.listenTo(contactView, "showCard", that.showCard);
-
-
     });
-
     return this;
   },
+
   events: {
     "click #create-contact" : "addContact",
     "click #cancel-form" : "clearForm",
     "click" : "hideCard"
   },
-
-  // updateContact: function(contact) {
-  //   console.log("inside updateContact");
-  //   this.set(model, contact);
-  // },
 
   getFormData: function() {
     var formName = $("#name").val();
@@ -59,27 +50,22 @@ var RolodexView = Backbone.View.extend({
   },
 
   hideCard: function() {
-    console.log("tried to hide card");
     $("#contact-details").hide();
   },
 
-
   addContact: function() {
-    console.log("clicked add");
     var newContact = new Contact(this.getFormData());
     this.model.add(newContact);
   },
 
   showCard: function(event) {
-    console.log("clicked a card");
     $("#contact-details").empty();
-    // $("#contact-details").removeClass("hide");
     $("#contact-details").show();
     var contactDetailView = new ContactDetailView({
       model: event.model,
       template: _.template($("#tmpl-contact-details").html())
     });
-
+    this.listenTo(contactDetailView, "showCard", this.showCard);
     $("#contact-details").append(contactDetailView.render().el);
   },
 
@@ -87,12 +73,7 @@ var RolodexView = Backbone.View.extend({
     $("#name").val('');
     $("#phone").val('');
     $("#email").val('');
-  },
-
-  // stopProp: function(e) {
-  //   e.stopPropagation();
-  // }
-
+  }
 
 });
 

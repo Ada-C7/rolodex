@@ -29,7 +29,6 @@ const ContactView = Backbone.View.extend({
     event.stopPropagation();
   }
 
-
 });
 
 export default ContactView;

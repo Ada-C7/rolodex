@@ -18,7 +18,17 @@ const EditContactView = Backbone.View.extend({
 
   events: {
     "click button.btn-save-edit" : "saveChanges",
-    "click button#cancel-edit" : "cancel"
+    "click button#cancel-edit" : "cancel",
+    "click input" : "allowFormInput",
+    "click" : "preventClose"
+  },
+
+  preventClose: function(event) {
+    event.stopPropagation();
+  },
+
+  allowFormInput: function(event) {
+    event.stopPropagation();
   },
 
   getFormData: function() {
@@ -43,22 +53,15 @@ const EditContactView = Backbone.View.extend({
   },
 
   clearForm: function() {
-    $("#name").val('');
-    $("#phone").val('');
-    $("#email").val('');
+    $("#edit-name").val('');
+    $("#edit-phone").val('');
+    $("#edit-email").val('');
   },
 
   cancel: function() {
     event.stopPropagation();
     this.trigger("showCard", this);
-    
-    // var contactDetailView = new ContactDetailView({
-    //   model: this.model,
-    //   template: _.template($("#tmpl-contact-details").html())
-    // });
-    // $("#contact-details").append(contactDetailView.render().el).show();
   }
-
 
 });
 
