@@ -21,6 +21,31 @@ var RolodexView = Backbone.View.extend({
       that.$('#contact-cards').append(contactView.render().el);
     });
     return this;
+  },
+  events: {
+    'click .btn-save': 'addContact',
+    'click .btn-cancel': 'clearForm'
+  },
+  addContact: function() {
+    var contact = new Contact(this.getFormData());
+    // model is the rolodex for this view I think??
+    this.model.add(contact);
+  },
+  getFormData: function() {
+    var formName = this.$('#name').val();
+    var formEmail = this.$('#email').val();
+    var formPhone = this.$('#phone').val();
+    this.clearForm();
+    return {
+      name: formName,
+      email: formEmail,
+      phone: formPhone
+    };
+  },
+  clearForm: function() {
+    this.$('#name').val('');
+    this.$('#email').val('');
+    this.$('#phone').val('');
   }
 });
 

@@ -34,53 +34,11 @@ var contactData = [
 
 var myRolodex = new Rolodex(contactData);
 
-var renderList = function(contactList) {
-  $('#contact-cards').empty();
-  contactList.each(function(contact) {
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html())
-    });
-    $('#contact-cards').append(contactView.render().el);
-  });
-};
-
-var getFormData = function() {
-  var formName = $('#name').val();
-  var formEmail = $('#email').val();
-  var formPhone = $('#phone').val();
-  clearForm();
-  return {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
-};
-
-var clearForm = function() {
-  $('#name').val('');
-  $('#email').val('');
-  $('#phone').val('');
-};
-
 $(document).ready(function() {
-  // renderList(myContactList);
-  //
-  // myContactList.on('update', function() {
-  //   renderList(myContactList);
-  // });
-
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($('#tmpl-contact-card').html()),
-    el: 'main'
+    el: '#application'
   });
   myRolodexView.render();
-
-  $('.btn-save').click(function() {
-    var contact = new Contact(getFormData());
-    myRolodex.add(contact);
-  });
-
-  $('.btn-cancel').click(clearForm);
 });
