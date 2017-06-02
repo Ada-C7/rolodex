@@ -8,7 +8,6 @@ import DetailsView from '../views/details_view';
 
 
 // the RolodexView includes the cards but also adding new cards - save/cancel button)
-// and displaying the details
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.templateCard = params.templateCard;
@@ -38,7 +37,6 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': "addContact",
     'click .btn-cancel': "clearForm",
-    // 'click .btn-delete': "deleteContact",
     'click': "hideDetails"
   },
 
@@ -65,19 +63,14 @@ var RolodexView = Backbone.View.extend({
     };
   },
 
-  // how to clear the input from the input fields
   clearForm: function(event){
     this.$("#name").val("");
     this.$('#email').val("");
     this.$('#phone').val("");
   },
 
-  // what ever info you sent along with trigger can be accessed here - cause listenTo calls this function
-  // should you make the model card it's own view? - make new Detail view here
-  // in detail view have the html rendered
   displayDetails: function(contactCard) {
-
-    console.log("create the details view");
+    console.log("creating the details view");
 
     var that = this;
     var detailsView = new DetailsView ({
@@ -87,15 +80,6 @@ var RolodexView = Backbone.View.extend({
 
     console.log(detailsView);
     this.$('#contact-details').html(detailsView.render().$el).show();
-  },
-
-  deleteContact: function(event) {
-    event.stopPropagation();
-    console.log(event);
-    console.log("you want to delete the contact");
-    console.log(this.selectedContact);
-    this.selectedContact.model.destroy();
-    this.hideDetails();
   },
 
   hideDetails: function(event) {

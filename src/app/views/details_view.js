@@ -29,6 +29,8 @@ var DetailsView = Backbone.View.extend({
   deleteContact: function(event){
     event.stopPropagation();
     console.log("you want to delete this contact");
+    this.model.destroy();
+    $("#contact-details").hide();
   }
 
 });
