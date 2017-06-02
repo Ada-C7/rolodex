@@ -27,29 +27,10 @@ var RolodexView = Backbone.View.extend({
     'click h3.button.btn-cancel': 'cancelContact'
   },
   saveContact: function(event) {
-    console.log(event);
-
     var formData = this.readContactForm();
     this.model.add(formData);
 
-    // alert("Inside saveContact");
-    // console.log("working");
-
-    // var name = $('#name').val();
-    // var email = $('#email').val();
-    // var phone = $('#phone').val();
-    //
-    // var newContact = new Contact ({
-    //   name: $('#name').val(),
-    //   email: $('#email').val(),
-    //   phone: $('#phone').val()
-    // });
-
-    console.log(newContact);
-    // this.model.add
     return this.render();
-    // return this;
-
   },
   readContactForm: function() {
       var name = $('#name').val();
