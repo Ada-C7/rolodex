@@ -6,7 +6,6 @@ import Contact from '../models/contact';
 import Rolodex from '../collections/rolodex';
 import DetailsView from '../views/details_view';
 
-
 // the RolodexView includes the cards but also adding new cards - save/cancel button)
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
@@ -69,22 +68,33 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val("");
   },
 
-  displayDetails: function(contactCard) {
-    console.log("creating the details view");
-
-    var that = this;
-    var detailsView = new DetailsView ({
-      model: contactCard.model,
-      templateDetails: that.templateDetails
-    });
-
-    console.log(detailsView);
-    this.$('#contact-details').html(detailsView.render().$el).show();
-  },
-
   hideDetails: function(event) {
     console.log("hide the details");
     $("#contact-details").hide();
+  },
+
+  displayDetails: function(contactCard) {
+    console.log("creating the details view");
+
+    // var that = this;
+    var detailsView = new DetailsView ({
+      model: contactCard.model,
+      templateDetails: this.templateDetails,
+      el: '#contact-details'
+    });
+
+    console.log(detailsView);
+    detailsView.render();
+    this.listenTo( detailsView, "fillInForm", this.fillInForm );
+  },
+
+  fillInForm: function(contact) {
+    console.log("in the fillInForm Function");
+    console.log(contact.model);
+    this.$("#name").val(contact.model.attributes.name);
+    this.$("#phone").val(contact.model.attributes.phone);
+    this.$("#email").val(contact.model.attributes.email);
+    contact.model.destroy();
   }
 });
 

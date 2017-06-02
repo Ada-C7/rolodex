@@ -18,6 +18,7 @@ var DetailsView = Backbone.View.extend({
   render: function(){
     var compiledTemplate = this.templateDetails(this.model.toJSON());
     this.$el.html(compiledTemplate);
+    this.$el.show();
     return this;
   },
 
@@ -30,7 +31,16 @@ var DetailsView = Backbone.View.extend({
     event.stopPropagation();
     console.log("you want to delete this contact");
     this.model.destroy();
-    $("#contact-details").hide();
+    // $("#contact-details").hide();
+    // code below only hides the text
+    this.$el.hide();
+  },
+
+  editContact: function(event){
+    event.stopPropagation();
+    console.log("you want to edit this contact");
+    this.trigger("fillInForm", this)
+    this.$el.hide();
   }
 
 });
