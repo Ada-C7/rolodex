@@ -10,6 +10,7 @@ import RolodexView from './app/views/rolodex_view';
 
 var contactCardTemplate;
 var contactDetailsTemplate;
+var editDetailsTemplate;
 
 var contactData =
 [{
@@ -44,11 +45,13 @@ var contactData =
 
 
 $(document).ready(function() {
-  
+
   // compiling the templates
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
 
   contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+
+  editDetailsTemplate = _.template($('#tmpl-edit-contact').html());
 
 
   var rolodex = new Rolodex(contactData);
@@ -56,6 +59,7 @@ $(document).ready(function() {
   var rolodexView = new RolodexView({
     template1: contactCardTemplate,
     template2: contactDetailsTemplate,
+    template3: editDetailsTemplate,
     model: rolodex,
     el: $('body')
   });

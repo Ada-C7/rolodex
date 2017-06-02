@@ -10,6 +10,8 @@ var ContactView = Backbone.View.extend({
     tagName: 'li',
     className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns",
 
+
+
     initialize: function(params) {
      this.contactCardTemplate = params.cardTemplate;
      this.contactDetailsTemplate = params.detailsTemplate;
