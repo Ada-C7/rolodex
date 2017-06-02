@@ -30,7 +30,8 @@ var ContactListView = Backbone.View.extend({
   },
 
   events: {
-    'click .btn-save': 'addContact'
+    'click .btn-save': 'addContact',
+    'click .btn-cancel': 'clearForm'
   },
 
   addContact: function(event) {
@@ -48,15 +49,23 @@ var ContactListView = Backbone.View.extend({
     this.model.add(formData);
   },
 
+  clearForm: function() {
+    this.$('input[name=name]').val('');
+    this.$('input[name=email]').val('');
+    this.$('input[name=phone]').val('');
+  },
+
   readContactForm: function() {
     var nameData = this.$('input[name=name]').val();
-    this.$('input[name=name]').val('');
+    // this.$('input[name=name]').val('');
 
     var emailData = this.$('input[name=email]').val();
-    this.$('input[name=email]').val('');
+    // this.$('input[name=email]').val('');
 
     var phoneData = this.$('input[name=phone]').val();
-    this.$('input[name=phone]').val('');
+    // this.$('input[name=phone]').val('');
+
+    this.clearForm();
 
     var formData = {};
     if (nameData && nameData != "") {
