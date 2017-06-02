@@ -53,13 +53,10 @@ var RolodexView = Backbone.View.extend({
   },
   readContactForm: function() {
       var name = $('#name').val();
-      $('#name').val('');
-
       var email = $('#email').val();
-      $('#email').val('');
-
       var phone = $('#phone').val();
-      $('#phone').val('');
+
+      this.cancelContact();
 
       return {
         name: name,
@@ -68,12 +65,9 @@ var RolodexView = Backbone.View.extend({
       };
   },
   cancelContact: function(event) {
-    // console.log("working");
-    //
-    // $('#name').val('');
-    // $('#email').val('');
-    // $('#phone').val('');
-
+    $('#name').val('');
+    $('#email').val('');
+    $('#phone').val('');
   }
 });
 
