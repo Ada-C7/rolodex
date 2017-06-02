@@ -15,3 +15,5 @@ const ContactDetailView = Backbone.View.extend({
 });
 
 export default ContactDetailView;
+
+// style="visibility: hidden; display: none;"

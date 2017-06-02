@@ -3,7 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import ContactView from './contact_view.js';
 import Contact from '../models/contact.js';
-import ContactDetailView from './contact_detail_view.js';
+// import ContactDetailView from './contact_detail_view.js';
 
 var RolodexView = Backbone.View.extend( {
   initialize: function(params) {
@@ -13,7 +13,7 @@ var RolodexView = Backbone.View.extend( {
   },
   render: function() {
     // clear container
-    $("#contact-cards").empty();
+    this.$("#contact-cards").empty();
     // saved reference to 'this'
     var that = this;
     // looped through collection
@@ -35,7 +35,8 @@ var RolodexView = Backbone.View.extend( {
   },
   events: {
     "click .btn-save" : "addContact",
-    "click .btn-cancel" : "clearFormData"
+    "click .btn-cancel" : "clearFormData",
+    "click" : "hideModal"
   },
   getFormData: function() {
     var formName = this.$("input[name=name]").val();
@@ -86,8 +87,9 @@ var RolodexView = Backbone.View.extend( {
   //
   // },
   showModal: function(contact) {
-    $("#contact-details").empty();
+    this.$("#contact-details").empty();
 
+    this.$("#contact-details").show();
     var contactDetail = new ContactView( {
       model: contact,
       template: _.template($("#tmpl-contact-details").html()),
@@ -97,7 +99,7 @@ var RolodexView = Backbone.View.extend( {
   },
   // hide modal
   hideModal: function() {
-
+    this.$("#contact-details").hide();
   },
   // other click
   clickElsewhere: function() {

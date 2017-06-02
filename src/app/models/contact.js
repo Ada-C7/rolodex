@@ -6,7 +6,7 @@ const Contact = Backbone.Model.extend({
   email: '',
   phone: ''
 },
-  
+
 });
 
 export default Contact;
