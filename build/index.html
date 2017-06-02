@@ -52,11 +52,30 @@
     </script>
 
     <script type="text/template" id="tmpl-contact-details">
-      <h3><%- name %></h3>
-      <h4><%- email %></h4>
-      <h4><%- phone %></h4>
-      <h3 class="button btn-edit">Edit</h3>
-      <h3 class="button btn-delete">Delete</h3>
+      <div class="details">
+        <h3><%- name %></h3>
+        <h4><%- email %></h4>
+        <h4><%- phone %></h4>
+        <h3 class="button btn-edit">Edit</h3>
+        <h3 class="button btn-delete">Delete</h3>
+      </div>
+
+      <div class="edit-form">
+        <label>
+          Name
+          <input type="text" name="name" id="name-edit">
+        </label>
+        <label>
+          Email
+          <input type="text" name="email" id="email-edit">
+        </label>
+        <label>
+          Phone
+          <input type="text" name="phone" id="phone-edit">
+        </label>
+        <h5 class="button btn-update">Save</h3>
+        <h5 class="button btn-cancel">Cancel</h3>
+      </div>
     </script>
 
     <!-- Entire JS project built by Webpack -->

@@ -9,38 +9,61 @@ import RolodexView from '../views/rolodex_view';
 var DetailsView = Backbone.View.extend({
 
   initialize: function(params) {
-    // this.contact = params.contact
     this.templateDetails = params.templateDetails;
-    console.log(this);
+    // this.listenTo(this.model, "change", completeUpdate);
+    // console.log(this);
   },
 
-  render: function(){
+  render: function() {
     var compiledTemplate = this.templateDetails(this.model.toJSON());
     this.$el.html(compiledTemplate);
+    $('div.details').show();
+    $('div.edit-form').hide();
     this.$el.show();
     return this;
   },
 
   events: {
     'click .btn-delete': "deleteContact",
-    'click .btn-edit': "editContact"
+    'click .btn-edit': "editForm",
+    'click .btn-update': "updateContact",
+    'click .btn-cancel': "cancelEdit"
   },
 
-  deleteContact: function(event){
+  deleteContact: function(event) {
     event.stopPropagation();
-    console.log("you want to delete this contact");
     this.hide();
     this.model.destroy();
   },
 
-  editContact: function(event){
-    event.stopPropagation();
+  editForm: function(event) {
+    // event.stopPropagation();
+
     console.log("you want to edit this contact");
-    this.trigger("fillInForm", this)
-    this.hide();
+    $('div.details').hide();
+    $('div.edit-form').show();
+
+    this.$("#name-edit").val(this.model.attributes.name);
+    this.$("#phone-edit").val(this.model.attributes.phone);
+    this.$("#email-edit").val(this.model.attributes.email);
   },
 
-  hide: function(){
+  updateContact: function(event) {
+    this.model.attributes.name = this.$("#name-edit").val();
+    this.model.attributes.phone = this.$("#phone-edit").val();
+    this.model.attributes.email = this.$("#email-edit").val();
+    this.render();
+    return false;
+  },
+
+  cancelEdit: function(event) {
+    // or you could render this view again...
+    $('div.details').show();
+    $('div.edit-form').hide();
+    return false;
+  },
+
+  hide: function() {
     this.$el.hide();
   }
 });

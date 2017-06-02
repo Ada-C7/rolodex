@@ -26,16 +26,17 @@ var RolodexView = Backbone.View.extend({
       });
 
       that.$('#contact-cards').append(contactView.render().$el);
-      // this is the second part to trigger - it is expecting listening for the event "displayDetails"
-      // when this event happens it will call the displayDetails function
+      // this is the second part to trigger - this/that is listening for the event "displayDetails"
       that.listenTo( contactView, "displayDetails", that.displayDetails );
     });
+
     return this;
   },
 
   events: {
     'click .btn-save': "addContact",
     'click .btn-cancel': "clearForm",
+    'click #contact-details': "stopHide",
     'click': "hideDetails"
   },
 
@@ -68,6 +69,10 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val("");
   },
 
+  stopHide: function(event){
+    event.stopPropagation();
+  },
+  
   hideDetails: function(event) {
     $("#contact-details").hide();
   },
@@ -75,7 +80,6 @@ var RolodexView = Backbone.View.extend({
   displayDetails: function(contactCard) {
     console.log("creating the details view");
 
-    // var that = this;
     var detailsView = new DetailsView ({
       model: contactCard.model,
       templateDetails: this.templateDetails,
@@ -84,15 +88,14 @@ var RolodexView = Backbone.View.extend({
 
     console.log(detailsView);
     detailsView.render();
-    this.listenTo( detailsView, "fillInForm", this.fillInForm );
+    this.listenTo( detailsView, "fillInFormToEdit", this.fillInFormToEdit );
   },
 
-  fillInForm: function(contact) {
-    console.log("in the fillInForm Function");
-    console.log(contact.model);
+  fillInFormToEdit: function(contact) {
     this.$("#name").val(contact.model.attributes.name);
     this.$("#phone").val(contact.model.attributes.phone);
     this.$("#email").val(contact.model.attributes.email);
+
     contact.model.destroy();
   }
 });
