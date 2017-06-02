@@ -37,50 +37,59 @@ var ContactListView = Backbone.View.extend({
 
     // Rules of backbone: always return `this` from `render()`
     return this;
+  },
+
+  events: {
+    'click .btn-save': 'addContact',
+    'click .btn-cancel': 'clearForm'
+  },
+
+  addContact: function(event) {
+    var formData = this.readContactForm();
+
+    console.log("In add contact, form data:");
+    console.log(formData);
+
+    // Create a contact from the form data and add it to the collection
+    // var contact = new Contact(formData);
+    // this.model.add(contact);
+
+    // Can just pass the form data directly, because
+    // the collection knows what its model is
+    this.model.add(formData);
+  },
+
+  clearForm: function() {
+    this.$('input[name=name]').val('');
+    this.$('input[name=email]').val('');
+    this.$('input[name=phone]').val('');
+  },
+
+  readContactForm: function() {
+    var nameData = this.$('input[name=name]').val();
+    // this.$('input[name=name]').val('');
+
+    var emailData = this.$('input[name=email]').val();
+    // this.$('input[name=email]').val('');
+
+    var phoneData = this.$('input[name=phone]').val();
+    // this.$('input[name=phone]').val('');
+
+    this.clearForm();
+
+    var formData = {};
+    if (nameData && nameData != "") {
+      formData["name"] = nameData
+    }
+    if (emailData && emailData != "") {
+      formData["email"] = emailData
+    }
+    if (phoneData && phoneData != "") {
+      formData["phone"] = phoneData
+    }
+    return formData;
   }
 
-  // events: {
-  //   'click #add-contact': 'addContact'
-  // },
-
-  // addContact: function(event) {
-  //   var formData = this.readContactForm();
-  //
-  //   console.log("In add contact, form data:");
-  //   console.log(formData);
-  //
-  //   // Create a contact from the form data and add it to the collection
-  //   // var contact = new Contact(formData);
-  //   // this.model.add(contact);
-  //
-  //   // Can just pass the form data directly, because
-  //   // the collection knows what its model is
-  //   this.model.add(formData);
-  // },
-
-//   readContactForm: function() {
-//     var titleData = this.$('#title').val();
-//     this.$('#title').val('');
-//
-//     var descriptionData = this.$('#description').val();
-//     this.$('#description').val('');
-//
-//     var completedData = this.$('#completed-checkbox').prop('checked');
-//     this.$('#completed-checkbox').prop('checked', false);
-//
-//     var formData = {};
-//     if (titleData && titleData != "") {
-//       formData["title"] = titleData
-//     }
-//     if (descriptionData && descriptionData != "") {
-//       formData["description"] = descriptionData
-//     }
-//     if (completedData && completedData != "") {
-//       formData["completed"] = completedData
-//     }
-//     return formData;
-//   }
-//
 });
 
 export default ContactListView;
