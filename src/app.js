@@ -4,6 +4,7 @@ import _ from 'underscore';
 import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
 import ContactView from './app/views/contact_view.js';
+import RolodexView from './app/views/rolodex_view';
 
 // var myContact = new Contact({
 //   name: "Sahana",
@@ -27,39 +28,41 @@ var contactsData = [
   }
 ];
 
-var render = function(contact) {
-
-  var template_text = $('#tmpl-contact-card').html();
-
-  var templateObject = _.template(template_text);
-
-  var compiledHTML = templateObject(contact.toJSON());
-
-  $('#contact-cards').append(compiledHTML);
-};
+// var render = function(contact) {
+//
+//   var template_text = $('#tmpl-contact-card').html();
+//
+//   var templateObject = _.template(template_text);
+//
+//   var compiledHTML = templateObject(contact.toJSON());
+//
+//   $('#contact-cards').append(compiledHTML);
+// };
 
 var rolodex = new Rolodex(contactsData);
 
-var renderList = function(contactList) {
-  $('#contact-cards').empty();
-
-  contactList.each(function(contact) {
-
-    var contactView = new ContactView({
-      model: contact,
-      template: _.template($('#tmpl-contact-card').html()),
-      tagName: 'li'
-    });
-
-    $('#contact-cards').append(contactView.render().$el);
-  });
-};
+// var renderList = function(contactList) {
+//   $('#contact-cards').empty();
+//
+//   contactList.each(function(contact) {
+//
+//     var contactView = new ContactView({
+//       model: contact,
+//       template: _.template($('#tmpl-contact-card').html()),
+//       // tagName: 'li'
+//     });
+//
+//     $('#contact-cards').append(contactView.render().$el);
+//   });
+// };
 
 $(document).ready(function() {
 
-  // console.log(myContact.get("name") + myContact.get("email") + myContact.get("phone"));
-  // render(myContact);
+  var rolodexView = new RolodexView({
+    model: rolodex,
+    template: _.template($('#tmpl-contact-card').html()),
+    el: 'body'
+  });
 
-  console.log()
-  renderList(rolodex);
+  rolodexView.render();
 });
