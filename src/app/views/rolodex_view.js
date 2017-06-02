@@ -3,11 +3,13 @@ import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact.js';
 import ContactView from './contact_view.js';
+import DetailsView from './details_view.js';
 import Rolodex from '../collections/rolodex.js';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
+    this.detailsTemplate = params.detailsContactTemplate;
     this.listenTo(this.model, "update", this.render);
   },
   render: function() {
@@ -21,18 +23,22 @@ var RolodexView = Backbone.View.extend({
       });
 
       that.$("#contact-cards").append(contactView.render().$el);
-      that.listenTo(contactView, "selected", function(view) {
-        console.log(view);
-        
 
-        // .html
-        // .show()
+      that.listenTo(contactView, "selected", function(model) {
+        var detailsView = new DetailsView({
+          model: model,
+          template: that.detailsTemplate
+        });
+        detailsView.render();
+        that.$("#contact-details").html(detailsView.render().el);
+        that.$("#contact-details").show();
       });
     });
     return this;
   },
   events: {
-    "click .btn-save" : "addContact"
+    "click .btn-save" : "addContact",
+    "click" : "hideDetails"
   },
   getFormData: function() {
     var formName = this.$("input[name=name]").val();
@@ -53,6 +59,9 @@ var RolodexView = Backbone.View.extend({
   addContact: function() {
     var contact = new Contact(this.getFormData());
     this.model.add(contact);
+  },
+  hideDetails: function () {
+    this.$("#contact-details").hide();
   }
 });
 

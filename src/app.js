@@ -5,14 +5,15 @@ import $ from 'jquery';
 import Contact from 'app/models/contact.js';
 import Rolodex from 'app/collections/rolodex.js';
 import ContactView from 'app/views/contact_view.js';
+import DetailsView from 'app/views/details_view.js';
 import RolodexView from 'app/views/rolodex_view.js';
-
-var application = new Application();
-
-var appView = new ApplicationView({
-  el: '#application',
-  model: application
-});
+//
+// var application = new Application();
+//
+// var appView = new ApplicationView({
+//   el: '#application',
+//   model: application
+// });
 
 var contactData = [
   {
@@ -52,7 +53,8 @@ $(document).ready(function(){
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($('#tmpl-contact-card').html()),
-    el: '#application',
+    detailsContactTemplate: _.template($('#tmpl-contact-details').html()),
+    el: 'body',
   });
   // console.log(myRolodexView);
 
