@@ -33,7 +33,8 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': "addContact",
     'click .btn-cancel': "clearForm",
-    'click section#contact-details': "hideDetails"
+    'click': "hideDetails"
+    // 'click #contact-details': "hideDetails"
   },
 
   addContact: function(event){
@@ -66,8 +67,9 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val("");
   },
 
-  // when you send this from the trigger in contactView - that parameter is expected here
+  // what ever info you sent along with trigger can be accessed here - cause listenTo calls this function
   displayDetails: function(contactCard) {
+    event.preventDefault();
     console.log("show the contact details");
 
     var compiledTemplateDetails = this.templateDetails( contactCard.model.toJSON() );
@@ -77,9 +79,14 @@ var RolodexView = Backbone.View.extend({
   },
 
   hideDetails: function(event) {
+    // event.preventDefault();
     // event delegation - use a condtional to check if the box is showing
     console.log("hide the details");
-    $("#contact-details").hide();
+    // var css = $("#contact-details").css('display');
+    // console.log( css );
+    if ( $("#contact-details").css('display') == 'block' ) {
+      $("#contact-details").hide();
+    }
   }
 });
 

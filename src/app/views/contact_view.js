@@ -25,7 +25,10 @@ const ContactView = Backbone.View.extend({
 
   // on the right track...
   details: function(event) {
+    // event.preventDefault();
+    event.stopPropagation();
     console.log("you clicked a card");
+    // this is the contact view - which has access to the contact model
     this.trigger("displayDetails", this);
   }
 });
