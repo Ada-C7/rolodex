@@ -26,16 +26,18 @@ const ContactDetailView = Backbone.View.extend({
 
   removeCard: function() {
     console.log("clicked delete");
-    // this.model.destroy();
+    this.model.destroy();
+    this.render();
   },
 
   editCard: function() {
     console.log("clicked edit");
-    // var editContactView = new EditContactView({
-    //   model: this.model,
-    //   template: _.template($("#tmpl-edit-contact").html())
-    // });
-    // $("#contact-details").append(editContactView.render().el);
+    var editContactView = new EditContactView({
+      model: this.model,
+      template: _.template($("#tmpl-edit-contact").html())
+    });
+    $("#contact-details").empty();
+    $("#contact-details").append(editContactView.render().el);
   }
 
 

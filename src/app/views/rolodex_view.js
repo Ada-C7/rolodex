@@ -11,9 +11,9 @@ import ContactDetailView from '../views/contact_detail_view.js';
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
-    this.listenTo(this.model, "update", this.render);
-
+    this.listenTo(this, "click", this.hideCard);
   },
+
 
   render: function() {
     this.$('#contact-cards').empty();
@@ -25,6 +25,8 @@ var RolodexView = Backbone.View.extend({
         template: that.template
       });
       that.$("#contact-cards").append(contactView.render().el);
+      that.listenTo(contactView, "showCard", that.showCard)
+
     });
 
     return this;
@@ -32,8 +34,7 @@ var RolodexView = Backbone.View.extend({
   events: {
     "click #create-contact" : "addContact",
     "click #cancel-form" : "clearForm",
-    // "click" : "hideCard"
-    // "click li.contact-card" : "showModal"
+    "click" : "hideCard"
   },
 
   getFormData: function() {
@@ -44,9 +45,21 @@ var RolodexView = Backbone.View.extend({
 
     return {
       name: formName,
-      phoneNumber: formPhone,
+      phone: formPhone,
       email: formEmail
     };
+  },
+
+  hideCard: function() {
+    console.log("tried to hide card");
+    // console.log(this);
+    $("#contact-details").empty();
+    $("#contact-details").remove();
+  },
+
+  stopEvent: function(event) {
+    event.stopPropagation();
+    console.log("prop stopped");
   },
 
   addContact: function() {
@@ -55,12 +68,29 @@ var RolodexView = Backbone.View.extend({
     this.model.add(newContact);
   },
 
+  showCard: function(event) {
+    console.log("clicked a card");
+    $("#contact-details").empty();
+    $("#contact-details").removeClass("hide");
+    var contactDetailView = new ContactDetailView({
+      model: event.model,
+      template: _.template($("#tmpl-contact-details").html())
+    });
+
+    $("#contact-details").append(contactDetailView.render().el);
+    contactDetailView.addEventListener("click", this.stopEvent, false);
+
+  },
+
   clearForm: function() {
     $("#name").val('');
     $("#phone").val('');
     $("#email").val('');
-  }
+  },
 
+  stopProp: function(e) {
+    e.stopPropagation();
+  }
 
 
 });

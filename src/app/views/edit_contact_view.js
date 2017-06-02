@@ -21,9 +21,28 @@ const EditContactView = Backbone.View.extend({
     "click button#cancel-edit" : "cancel"
   },
 
+  getFormData: function() {
+    var formName = $("#edit-name").val();
+    var formPhone = $("#edit-phone").val();
+    var formEmail = $("#edit-email").val();
+    this.clearForm();
+
+    return {
+      name: formName,
+      phone: formPhone,
+      email: formEmail
+    };
+  },
+
   saveChanges: function() {
     this.$el.html("");
-    this.set(this, getFormData());
+    this.set(this.model, this.getFormData());
+  },
+
+  clearForm: function() {
+    $("#name").val('');
+    $("#phone").val('');
+    $("#email").val('');
   },
 
   cancel: function() {
