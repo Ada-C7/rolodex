@@ -17,14 +17,15 @@ const ContactView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click li': 'showTaskInfo'
+    'click': 'showTaskInfo'
   },
   showTaskInfo: function(e){
-    var popUp = new ModalView({
-      model: this.model,
-      template: _.template($("#tmpl-contact-details").html())
-    });
-    $("#contact-details").append(popUp.render().$el);
+    console.log("clicked");
+    // var popUp = new ModalView({
+    //   model: this.model,
+    //   template: _.template($("#tmpl-contact-details").html())
+    // });
+    // $("#contact-details").append(popUp.render().$el);
   }
 
 });
