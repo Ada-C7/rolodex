@@ -3,6 +3,7 @@ import _ from 'underscore';
 import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
 import ContactView from './app/views/contact_view';
+import RolodexView from './app/views/rolodex_view';
 
 
 var contactData = [
@@ -27,13 +28,10 @@ var myContact = new Contact({
 
 
 $(document).ready(function() {
-  renderList(myContactList);
-  // // select template
-  // var templateText = $('#tmpl-contact-card').html();
-  // //get compiled template object
-  // var templateObject = _.template(templateText);
-  // // use template and model data to generate obj into html
-  // var compiledHTML = templateObject(myContact.toJSON());
-  //
-  // $('#contact-cards').append(compiledHTML);
+var myContactView = new ContactView({
+  model: myContactList,
+  template: _.template($('#contact-cards').html()),
+  el: 'main'
+});
+myContactView.render();
 });
