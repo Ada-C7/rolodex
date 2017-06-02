@@ -8,6 +8,9 @@ var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.contactTemplate = params.template;
     this.listenTo(this.model, "update", this.render);
+    // Wave3
+    this.modalTemplate = _.template($('#tmpl-contact-details').html());
+    console.log('this modalTemplate ', this.modalTemplate);
   },
 
   render: function(){
@@ -20,17 +23,28 @@ var RolodexView = Backbone.View.extend({
         myTemplate: that.contactTemplate,
         // tagName: 'li'
       });
+      // wave3 create listener for each contact
+      that.listenTo(contactView, "selected", that.viewModal);
+
+      // this is wave2
       that.$("#contact-cards").append(contactView.render().$el);
     });
 
     return this;
-
   },
+
+  viewModal: function(contact){
+    $('#contact-details').empty();
+    var generatedModalTemplate= this.modalTemplate(contact.toJSON());
+    // this.$el.html(generatedModalTemplate);
+    this.$('#contact-details').append(generatedModalTemplate);
+  },
+
+
   events: {
     // the event hash listen to the event listener
     'click .btn-save' : "saveContact",
     'click .btn-cancel' : "cancelContact",
-    'click .contact-card' : 'viewModal',
   },
 
   getFormData: function(){
@@ -58,14 +72,6 @@ var RolodexView = Backbone.View.extend({
     this.$('#name').val('');
     this.$('#email').val('');
     this.$('#phone').val('');
-  },
-  viewModals: function(){
-    var modal = document.getElementById('#contact-details');
-    var btn = document.getElementById(".contact-card");
-
-    
-
-
   }
 
 });

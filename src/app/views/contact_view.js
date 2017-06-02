@@ -17,9 +17,14 @@ const ContactView = Backbone.View.extend({
 
     return this;
   },
-  // events:{
-  //   'click btn-save' : "cancelContact",
-  // }
+  events:{
+    'click' : 'onClick'
+  },
+  onClick: function(){
+    // selected is a custom event
+    var clicked = this.trigger("selected", this.model);
+    console.log(clicked);
+  }
 
 });
 

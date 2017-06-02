@@ -11,8 +11,8 @@ import RolodexView from './app/views/rolodex_view.js';
 // Creating instance of Contact model with static data
 var myContact = new Contact({
   name: "Rana Sulaiman",
-  Email: "rs_sulaiman@yahoo",
-  Phone: '435-333-777'
+  email: "rs_sulaiman@yahoo",
+  phone: '435-333-777'
 });
 
 // var render = function(contact){
