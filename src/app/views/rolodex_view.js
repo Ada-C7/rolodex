@@ -12,6 +12,8 @@ var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
     this.listenTo(this, "click", this.hideCard);
+    this.listenTo(this.model, "update", this.render);
+    this.on("delete:card", this.hideCard);
   },
 
 
@@ -53,14 +55,14 @@ var RolodexView = Backbone.View.extend({
   hideCard: function() {
     console.log("tried to hide card");
     // console.log(this);
-    $("#contact-details").empty();
-    $("#contact-details").remove();
+    $("#contact-details").hide();
+    // $("#contact-details").remove();
   },
 
-  stopEvent: function(event) {
-    event.stopPropagation();
-    console.log("prop stopped");
-  },
+  // stopEvent: function(event) {
+  //   event.stopPropagation();
+  //   console.log("prop stopped");
+  // },
 
   addContact: function() {
     console.log("clicked add");
@@ -71,15 +73,14 @@ var RolodexView = Backbone.View.extend({
   showCard: function(event) {
     console.log("clicked a card");
     $("#contact-details").empty();
-    $("#contact-details").removeClass("hide");
+    // $("#contact-details").removeClass("hide");
+    $("#contact-details").show();
     var contactDetailView = new ContactDetailView({
       model: event.model,
       template: _.template($("#tmpl-contact-details").html())
     });
 
     $("#contact-details").append(contactDetailView.render().el);
-    contactDetailView.addEventListener("click", this.stopEvent, false);
-
   },
 
   clearForm: function() {
@@ -88,9 +89,9 @@ var RolodexView = Backbone.View.extend({
     $("#email").val('');
   },
 
-  stopProp: function(e) {
-    e.stopPropagation();
-  }
+  // stopProp: function(e) {
+  //   e.stopPropagation();
+  // }
 
 
 });

@@ -25,12 +25,18 @@ const ContactDetailView = Backbone.View.extend({
   },
 
   removeCard: function() {
+    event.stopPropagation();
     console.log("clicked delete");
     this.model.destroy();
-    this.render();
+    $("#contact-details").hide();
+    // this.render();
+
+
   },
 
   editCard: function() {
+    // event.stopPropagation();
+
     console.log("clicked edit");
     var editContactView = new EditContactView({
       model: this.model,
@@ -38,6 +44,7 @@ const ContactDetailView = Backbone.View.extend({
     });
     $("#contact-details").empty();
     $("#contact-details").append(editContactView.render().el);
+    return false
   }
 
 

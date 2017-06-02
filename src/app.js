@@ -39,7 +39,7 @@ $(document).ready(function() {
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($("#tmpl-contact-card").html()),
-    el: '#application'
+    el: 'body'
   });
   myRolodexView.render();
 

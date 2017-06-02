@@ -24,8 +24,9 @@ const ContactView = Backbone.View.extend({
     "click" : "sendDetails",
   },
 
-  sendDetails: function() {
+  sendDetails: function(event) {
     this.trigger("showCard", this);
+    event.stopPropagation();
   }
 
 
