@@ -39,10 +39,10 @@ var RolodexView = Backbone.View.extend({
     'click .btn-save-edit': "saveEdit",
     'click .btn-cancel-edit': "cancelEdit"
   },
-  getFormFields: function(){
-    var nameData = this.$('.contact-form.name').val();
-    var emailData = this.$('.contact-form.email').val();
-    var phoneData = this.$('.contact-form.phone').val();
+  getAddContactData: function(){
+    var nameData = this.$('.contact-form .name').val();
+    var emailData = this.$('.contact-form .email').val();
+    var phoneData = this.$('.contact-form .phone').val();
 
     return {
       name: nameData,
@@ -54,7 +54,7 @@ var RolodexView = Backbone.View.extend({
     this.$('.input').val('');
   },
   addContact: function() {
-    var formValues = this.getFormFields();
+    var formValues = this.getAddContactData();
     this.model.add(formValues);
     this.clearForm();
   },
@@ -82,8 +82,7 @@ saveEdit: function(event){
 
 },
 cancelEdit: function(event){
-
-
+  this.triggerModal(event, this.selectedContact);
 }
 // console.log(this.selectedContact);
 //
