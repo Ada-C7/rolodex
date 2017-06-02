@@ -20,7 +20,7 @@ const ContactView = Backbone.View.extend({
     'click' : 'onClick'
   },
   onClick: function(){
-    // Prevents the event from bubbling up the DOM tree, preventing any parent handlers from being notified of the event.
+    // Prevents the event from bubbling down the DOM, clicking anywhwere different than the event, will dissappear
     event.stopPropagation();
 
     // selected is a custom backbone event

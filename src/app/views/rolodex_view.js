@@ -39,33 +39,18 @@ var RolodexView = Backbone.View.extend({
     $('#contact-details').empty();
     var generatedModalTemplate= this.modalTemplate(contact.toJSON());
     // this.$el.html(generatedModalTemplate);
-    this.$('#contact-details').append(generatedModalTemplate).$el;
+    this.$('#contact-details').append(generatedModalTemplate);
   },
   events: {
     'click .btn-save' : 'saveContact',
     'click .btn-cancel' : 'cancelContact',
-    'click body' : 'hideModal'
+    'click ' : 'hideModal'
   },
 
   hideModal: function(){
-    console.log("hideModal");
-  $('#contact-details').hide()
-
-
-  // hideModal: $(function(event){
-  //
-	// 			var $win = $(body); // or $box parent container
-	// 			var $modal = $("#contact-details");
-  //
-  //
-	// 			 $win.on("click", function(event){
-	// 				if ( $modal.has(event.target).length === 0 &&
-  //           !$modal.is(event.target)) { $('#contact-details').show();
-  //         }else{
-  //           $('#contact-details').hide();
-  //         }
-  // };
-
+    if($('#contact-details').has(event.target).length === 0 && !$('#contact-details').is(event.target)){
+        $('#contact-details').hide();
+    }
   },
 
   // Read the Form data to create new contact
