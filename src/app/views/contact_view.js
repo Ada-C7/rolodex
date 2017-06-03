@@ -19,6 +19,14 @@ var ContactView = Backbone.View.extend({
     this.$el.html(compiledTemplate);
 
     return this;
+  },
+
+  events: {
+    'click': 'showContact',
+  },
+  showContact: function(event) {
+    this.$el.trigger('contactClicked', this.model);
+    event.stopPropagation();
   }
 });
 
