@@ -8,6 +8,7 @@ import RolodexView from './app/views/rolodex_view.js';
 var rolodexTemplate;
 var contactList;
 var contactCardDetailsTemplate;
+var detailsTemplate;
 
 var rolodexData = [
   {
@@ -41,6 +42,7 @@ $(document).ready(function(){
 
   contactList = new Rolodex(rolodexData);
   var rolodexView = new RolodexView({
+    detailsTemplate: contactCardDetailsTemplate,
     rolodexTemplate: rolodexTemplate,
     model: contactList,
     el: $("#application")

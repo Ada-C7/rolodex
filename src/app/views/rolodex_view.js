@@ -7,26 +7,27 @@ import Contact from '../models/contact';
 const RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.rolodexTemplate;
+    this.template2 = params.detailsTemplate;
     this.listenTo(this.model, "update", this.render);
   },
   render: function(){
     var self = this;
     self.$("#contact-cards").empty();
-    // console.log(self.model);
     self.model.each(function(contact) {
       var contactView = new ContactView({
         model: contact,
         template: self.template
       });
       self.$('#contact-cards').append(contactView.render().$el);
+      self.listenTo(contactView, "showModal", self.showContactDetails);
     });
     return this;
   },
   events: {
     'click .btn-save': 'addContact',
     'click .btn-cancel': 'cancelContact',
-    'click .contact-card': 'showModalBox',
-    'click .application' : 'hideModalBox'
+    'click .contact-card': 'showcontactDetails',
+    'click .application' : 'hideContactDetails'
   },
   addContact: function(event) {
     var formData = this.readRolodexForm();
@@ -58,12 +59,12 @@ const RolodexView = Backbone.View.extend({
     }
     return formData;
   },
-  showModalBox: function(event) {
-    //if you don't have this here then it will not appear because it's default
-    event.stopPropagation();
-    $("#contact-details").show();
+  showContactDetails: function(contactView) {
+    var contactCardDetailsTemplate = this.template2(contactView.model.toJSON());
+    $("#contact-details").html(contactCardDetailsTemplate);
+    return this;
   },
-  hideModalBox: function(event) {
+  hideContactDetails: function(event) {
     $('#contact-details').hide();
   }
 
