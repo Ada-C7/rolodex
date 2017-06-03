@@ -3,7 +3,7 @@ import _ from 'underscore';
 
 import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
-import ContactView from './app/views/contact_view.js';
+import ContactView from './app/views/contact_view';
 import RolodexView from './app/views/rolodex_view';
 
 // var myContact = new Contact({
@@ -77,6 +77,7 @@ $(document).ready(function() {
   var rolodexView = new RolodexView({
     model: rolodex,
     template: _.template($('#tmpl-contact-card').html()),
+    contactTemplate: _.template($('#tmpl-contact-details').html()),
     el: 'body'
   });
 

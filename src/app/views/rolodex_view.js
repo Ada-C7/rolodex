@@ -7,6 +7,7 @@ import ContactView from './contact_view.js';
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
+    this.contactTemplate = params.contactTemplate;
     this.listenTo(this.model, "update", this.render);
   },
 
@@ -17,6 +18,7 @@ var RolodexView = Backbone.View.extend({
       var contactView = new ContactView({
         model: contact,
         template: that.template,
+        contactTemplate: that.contactTemplate,
         className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns",
         tagName: 'li'
       });
