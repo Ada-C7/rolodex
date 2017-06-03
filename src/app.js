@@ -2,7 +2,6 @@ import $ from 'jquery';
 import _ from 'underscore';
 import Contact from './app/models/contact';
 import Rolodex from './app/collections/rolodex';
-// import ContactView from './app/views/contact_view';
 import RolodexView from 'app/views/rolodex_view';
 
 var contactData = [
@@ -27,8 +26,12 @@ $(document).ready(function() {
   var contactTemplate = _.template($('#tmpl-contact-card').html());
   var rolodex = new Rolodex(contactData);
 
+  var contactInformationTemplate = _.template($('#tmpl-contact-details').html());
+
+
   var rolodexView = new RolodexView({
     contactTemplate: contactTemplate,
+    contactInformationTemplate: contactInformationTemplate,
     model: rolodex,
     el: $('body')
   });
