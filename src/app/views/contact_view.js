@@ -16,15 +16,16 @@ const ContactView = Backbone.View.extend({
     return this;
   },
 
-  showDetails: function() {
+  showDetails: function(event) {
     console.log(this);
     var contactDetails = this.contactTemplate(this.model.toJSON());
     $('#contact-details').html(contactDetails);
     $('#contact-details').show();
+    event.stopPropagation();
   },
 
   events: {
-    'click': 'showDetails'
+    'click': 'showDetails',
   }
 });
 

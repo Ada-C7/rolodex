@@ -73,6 +73,7 @@ var rolodex = new Rolodex(contactsData);
 // };
 
 $(document).ready(function() {
+  $('#contact-details').hide();
 
   var rolodexView = new RolodexView({
     model: rolodex,
