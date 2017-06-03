@@ -11,6 +11,15 @@ const ContactView = Backbone.View.extend({
     this.$el.html(compiledTemplate);
 
     return this;
+  },
+
+  events: {
+    "click": "showCard"
+  },
+
+  showCard: function(event) {
+    event.stopPropagation();
+    this.trigger("cardDetails", this.model);
   }
 });
 

@@ -29,6 +29,7 @@ var contactView = new Rolodex(contactData);
 var rolodexView = new RolodexView({
   model: contactView,
   template: _.template($('#tmpl-contact-card').html()),
+  detailTemplate: _.template($('#tmpl-contact-details').html()),
   el: 'body'
 });
 

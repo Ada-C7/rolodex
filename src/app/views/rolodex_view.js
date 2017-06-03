@@ -7,6 +7,7 @@ import Contact from '../models/contact.js';
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.template;
+    this.detailTemplate = params.detailTemplate;
 
     this.listenTo(this.model, 'update', this.render);
 
@@ -21,6 +22,12 @@ var RolodexView = Backbone.View.extend({
         template: that.template
       });
       that.$('#contact-cards').append(contactView.render().el);
+      that.listenTo(contactView, "cardDetails", function(contact) {
+        $("#contact-details").removeClass("hide");
+        var compiledTemplate = this.detailTemplate(contact.toJSON());
+        $("#contact-details").append(compiledTemplate);
+
+      });
     });
     return this;
   },
