@@ -33,6 +33,7 @@ var myContacts = new ContactList(contactData);
 var myContactListView = new ContactListView({
     model: myContacts,
     template: _.template($('#tmpl-contact-card').html()),
+    detailsTemplate: _.template($('#tmpl-contact-details').html()),
     el: 'div#application'
 })
 
