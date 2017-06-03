@@ -19,7 +19,7 @@ var RolodexView = Backbone.View.extend({
         model: contact,
         template: that.template,
         contactTemplate: that.contactTemplate,
-        className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns",
+        className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns end",
         tagName: 'li'
       });
       that.$('#contact-cards').append(contactView.render().$el);
