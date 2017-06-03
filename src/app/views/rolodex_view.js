@@ -8,7 +8,7 @@ const RolodexView = Backbone.View.extend({
 
   initialize: function(params) {
     this.contactTemplate = params.contactTemplate;
-
+    this.detailsTemplate = params.detailsTemplate;
     this.listenTo(this.model, "update", this.render);
   },
   render: function() {
@@ -32,7 +32,19 @@ const RolodexView = Backbone.View.extend({
   },
   events: {
     'click .btn-save': 'addContact',
-    'click .btn-cancel': 'clearForm'
+    'click .btn-cancel': 'clearForm',
+    'selectedContact': 'triggerModal',
+    'click': 'hideModal',
+    'click #contact-details': 'noChange'
+
+  },
+
+  noChange: function(event){
+    event.stopPropagation();
+  },
+
+  hideModal: function(event){
+    this.$('#contact-details').hide();
   },
 
   addContact: function(event) {
@@ -71,6 +83,11 @@ const RolodexView = Backbone.View.extend({
       formData["phone"] = phoneData
     }
     return formData;
+  },
+
+  triggerModal: function(event, contact){
+    var detailsHTML = this.detailsTemplate(contact.toJSON());
+    this.$('#contact-details').html(detailsHTML).show();
   }
 
 });

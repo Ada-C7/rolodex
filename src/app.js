@@ -7,9 +7,10 @@ import RolodexView from 'app/views/rolodex_view.js';
 
 var contactCardTemplate;
 var contactList;
+var detailCardTemplate;
 
 var contactData = [{
-  name: "Leonardi Davinci",
+  name: "Leonardo Davinci",
   phone: "(111)-111-1111",
   email: "leodavinci@gioconda.com"
 },
@@ -30,6 +31,8 @@ $(document).ready(function() {
 
   contactCardTemplate = _.template($('#tmpl-contact-card').html());
 
+  detailCardTemplate = _.template($('#tmpl-contact-details').html());
+
   contactList = new Rolodex(contactData);
   // contactList.on("update", function(){
   //   renderList(contactList);
@@ -37,6 +40,7 @@ $(document).ready(function() {
 
   var rolodexView = new RolodexView({
     model: contactList,
+    detailsTemplate: detailCardTemplate,
     contactTemplate: _.template($('#tmpl-contact-card').html()),
     el: '#application'
 

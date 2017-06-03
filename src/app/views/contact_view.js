@@ -13,6 +13,13 @@ const ContactView = Backbone.View.extend({
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
+  },
+  events: {
+    'click': 'selectContact'
+  },
+  selectContact: function(event) {
+    this.$el.trigger('selectedContact', this.model);
+    event.stopPropagation();
   }
 });
 
