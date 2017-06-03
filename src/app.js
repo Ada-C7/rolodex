@@ -13,19 +13,19 @@ var contactCardDetailsTemplate;
 var contactData = [
   {
     name: 'Dara',
-    phoneNumber: '555-1212',
+    phone: '555-1212',
     email: 'dara@email.com'
   }, {
     name: 'Rachel',
-    phoneNumber: '207-20I-LUVU',
+    phone: '207-20I-LUVU',
     email: 'rachel@email.com'
   }, {
     name: 'Lynn',
-    phoneNumber: '555-1234',
+    phone: '555-1234',
     email: 'lynn@email.com'
   }, {
     name: 'Jenni',
-    phoneNumber: '867-5309',
+    phone: '867-5309',
     email: 'jenni@email.com'
   }];
 
@@ -35,11 +35,12 @@ $(document).ready(function() {
 
   contactTemplate = _.template($('#tmpl-contact-card').html());
   contactCardDetailsTemplate = _.template($('#tmpl-contact-details').html());
-  
+
   contactList = new Rolodex(contactData);
 
   var contactListView = new RolodexView({
     contactTemplate: contactTemplate,
+    contactCardDetailsTemplate: contactCardDetailsTemplate,
     model: contactList,
     el: $('#application')
   });

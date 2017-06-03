@@ -7,6 +7,7 @@ import ContactView from './contact_view';
 const RolodexView = Backbone.View.extend({
   initialize: function(params) {
     this.template = params.contactTemplate;
+    this.template2 = params.contactCardDetailsTemplate;
     this.listenTo(this.model, "update", this.render);
   },
 
@@ -22,6 +23,7 @@ const RolodexView = Backbone.View.extend({
       });
 
       self.$('#contact-cards').append(contactView.render().$el);
+      self.listenTo(contactView, "showModal", self.showContactInfo )
     });
     return this;
   },
@@ -45,37 +47,46 @@ const RolodexView = Backbone.View.extend({
 
   clearContact: function(event) {
       $("#name").val("");
-      $("#phoneNumber").val("");
+      $("#phone").val("");
       $("#email").val("");
   },
 
   readContactForm: function() {
-    var nameData = $("#name").val();
-    $("#name").val("");
+    var nameData = this.$("#name").val();
+    this.$("#name").val("");
 
-    var phoneNumberData = $("phoneNumber").val();
-    $("#phoneNumber").val("");
+    var phoneData = this.$("#phone").val();
+    this.$("#phone").val("");
 
-    var emailData = $("email");
-    $("#email").val("");
+    var emailData = this.$("#email").val();
+    this.$("#email").val("");
 
     var formData = {};
 
     if (nameData && nameData != "") {
       formData["name"] = nameData
     }
-    if (phoneNumberData && phoneNumberData != "") {
-      formData["phoneNumberData"] = phoneNumberData
+    if (phoneData && phoneData != "") {
+      formData["phone"] = phoneData
     }
     if (emailData && emailData != "") {
-      formData["emailData"] = emailData
+      formData["email"] = emailData
     }
     return formData;
   },
 
-  showContactInfo: function(event) {
-    event.stopPropagation();
-      $("#contact-details").show();
+  showContactInfo: function(contactView) {
+    // console.log("Contact View:");
+// console.log(contactView);
+
+    var contactCardDetailsTemplate = this.template2(contactView.model.toJSON());
+    $('#contact-details').html(contactCardDetailsTemplate);
+
+    return this;
+
+    // contactView.model.toJSON()
+    //invoke the compiled template on
+      // $("#contact-details").show();
   },
 
   hideContactInfo: function(event) {
