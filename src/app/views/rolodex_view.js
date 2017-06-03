@@ -21,7 +21,6 @@ var RolodexView = Backbone.View.extend({
       var contactView = new ContactView({
         model: contact,
         myTemplate: that.contactTemplate,
-        // tagName: 'li'
       });
       // Wave3 create listener for each contact to be filled in the modal
       that.listenTo(contactView, "selected", that.viewModal);
@@ -38,7 +37,6 @@ var RolodexView = Backbone.View.extend({
     $('#contact-details').show();
     $('#contact-details').empty();
     var generatedModalTemplate= this.modalTemplate(contact.toJSON());
-    // this.$el.html(generatedModalTemplate);
     this.$('#contact-details').append(generatedModalTemplate);
   },
   events: {
@@ -49,7 +47,7 @@ var RolodexView = Backbone.View.extend({
 
   hideModal: function(){
     if($('#contact-details').has(event.target).length === 0 && !$('#contact-details').is(event.target)){
-        $('#contact-details').hide();
+    $('#contact-details').hide();
     }
   },
 

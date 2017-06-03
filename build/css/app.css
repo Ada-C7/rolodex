@@ -1,9 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Damion');
+
 body {
   background-color: #16202C;
+  background: linear-gradient(to right,#603813,#b29f94) ;
 }
 
 h1, h2, h3, h4, h5, h6, p, label {
   font-family: 'Nunito', sans-serif;
+  font-family: "Damion";
+
+
 }
 
 header {
@@ -34,7 +40,9 @@ header {
   height: 30%;
   top: 30%;
   left: 30%;
-  background-color: #538ca3;
+  background-color: #77A1D3;
+
+
   text-align: center;
   border: 1em solid white;
   margin-left: 20%;
@@ -54,11 +62,14 @@ header {
   margin: 2%;
   background-color: #fff;
   border-radius: 2%;
+  height: 15%;
+  width: 20%;
 }
 
 .contact-card:hover {
     cursor: pointer;
-    background-color: #538ca3;
+    background-color: #77A1D3;
+
 }
 
 .contact-card:hover h3 {
