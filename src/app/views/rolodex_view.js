@@ -3,6 +3,7 @@ import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact.js';
 import ContactView from '../views/contact_view.js';
+import ContactDetailsView from '../views/contact_details_view.js';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params){
@@ -13,7 +14,7 @@ var RolodexView = Backbone.View.extend({
 
   render: function(){
     this.$('#contact-cards').empty();
-    this.$('#contact-details').hide();
+    
     // saved a reference to 'this'
     var that = this;
 
@@ -27,6 +28,22 @@ var RolodexView = Backbone.View.extend({
       });
       // rendered the view and appended it to 'todo-items'
       that.$('#contact-cards').append(myContactView.render().el);
+      that.listenTo(myContactView, "selected", function(view){
+        console.log("triggered");
+        console.log(view);
+          var myContactDetailsView = new ContactDetailsView({
+            model: view.model,
+            template: _.template($('#tmpl-contact-details').html()),
+            el: '#contact-details'
+          });
+
+          myContactDetailsView.render();
+          // that.$('#contact-details').show();
+
+        // this.$('#contact-cards').append(myContactView.render().el);
+        // that.$('#contact-details').show();
+
+      });
     });
     // returning this view object so you can chain functions like myView.render().el
     return this;
@@ -34,7 +51,8 @@ var RolodexView = Backbone.View.extend({
 
   events: {
     "click .btn-save": "saveContact",
-    "click .btn-cancel": "clearForm"
+    "click .btn-cancel": "clearForm",
+
     // "click h4": "testFunction"
   },
 

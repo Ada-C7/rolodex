@@ -64,20 +64,20 @@ var renderDetails = function() {
 };
 
 
-var renderContacts = function(rolodex) {
-  $('#contact-cards').empty();
-  $('#contact-details').hide();
-
-  rolodex.each(function(contactCard){
-    render(contactCard);
-    $(".contact-card").click(function() {
-      // console.log(contactCard);
-      $('#contact-details').show();
-      console.log(this);
-      renderDetails(this);
-    });
-  });
-};
+// var renderContacts = function(rolodex) {
+//   $('#contact-cards').empty();
+//   $('#contact-details').hide();
+//
+//   rolodex.each(function(contactCard){
+//     render(contactCard);
+//     $(".contact-card").click(function() {
+//       // console.log(contactCard);
+//       $('#contact-details').show();
+//       console.log(this);
+//       renderDetails(this);
+//     });
+//   });
+// };
 
 var getFormData = function() {
   var formName = $("#name").val();
@@ -104,13 +104,15 @@ var myContacts = new Rolodex(contactsData);
 
 $(document).ready(function() {
   // renderContacts(myContacts);
+
   // var myContactView = new ContactView({
   //   model: myContact,
   //   template: _.template($('#tmpl-contact-card').html()),
-  //   el: 'main'
+  //   el: 'ul'
   // });
   //
   // myContactView.render();
+  $('#contact-details').hide();
 
   var myRolodexView = new RolodexView({
     model: myContacts,
@@ -120,7 +122,7 @@ $(document).ready(function() {
   });
 
   myRolodexView.render();
-  //
+
   // $(".btn-save").click(function() {
   //   var contact = new Contact(getFormData());
   //

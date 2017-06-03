@@ -17,6 +17,16 @@ const ContactView = Backbone.View.extend({
     return this;
   },
   events: {
+    "click li": "loadContact"
+  },
+
+  loadContact: function() {
+    console.log("blabala");
+      // this.$('#contact-details').show();
+      console.log(this);
+
+      this.trigger("selected", this);
+      
 
   }
 
