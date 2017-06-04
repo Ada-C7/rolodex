@@ -2,7 +2,7 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact';
-// import RolodexView from ''
+
 
 const ContactView = Backbone.View.extend({
   initialize: function(params) {
@@ -27,10 +27,7 @@ const ContactView = Backbone.View.extend({
     event.stopPropagation();
     this.trigger("selected", this);
     console.log("I am showing!");
-    //     var modalHtml = this.modalTemplate(this.model.toJSON());
-    // console.log("HEEEYY " + modalHtml);
-    //     $('.contact-card').append(modalHtml);
-    // this.modal.show();
+
   }
 });
 

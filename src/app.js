@@ -16,6 +16,14 @@ var contactData = [
     name: "Rosco",
     email: "Rosco@yahoo.com",
     phone: "614-342-4223"
+  }, {
+    name: "Roscie",
+    email: "Roscie@yahoo.com",
+    phone: "614-342-4223"
+  }, {
+    name: "Moscoe",
+    email: "Moscoe@yahoo.com",
+    phone: "614-342-4223"
   }
 ];
 

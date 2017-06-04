@@ -16,8 +16,6 @@ const RolodexView = Backbone.View.extend({
 
   },
 
-  // this.modal = $('#contact-details');
-  // this.modalTemplate = _.template($('#tmpl-contact-details').html());
 
   render: function() {
     this.$("#contact-cards").empty();
@@ -59,7 +57,6 @@ const RolodexView = Backbone.View.extend({
   },
 
   createContact: function() {
-    //  event.preventDefault();
     var contact = new Contact(this.getInputData());
     console.log("I am " + contact);
     this.model.add(contact);
@@ -74,7 +71,7 @@ const RolodexView = Backbone.View.extend({
   displayModal: function(contactView) {
     $('#contact-details').show();
     $('#contact-details').empty();
-    // event.stopPropagation();
+
     var newModalTemplate = this.modalTemplate(contactView.model.toJSON());
     this.$('#contact-details').append(newModalTemplate);
 
@@ -82,11 +79,9 @@ const RolodexView = Backbone.View.extend({
   },
 
   hideModal: function(contactView) {
-    // if ($('#contact-details').css("display") !== 'none') {
-    //   $('#contact-details').hide();
-
-    if ($('#contact-details').has(event.target).length === 0 && !$('#contact-details').is(event.target)) {
+    if ($('#contact-details').css("display") !== 'none') {
       $('#contact-details').hide();
+
       console.log("I am working to hide!");
     }
   }
