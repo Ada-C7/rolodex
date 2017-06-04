@@ -46,9 +46,9 @@ const RolodexView = Backbone.View.extend({
   },
 
   clearContact: function(event) {
-      $("#name").val("");
-      $("#phone").val("");
-      $("#email").val("");
+    $("#name").val("");
+    $("#phone").val("");
+    $("#email").val("");
   },
 
   readContactForm: function() {
@@ -74,28 +74,19 @@ const RolodexView = Backbone.View.extend({
     }
     return formData;
   },
-
+  
   showContactInfo: function(contactView) {
-    // console.log("Contact View:");
-// console.log(contactView);
 
     var contactCardDetailsTemplate = this.template2(contactView.model.toJSON());
     $('#contact-details').html(contactCardDetailsTemplate);
 
     return this;
 
-    // contactView.model.toJSON()
-    //invoke the compiled template on
-      // $("#contact-details").show();
   },
 
   hideContactInfo: function(event) {
-      $("#contact-details").hide();
+    $("#contact-details").hide();
   }
-
-
 });
-
-
 
 export default RolodexView;

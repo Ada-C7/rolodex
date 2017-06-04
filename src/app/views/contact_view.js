@@ -23,7 +23,6 @@ var ContactView = Backbone.View.extend({
     event.stopPropagation();
     $("#contact-details").show();
     this.trigger("showModal", this);
-
   }
 });
 
