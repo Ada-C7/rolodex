@@ -2,8 +2,10 @@ import Application from 'app/models/application';
 import ApplicationView from 'app/views/application_view';
 import $ from 'jquery';
 import _ from 'underscore';
-import Contact from 'app/models/contact.js';
-import ContactList from 'app/collections/rolodex.js';
+import Contact from './app/models/contact.js';
+import Rolodex from './app/collections/rolodex.js';
+import ContactView from './app/views/contact_view.js';
+import RolodexView from './app/views/rolodex_view.js';
 
 var application = new Application();
 
@@ -28,77 +30,22 @@ var contactData = [
   }
 ];
 
-var myContactList = new ContactList(contactData);
-
-
-var getFormData = function() {
-
-  var formName = $("#name").val();
-  $("#name").val('');
-
-  var formEmail = $("#email").val();
-  $("#email").val('');
-
-  var formPhone = $("#phone").val();
-  $("#phone").val('');
-
-  return {
-    name: formName,
-    email: formEmail,
-    phone: formPhone
-  };
-
-};
-
-var render = function(contact){
-
-    //get template using jquery
-    var templateText = $('#tmpl-contact-card').html();
-
-    // Create and underscore template object
-
-    var templateObject = _.template(templateText);
-
-    //Fill in the ERB with data from our task.
-
-    var compliledHTML = $(templateObject(contact.toJSON()));
-
-  //append the results to out DOM
-    $('#contact-cards').append(compliledHTML);
-
-    // compliledHTML.find("button.alert").click({contact: contact}, function(event) {
-    // myTaskList.remove(event.data.contact);
-  // });
-};
-
-
-
-var renderList = function(taskList) {
-  $("#contact-cards").empty();
-  taskList.each(function(task) {
-    render(task);
-  });
-};
+var myRolodex = new Rolodex(contactData);
 
 
 $(document).ready(function() {
 
-  myContactList.on("update", function() {
-    renderList(myContactList);
+  $(document).click( function(){
+    $('#contact-details').hide();
   });
-  // render(myTask);
-  // render(myOtherTask);
-  $(".btn-save").click(function() {
-  //
-  //   var task = new Task(getFormData());
-    // var formData = getFormData();
-    var newContact = new Contact(getFormData());
-    myContactList.add(newContact);
-  // render(newTask);
-  // render List(myContactList);
-});
-  // myContactList.each(function(task) {
-  //     render(task);
-  //   });
-  renderList(myContactList);
+
+  var contactListView = new RolodexView({
+    model: myRolodex,
+    template: _.template($('#tmpl-contact-card').html()),
+    detailTemplate: _.template($('#tmpl-contact-details').html()),
+    el: "#application",
+  });
+  // console.log(contactListView);
+  contactListView.render();
+
 });
