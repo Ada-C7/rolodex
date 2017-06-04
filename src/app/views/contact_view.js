@@ -20,13 +20,16 @@ const ContactView = Backbone.View.extend({
     return this;
   },
   events: {
-    'click li' : 'showModal'
+    'click ' : 'showModal'
   },
-  showModal: function() {
+  showModal: function(event) {
+
+    event.stopPropagation();
     this.trigger("selected", this);
-//     var modalHtml = this.modalTemplate(this.model.toJSON());
-// console.log("HEEEYY " + modalHtml);
-//     $('.contact-card').append(modalHtml);
+    console.log("I am showing!");
+    //     var modalHtml = this.modalTemplate(this.model.toJSON());
+    // console.log("HEEEYY " + modalHtml);
+    //     $('.contact-card').append(modalHtml);
     // this.modal.show();
   }
 });
