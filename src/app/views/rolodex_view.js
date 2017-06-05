@@ -6,8 +6,10 @@ import ContactView from "./contact_view";
 var RolodexView = Backbone.View.extend({
   initialize: function(params){
     this.template = params.template;
-    this.modalTemplate = params.modalTemplate;
+    this.detailTemplate = params.detailTemplate;
+    this.editTemplate = params.editTemplate;
     this.listenTo(this.model, "update", this.render);
+    this.currentContact = null;
   },
   render: function(){
     var self = this;
@@ -31,7 +33,9 @@ var RolodexView = Backbone.View.extend({
     "click .btn-save": "addContact",
     "click .btn-cancel": "clearForm",
     "showDetail": "showDetail",
-    "click": "hideDetail"
+    "click": "hideDetail",
+    "click #edit-button": "editContact",
+    "click #btn-update": "update"
   },
 
   addContact: function(e){
@@ -42,16 +46,26 @@ var RolodexView = Backbone.View.extend({
   },
 
   showDetailHandler: function(data){
-    var renderedTemplateHTML = this.modalTemplate(data.toJSON());
+    var renderedTemplateHTML = this.detailTemplate(data.toJSON());
+    // console.log(renderedTemplateHTML);
     this.$("#contact-details").html(renderedTemplateHTML).show();
-    console.log("success!!!");
-    console.log(this.model);
+    this.currentContact = data;
+    // console.log("success!!!");
+    // console.log(this.model);
   },
 
   hideDetail: function(e){
-    console.log("here");
     this.$("#contact-details").hide();
   },
+
+  editContact: function(e){
+    // console.log("Working!");
+    event.stopPropagation();
+    var renderedTemplateHTML = this.editTemplate(this.currentContact.toJSON());
+    // console.log(renderedTemplateHTML);
+    this.$("#edit-contact").html(renderedTemplateHTML).show();
+  },
+
 
   clearForm: function(e){
     $("#name").val("");
@@ -60,17 +74,17 @@ var RolodexView = Backbone.View.extend({
   },
 
   readContactForm: function(){
-    var nameData = this.$("#name").val();
+    var nameData = this.$("#edit-name").val();
     console.log(nameData);
-    $("#name").val("");
+    // $("#name").val("");
 
-    var emailData = this.$("#email").val();
+    var emailData = this.$("#edit-email").val();
     console.log(emailData);
-    $("#email").val("");
+    // $("#email").val("");
 
-    var phoneData = this.$("#phone").val();
+    var phoneData = this.$("#edit-phone").val();
     console.log(phoneData);
-    $("#phone").val("");
+    // $("#phone").val("");
 
     var formData = {};
     if (nameData && nameData != "") {
@@ -82,6 +96,7 @@ var RolodexView = Backbone.View.extend({
     if (phoneData && phoneData != "") {
       formData["phone"] = phoneData
     }
+    this.clearForm();
     return formData;
   }
 });

@@ -12,6 +12,7 @@ const ContactView = Backbone.View.extend({
 
   events: {
     "click": "showDetail"
+    // "click": "editContact"
   },
   render: function(){
     var compiledHTML = this.template(this.model.toJSON());

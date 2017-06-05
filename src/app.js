@@ -1,15 +1,16 @@
 import $ from "jquery";
 import _ from "underscore";
 
-import Contact from "./app/models/contact.js"
-import Rolodex from "./app/collections/rolodex.js"
-import ContactView from "./app/views/contact_view"
-import RolodexView from "./app/views/rolodex_view"
+import Contact from "./app/models/contact.js";
+import Rolodex from "./app/collections/rolodex.js";
+import ContactView from "./app/views/contact_view";
+import RolodexView from "./app/views/rolodex_view";
 
 var contactTemplate;
 var rolodex;
 var contact;
-var modalTemplate;
+var detailTemplate;
+var editTemplate;
 
 var contactData = [
   {
@@ -41,7 +42,9 @@ var renderList = function(rolodex){
 
 $(document).ready(function(){
   contactTemplate = _.template($("#tmpl-contact-card").html());
-  modalTemplate = _.template($("#tmpl-contact-details").html());
+  detailTemplate = _.template($("#tmpl-contact-details").html());
+  editTemplate = _.template($("#tmpl-contact-edit").html());
+  $("#edit-contact").hide();
   $("#contact-details").hide();
 
   // contact = new Contact(contactData[0])
@@ -55,7 +58,8 @@ $(document).ready(function(){
   var rolodexView = new RolodexView({
     template: contactTemplate,
     model: rolodex,
-    modalTemplate: modalTemplate,
+    detailTemplate: detailTemplate,
+    editTemplate: editTemplate,
     el: $('body')
   });
 

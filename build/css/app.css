@@ -41,6 +41,20 @@ header {
   border-radius: 20%;
 }
 
+#edit-contact {
+  z-index: 10;
+  position: fixed;
+  width: 40%;
+  height: 50%;
+  top: 30%;
+  left: 30%;
+  background-color: #538ca3;
+  text-align: center;
+  border: 1em solid white;
+  margin-left: 20%;
+  border-radius: 20%;
+}
+
 #contact-cards {
   width: 70%;
   margin: 0 auto;
