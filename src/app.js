@@ -108,11 +108,16 @@ $(document).ready(function() {
 
   $('#contact-details').hide()
 
-
+  $(window).click(function(event) {
+    // console.log(event.target.id);
+    // console.log(event.target.id === 'contact-details');
+    if( event.target.id !== 'contact-details'){
+      $('#contact-details').hide()
+    }
+  });
 
   // contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
   // var generateHTML2 = contactDetailsTemplate(oneContact.toJSON());
   // $('#contact-details').append(generateHTML2);
-
 
 });
