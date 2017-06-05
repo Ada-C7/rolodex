@@ -41,13 +41,6 @@ var secondContact = new Contact({});
 
 var myRolodex = new Rolodex(contactData);
 
-// var render = function(contact) {
-//   var templateText = $("#tmpl-contact-card").html();
-//   var templateObject = _.template(templateText);
-//   var compiledHTML = $(templateObject(contact.toJSON()));
-//   $("#contact-cards").append(compiledHTML);
-// };
-
 $(document).ready(function(){
 
   var myRolodexView = new RolodexView({
@@ -56,7 +49,6 @@ $(document).ready(function(){
     detailsContactTemplate: _.template($('#tmpl-contact-details').html()),
     el: 'body',
   });
-  // console.log(myRolodexView);
 
   myRolodexView.render();
 });
