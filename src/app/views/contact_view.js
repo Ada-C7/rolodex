@@ -4,7 +4,7 @@ import $ from 'jquery';
 import Contact from '../models/contact.js';
 
 const ContactView = Backbone.View.extend({
-  tagName: 'button',
+  tagName: 'li',
   className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns",
   initialize: function(params) {
     this.cardTemplate = params.cardTemplate;
@@ -13,21 +13,19 @@ const ContactView = Backbone.View.extend({
   },
 
   render: function() {  // called when we want it to load into DOM
-    var compiledTemplate = this.cardTemplate(this.model.toJSON());
-    this.$el.html(compiledTemplate);
+    var compiledTemplate1 = this.cardTemplate(this.model.toJSON());
+    this.$el.html(compiledTemplate1);
     return this;
   },
 
   events: {
-    'click button.contact-card': "showDetails"
+    'click ': "showDetails"
   },
 
   showDetails: function(e) {
-    e.preventDefault();
-    this.$('#contact-details').show();
-    // var compiledTemplate = this.detailTemplate(this.model.toJSON());
-    // this.$el.html(compiledTemplate);
-    // return this;
+    e.stopPropagation();
+    $('#contact-details').show();
+    this.trigger('select', this)
   }
 
 
