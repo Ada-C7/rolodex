@@ -47,7 +47,7 @@ $(document).ready(function() {
 var myRoloView = new RolodexView({
   model: myContactList,
   template: _.template($('#tmpl-contact-card').html()),
-  el: '#application'
+  el: 'body'
 });
 myRoloView.render();
 });
