@@ -20,7 +20,7 @@ var ContactDetailsView = Backbone.View.extend({
 
     var compiledTemplate = this.template(this.model.toJSON());
 
-    this.$el.html(compiledTemplate);
+    this.$("#contact-details").html(compiledTemplate);
     this.$el.show();
 
     return this;
@@ -33,7 +33,7 @@ var ContactDetailsView = Backbone.View.extend({
   hideDetails: function(){
     console.log("hide-details clicked");
     // console.log(this);
-    $('#contact-details').hide();
+    this.$el.hide();
   }
 
 

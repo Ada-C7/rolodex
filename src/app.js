@@ -112,7 +112,7 @@ $(document).ready(function() {
   // });
   //
   // myContactView.render();
-  $('#contact-details').hide();
+  
 
   var myRolodexView = new RolodexView({
     model: myContacts,
