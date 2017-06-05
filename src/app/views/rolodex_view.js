@@ -35,61 +35,63 @@ var RolodexView = Backbone.View.extend({
     "showDetail": "showDetail",
     "click": "hideDetail",
     "click #edit-button": "editContact",
-    "click #btn-update": "update"
+    "click #btn-update": "update",
+    "click #btn-cancel-edit": "hideEditForm"
   },
 
   addContact: function(e){
-    var formData = this.readContactForm();
+    var formData = this.readContactForm("create");
     console.log("formData: " + formData);
+    this.clearForm("create");
+
     this.model.add(formData);
     console.log(this.$("#name"));
   },
 
   showDetailHandler: function(data){
     var renderedTemplateHTML = this.detailTemplate(data.toJSON());
-    // console.log(renderedTemplateHTML);
+    console.log("success!!!");
+    this.$("#contact-details").show();
+    console.log(renderedTemplateHTML);
     this.$("#contact-details").html(renderedTemplateHTML).show();
     this.currentContact = data;
-    // console.log("success!!!");
-    // console.log(this.model);
   },
 
-  hideDetail: function(e){
-    this.$("#contact-details").hide();
+  hideEditForm: function(e){
+    this.$("#edit-contact").hide();
   },
 
   editContact: function(e){
     // console.log("Working!");
-    event.stopPropagation();
     var renderedTemplateHTML = this.editTemplate(this.currentContact.toJSON());
     // console.log(renderedTemplateHTML);
     this.$("#edit-contact").html(renderedTemplateHTML).show();
   },
 
   update: function(){
-    var formData = this.readContactForm();
+    var formData = this.readContactForm("edit");
     this.currentContact.set(formData);
     this.$("#edit-contact").hide();
+    console.log("Hey");
+    console.log(this.currentContact);
+    this.showDetailHandler(this.currentContact);
   },
 
-  clearForm: function(e){
-    $("#name").val("");
-    $("#email").val("");
-    $("#phone").val("");
+  hideDetail: function(event){
+    this.$("#contact-details").hide();
   },
 
-  readContactForm: function(){
-    var nameData = this.$("#edit-name").val();
-    console.log(nameData);
-    // $("#name").val("");
+  clearForm: function(event, formName){
+    this.$(".input").val("");
 
-    var emailData = this.$("#edit-email").val();
-    console.log(emailData);
-    // $("#email").val("");
+  },
 
-    var phoneData = this.$("#edit-phone").val();
-    console.log(phoneData);
-    // $("#phone").val("");
+  readContactForm: function(formName){
+    var nameData = this.$("#" + formName + "-name").val();
+
+    var emailData = this.$("#" + formName + "-email").val();
+
+    var phoneData = this.$("#" + formName + "-phone").val();
 
     var formData = {};
     if (nameData && nameData != "") {
