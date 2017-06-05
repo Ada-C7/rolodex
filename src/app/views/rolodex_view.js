@@ -11,6 +11,7 @@ var RolodexView = Backbone.View.extend({
     this.detailTemplate = params.detailTemplate;
     this.listenTo(this.model,'update', this.render);
   },
+
   render: function(){
     var self = this;
     this.$('#contact-cards').empty();
@@ -21,10 +22,11 @@ var RolodexView = Backbone.View.extend({
         detailTemplate: self.detailTemplate
       });
       self.$('#contact-cards').append(contactView.render().$el);
-
+      self.listenTo(contactView,'select', self.show_details)
     });
     return this;
   },
+
   events: {
     'click .btn-save': 'addContact',
     'click .btn-cancel': 'clearForm'
@@ -43,7 +45,6 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val('');
   },
 
-
   readForm: function(){
     var formName = this.$('#name').val();
     var formEmail = this.$('#email').val();
@@ -61,6 +62,16 @@ var RolodexView = Backbone.View.extend({
       formData["phone"] = formPhone
     }
     return formData;
+  },
+
+  show_details: function(contactView){
+
+    // console.log('Click of button for ' + this.model.get('name'));
+    console.log('Click of button for ' + contactView.model.get('name'));
+    var compiledTemplate2 = this.detailTemplate(contactView.model.toJSON());
+    $('#contact-details').html(compiledTemplate2);
+    return this;
+
   }
 });
 
