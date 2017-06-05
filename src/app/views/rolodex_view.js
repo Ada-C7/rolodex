@@ -66,6 +66,11 @@ var RolodexView = Backbone.View.extend({
     this.$("#edit-contact").html(renderedTemplateHTML).show();
   },
 
+  update: function(){
+    var formData = this.readContactForm();
+    this.currentContact.set(formData);
+    this.$("#edit-contact").hide();
+  },
 
   clearForm: function(e){
     $("#name").val("");
