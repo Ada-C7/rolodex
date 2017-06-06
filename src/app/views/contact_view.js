@@ -7,8 +7,16 @@ const ContactView = Backbone.View.extend({
 
   initialize: function(contactParams) {
       this.template =  contactParams.template;
-
       this.listenTo(this.model, "change", this.render);
+    },
+
+    events: {
+      'click': 'selectContact'
+    },
+
+    selectContact: function(event) {
+      event.stopPropagation();
+      this.trigger("showDetails", this.model);
     },
 
     render: function() {

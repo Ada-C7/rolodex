@@ -28,24 +28,27 @@ const RolodexView = Backbone.View.extend({
 
       // Then render the ContactView
       // And append the resulting HTML to the DOM.
-      self.$('#contact-cards').append(contactView.render().$el);
 
       // equivalent to
       // self.$el.find('.todo-items').whatever
+      self.$('#contact-cards').append(contactView.render().$el);
+
+      self.listenTo(contactView, "showDetails", self.showModal);
     });
 
     // Rules of backbone: always return `this` from `render()`
     return this;
   },
   events: {
-    'click':  'consoleLog',
+    'click':  'hideModal',
     'click .btn-save': 'addContact',
-    'click .btn-cancel': 'clearForm'
+    'click .btn-cancel': 'clearForm',
+    'click  formData': 'consoleLog'
   },
 
-consoleLog : function(){
-  console.log("TEST");
-},
+  consoleLog : function(){
+    console.log(this);
+  },
   addContact: function(event) {
     console.log("In add contact, form data:");
 
@@ -87,6 +90,25 @@ consoleLog : function(){
       formData.phone = phoneData;
     }
     return formData;
+  },
+
+  showModal: function(contact) {
+    this.$("#contact-details").empty();
+
+    this.$("#contact-details").show();
+    var contactDetail = new ContactView( {
+      model: contact,
+      template: _.template($("#tmpl-contact-details").html()),
+    });
+    this.$("#contact-details").append(contactDetail.render().el);
+    return this;
+  },
+  // hide modal
+  hideModal: function() {
+    this.$("#contact-details").hide();
+  },
+  // other click
+  clickElsewhere: function() {
   }
 });
 
