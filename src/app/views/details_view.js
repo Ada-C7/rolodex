@@ -10,30 +10,39 @@ var DetailsView = Backbone.View.extend({
 
   initialize: function(params) {
     this.templateDetails = params.templateDetails;
-    // this.listenTo(this.model, "change", completeUpdate);
+    // this.listenTo(this.model, "change", this.render());
     // console.log(this);
   },
+  // 
+  // render: function(){
+  //   var compiledTemplate = this.templateCard( this.model.toJSON() );
+  //   this.$el.html(compiledTemplate);
+  //   return this;
+  // },
 
   render: function() {
-    var compiledTemplate = this.templateDetails(this.model.toJSON());
+    console.log(this);
+    var compiledTemplate = this.templateDetails( this.model.toJSON() );
     this.$el.html(compiledTemplate);
-    $('div.details').show();
-    $('div.edit-form').hide();
-    this.$el.show();
     return this;
   },
 
   events: {
     'click .btn-delete': "deleteContact",
-    'click .btn-edit': "editForm",
+    'click .btn-edit': "hide",
     'click .btn-update': "updateContact",
     'click .btn-cancel': "cancelEdit"
   },
 
   deleteContact: function(event) {
     event.stopPropagation();
-    this.hide();
+    console.log("want to delete contact");
+    console.log(this.model);
     this.model.destroy();
+    // this.model.unbind();
+    // this.unbind();
+
+    // this.hide();
   },
 
   editForm: function(event) {
@@ -64,7 +73,19 @@ var DetailsView = Backbone.View.extend({
   },
 
   hide: function() {
+    event.stopPropagation();
+    console.log("about to remove view");
+    // this.trigger("removeView");
     this.$el.hide();
+
+    this.model.unbind( 'change', this.render, this );
+    this.unbind();
+    this.remove();
+
+    delete this.$el;
+    delete this.el;
+    // this.render();
+
   }
 });
 

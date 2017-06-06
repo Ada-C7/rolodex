@@ -28,7 +28,7 @@ header {
 }
 
 #contact-details {
-  display: none;
+  /*display: none;*/
   z-index: 10;
   position: fixed;
   width: 40%;
@@ -42,7 +42,7 @@ header {
   border-radius: 20%;
 }
 
-div.details {
+/*div.details {
   margin-top: 15%;
 }
 
@@ -50,7 +50,7 @@ div.edit-form{
   width: 90%;
   margin-top: 5%;
   margin-left: 5%;
-}
+}*/
 
 #contact-cards {
   width: 70%;

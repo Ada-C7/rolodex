@@ -36,8 +36,8 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': "addContact",
     'click .btn-cancel': "clearForm",
-    'click #contact-details': "stopHide",
-    'click': "hideDetails"
+    'click #contact-details': "stopHide"
+    // 'click': "hideDetails"
   },
 
   addContact: function(event){
@@ -72,10 +72,11 @@ var RolodexView = Backbone.View.extend({
   stopHide: function(event){
     event.stopPropagation();
   },
-  
-  hideDetails: function(event) {
-    $("#contact-details").hide();
-  },
+
+  // hideDetails: function(event) {
+  //   this.trigger("removeView");
+  //   $("#contact-details").hide();
+  // },
 
   displayDetails: function(contactCard) {
     console.log("creating the details view");
@@ -83,20 +84,17 @@ var RolodexView = Backbone.View.extend({
     var detailsView = new DetailsView ({
       model: contactCard.model,
       templateDetails: this.templateDetails,
-      el: '#contact-details'
     });
 
-    console.log(detailsView);
-    detailsView.render();
-    this.listenTo( detailsView, "fillInFormToEdit", this.fillInFormToEdit );
-  },
+    // console.log(detailsView);
+    this.$('#contact-details').empty();
+    this.$('#contact-details').append( detailsView.render().$el );
 
-  fillInFormToEdit: function(contact) {
-    this.$("#name").val(contact.model.attributes.name);
-    this.$("#phone").val(contact.model.attributes.phone);
-    this.$("#email").val(contact.model.attributes.email);
-
-    contact.model.destroy();
+    $('div.details').show();
+    // $('div.edit-form').hide();
+    $('#contact-details').show();
+    // detailsView.render().append('#contact_details');
+    // this.listenTo( detailsView, "removeView", this.removeView );
   }
 });
 
