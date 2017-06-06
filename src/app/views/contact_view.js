@@ -11,6 +11,9 @@ const ContactView = Backbone.View.extend({
 
   initialize: function(params) {
     this.templateCard = params.templateCard;
+    this.listenTo(this.model, "change", this.render);
+    // this.listenTo(this.model, "update", this.render);
+
     console.log(this);
   },
 

@@ -10,16 +10,12 @@ var DetailsView = Backbone.View.extend({
 
   initialize: function(params) {
     this.templateDetails = params.templateDetails;
-    // this.listenTo(this.model, "change", completeUpdate);
-    // console.log(this);
   },
 
   render: function() {
-    var compiledTemplate = this.templateDetails(this.model.toJSON());
+    console.log(this);
+    var compiledTemplate = this.templateDetails( this.model.toJSON() );
     this.$el.html(compiledTemplate);
-    $('div.details').show();
-    $('div.edit-form').hide();
-    this.$el.show();
     return this;
   },
 
@@ -28,24 +24,21 @@ var DetailsView = Backbone.View.extend({
     'click .btn-edit': "editForm",
     'click .btn-update': "updateContact",
     'click .btn-cancel': "cancelEdit",
-    'click .btn-close': "closeView"
-    // 'click .contact-card': "destroyCurrentView"
+    'click .edit-form': "preventHide",
+    'click': 'hide'
   },
 
   // running a loop for multiple views? happens when you click directly between cards
   deleteContact: function(event) {
-    console.log("model below will be deleted");
-    console.log(this.model);
     event.stopPropagation();
-    this.$el.empty();
-    // this.hide();
-    // console.log("this model will be deleted");
-    // console.log(this.model);
-    // this.model.destroy();
+    console.log("want to delete contact");
+    console.log(this.model);
+    this.model.destroy();
+    this.hide();
   },
 
   editForm: function(event) {
-    // event.stopPropagation();
+    event.stopPropagation();
 
     console.log("you want to edit this contact");
     $('div.details').hide();
@@ -57,11 +50,14 @@ var DetailsView = Backbone.View.extend({
   },
 
   updateContact: function(event) {
-    this.model.attributes.name = this.$("#name-edit").val();
-    this.model.attributes.phone = this.$("#phone-edit").val();
-    this.model.attributes.email = this.$("#email-edit").val();
+    event.stopPropagation();
+
+    this.model.set( { name: this.$("#name-edit").val() } );
+    this.model.set( { phone: this.$("#phone-edit").val() } );
+    this.model.set( { email: this.$("#email-edit").val() } );
+
     this.render();
-    return false;
+    $('div.edit-form').hide();
   },
 
   cancelEdit: function(event) {
@@ -70,13 +66,21 @@ var DetailsView = Backbone.View.extend({
     return false;
   },
 
-  hide: function() {
-    this.$el.hide();
+  preventHide: function(event) {
+    event.stopPropagation();
   },
 
-  closeView: function(event) {
-    console.log("destory the view");
+  hide: function(event) {
+    console.log("killing view - preventing zombie view");
+
+    this.model.unbind( 'change', this.render, this );
+    this.unbind();
     this.remove();
+
+    delete this.$el;
+    delete this.el;
+
+    $('#contact-details').hide();
   }
 });
 
