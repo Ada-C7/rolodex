@@ -10,15 +10,7 @@ var DetailsView = Backbone.View.extend({
 
   initialize: function(params) {
     this.templateDetails = params.templateDetails;
-    // this.listenTo(this.model, "change", this.render());
-    // console.log(this);
   },
-  // 
-  // render: function(){
-  //   var compiledTemplate = this.templateCard( this.model.toJSON() );
-  //   this.$el.html(compiledTemplate);
-  //   return this;
-  // },
 
   render: function() {
     console.log(this);
@@ -29,9 +21,11 @@ var DetailsView = Backbone.View.extend({
 
   events: {
     'click .btn-delete': "deleteContact",
-    'click .btn-edit': "hide",
+    'click .btn-edit': "editForm",
     'click .btn-update': "updateContact",
-    'click .btn-cancel': "cancelEdit"
+    'click .btn-cancel': "cancelEdit",
+    'click .edit-form': "preventHide",
+    'click': 'hide'
   },
 
   deleteContact: function(event) {
@@ -46,7 +40,7 @@ var DetailsView = Backbone.View.extend({
   },
 
   editForm: function(event) {
-    // event.stopPropagation();
+    event.stopPropagation();
 
     console.log("you want to edit this contact");
     $('div.details').hide();
@@ -58,10 +52,13 @@ var DetailsView = Backbone.View.extend({
   },
 
   updateContact: function(event) {
+    event.stopPropagation();
+
     this.model.attributes.name = this.$("#name-edit").val();
     this.model.attributes.phone = this.$("#phone-edit").val();
     this.model.attributes.email = this.$("#email-edit").val();
     this.render();
+    $('div.edit-form').hide();
     return false;
   },
 
@@ -72,9 +69,13 @@ var DetailsView = Backbone.View.extend({
     return false;
   },
 
-  hide: function() {
+  preventHide: function(event) {
     event.stopPropagation();
-    console.log("about to remove view");
+  },
+
+  hide: function(event) {
+    event.stopPropagation();
+    console.log("kill the zombie view");
     // this.trigger("removeView");
     this.$el.hide();
 
@@ -84,8 +85,8 @@ var DetailsView = Backbone.View.extend({
 
     delete this.$el;
     delete this.el;
-    // this.render();
 
+    $('#contact-details').hide();
   }
 });
 

@@ -26,6 +26,8 @@ var RolodexView = Backbone.View.extend({
       });
 
       that.$('#contact-cards').append(contactView.render().$el);
+
+      that.$('#contact-details').hide();
       // this is the second part to trigger - this/that is listening for the event "displayDetails"
       that.listenTo( contactView, "displayDetails", that.displayDetails );
     });
@@ -73,11 +75,6 @@ var RolodexView = Backbone.View.extend({
     event.stopPropagation();
   },
 
-  // hideDetails: function(event) {
-  //   this.trigger("removeView");
-  //   $("#contact-details").hide();
-  // },
-
   displayDetails: function(contactCard) {
     console.log("creating the details view");
 
@@ -91,10 +88,8 @@ var RolodexView = Backbone.View.extend({
     this.$('#contact-details').append( detailsView.render().$el );
 
     $('div.details').show();
-    // $('div.edit-form').hide();
+    $('div.edit-form').hide();
     $('#contact-details').show();
-    // detailsView.render().append('#contact_details');
-    // this.listenTo( detailsView, "removeView", this.removeView );
   }
 });
 
