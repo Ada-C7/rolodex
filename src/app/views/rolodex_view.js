@@ -35,9 +35,9 @@ var RolodexView = Backbone.View.extend({
 
   events: {
     'click .btn-save': "addContact",
-    'click .btn-cancel': "clearForm",
-    'click #contact-details': "stopHide",
-    'click': "hideDetails"
+    'click .btn-cancel': "clearForm"
+    // 'click #contact-details': "stopHide",
+    // 'click': "hideDetails"
   },
 
   addContact: function(event){
@@ -69,35 +69,44 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val("");
   },
 
-  stopHide: function(event){
-    event.stopPropagation();
-  },
-  
-  hideDetails: function(event) {
-    $("#contact-details").hide();
-  },
+  // stopHide: function(event){
+  //   event.stopPropagation();
+  // },
+  //
+  // hideDetails: function(event) {
+  //   $("#contact-details").hide();
+  // },
 
   displayDetails: function(contactCard) {
     console.log("creating the details view");
 
-    var detailsView = new DetailsView ({
-      model: contactCard.model,
-      templateDetails: this.templateDetails,
-      el: '#contact-details'
-    });
+    // if ($('#contact-details').css('display') != 'none')
+    // {
+      // console.log("the details display is showing");
 
-    console.log(detailsView);
-    detailsView.render();
-    this.listenTo( detailsView, "fillInFormToEdit", this.fillInFormToEdit );
-  },
+    // } else {
 
-  fillInFormToEdit: function(contact) {
-    this.$("#name").val(contact.model.attributes.name);
-    this.$("#phone").val(contact.model.attributes.phone);
-    this.$("#email").val(contact.model.attributes.email);
+        var detailsView = new DetailsView ({
+        model: contactCard.model,
+        templateDetails: this.templateDetails,
+        el: '#contact-details'
+      });
 
-    contact.model.destroy();
+
+      console.log(detailsView);
+      this.$('#contact-details').replaceWith(detailsView.render().$el);
+    // }
+    // detailsView.render();
+    // this.listenTo( detailsView, "fillInFormToEdit", this.fillInFormToEdit );
   }
+  //
+  // fillInFormToEdit: function(contact) {
+  //   this.$("#name").val(contact.model.attributes.name);
+  //   this.$("#phone").val(contact.model.attributes.phone);
+  //   this.$("#email").val(contact.model.attributes.email);
+  //
+  //   contact.model.destroy();
+  // }
 });
 
 export default RolodexView;

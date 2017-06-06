@@ -27,13 +27,21 @@ var DetailsView = Backbone.View.extend({
     'click .btn-delete': "deleteContact",
     'click .btn-edit': "editForm",
     'click .btn-update': "updateContact",
-    'click .btn-cancel': "cancelEdit"
+    'click .btn-cancel': "cancelEdit",
+    'click .btn-close': "closeView"
+    // 'click .contact-card': "destroyCurrentView"
   },
 
+  // running a loop for multiple views? happens when you click directly between cards
   deleteContact: function(event) {
+    console.log("model below will be deleted");
+    console.log(this.model);
     event.stopPropagation();
-    this.hide();
-    this.model.destroy();
+    this.$el.empty();
+    // this.hide();
+    // console.log("this model will be deleted");
+    // console.log(this.model);
+    // this.model.destroy();
   },
 
   editForm: function(event) {
@@ -57,7 +65,6 @@ var DetailsView = Backbone.View.extend({
   },
 
   cancelEdit: function(event) {
-    // or you could render this view again...
     $('div.details').show();
     $('div.edit-form').hide();
     return false;
@@ -65,6 +72,11 @@ var DetailsView = Backbone.View.extend({
 
   hide: function() {
     this.$el.hide();
+  },
+
+  closeView: function(event) {
+    console.log("destory the view");
+    this.remove();
   }
 });
 

@@ -28,6 +28,7 @@ const ContactView = Backbone.View.extend({
     // use .stopPropagation to stop the hideDetails click handler from also being called
     event.stopPropagation();
     console.log("you clicked on a card");
+  
     // this is the contact view - which has access to the contact model
     this.trigger("displayDetails", this);
   }
