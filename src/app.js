@@ -19,6 +19,7 @@ var contactData = [
 
 var myContactList = new ContactList(contactData);
 
+//function that would allow us to save data into the contact list but not necc associated directly with model functionality/actions/code
 var getFormData = function() {
   var formName = $("#name").val();
   $("#name").val('');
@@ -57,33 +58,15 @@ var getFormData = function() {
 //
 };
 
-var renderList = function(contactList) {
-  // Clear the list
-  $(".contacts").empty();
-
-  // Loop Through rendering each contact
-  contactList.each(function(contact) {
-    // Create a ContactView
-    var contactView = new ContactView({
-      model: contact, // get model
-      // the template
-      template: _.template( $('#contactListTemplate').html() )
-    });
-    // Render the View
-    // Then append the result
-    // to the DOM
-    $(".contacts").append(contactView.render().el);
-  });
-};
 
 $(document).ready(function() {
-  renderList(myContactList);
+  renderList(myContactListView);
 
   var myContactListView = new
   ContactListView({
     model: contactList,
     template:
-    _.template($('#contactItemTemplate').html()),
+    _.template($('#contactListTemplate').html()),
     el: '#application'
   });
   myContactListView.render();
