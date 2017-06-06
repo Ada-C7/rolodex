@@ -28,7 +28,6 @@ var DetailsView = Backbone.View.extend({
     'click': 'hide'
   },
 
-  // running a loop for multiple views? happens when you click directly between cards
   deleteContact: function(event) {
     event.stopPropagation();
     console.log("want to delete contact");

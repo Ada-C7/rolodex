@@ -27,7 +27,7 @@ var RolodexView = Backbone.View.extend({
 
       that.$('#contact-cards').append(contactView.render().$el);
 
-      that.$('#contact-details').hide();
+      // that.$('#contact-details').hide();
       // this is the second part to trigger - this/that is listening for the event "displayDetails"
       that.listenTo( contactView, "displayDetails", that.displayDetails );
     });
@@ -37,10 +37,8 @@ var RolodexView = Backbone.View.extend({
 
   events: {
     'click .btn-save': "addContact",
-
-    'click .btn-cancel': "clearForm"
-
-    // 'click #contact-details': "stopHide"
+    'click .btn-cancel': "clearForm",
+    'click': "hideDetails"
   },
 
   addContact: function(event){
@@ -72,6 +70,10 @@ var RolodexView = Backbone.View.extend({
     this.$('#phone').val("");
   },
 
+  hideDetails: function(event) {
+    $('#contact-details').hide();
+  },
+
   displayDetails: function(contactCard) {
     console.log("creating the details view");
 
@@ -80,7 +82,6 @@ var RolodexView = Backbone.View.extend({
       templateDetails: this.templateDetails,
     });
 
-    // console.log(detailsView);
     this.$('#contact-details').empty();
     this.$('#contact-details').append( detailsView.render().$el );
 

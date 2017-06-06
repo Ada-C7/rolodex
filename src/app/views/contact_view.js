@@ -5,16 +5,14 @@ import Contact from '../models/contact';
 
 // this view is ONLY responsible for the contact card
 const ContactView = Backbone.View.extend({
-  // cards are being sandwhiched inbetween div elements
+
   tagName: "li",
   className: "contact-card small-11 medium-4 large-2 medium-offset-1 columns end",
 
   initialize: function(params) {
     this.templateCard = params.templateCard;
     this.listenTo(this.model, "change", this.render);
-    // this.listenTo(this.model, "update", this.render);
-
-    console.log(this);
+    // console.log(this);
   },
 
   render: function(){
@@ -31,7 +29,7 @@ const ContactView = Backbone.View.extend({
     // use .stopPropagation to stop the hideDetails click handler from also being called
     event.stopPropagation();
     console.log("you clicked on a card");
-  
+
     // this is the contact view - which has access to the contact model
     this.trigger("displayDetails", this);
   }
