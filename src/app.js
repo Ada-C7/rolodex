@@ -8,7 +8,7 @@ import RolodexView from './app/views/rolodex_view.js';
 var rolodexTemplate;
 var contactList;
 var contactCardDetailsTemplate;
-var detailsTemplate;
+var detailsTemplate
 
 var rolodexData = [
   {
@@ -34,7 +34,7 @@ var rolodexData = [
 ];
 
 //this is how to hide the box
-  $("#contact-details").hide();
+$("#contact-details").hide();
 
 $(document).ready(function(){
   rolodexTemplate = _.template($("#tmpl-contact-card").html());
