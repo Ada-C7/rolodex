@@ -54,12 +54,17 @@ var DetailsView = Backbone.View.extend({
   updateContact: function(event) {
     event.stopPropagation();
 
-    this.model.attributes.name = this.$("#name-edit").val();
-    this.model.attributes.phone = this.$("#phone-edit").val();
-    this.model.attributes.email = this.$("#email-edit").val();
+    // this.model.attributes.name = this.$("#name-edit").val();
+    // this.model.attributes.phone = this.$("#phone-edit").val();
+    // this.model.attributes.email = this.$("#email-edit").val();
+
+    this.model.set( { name: this.$("#name-edit").val() } );
+    this.model.set( { phone: this.$("#phone-edit").val() } );
+    this.model.set( { email: this.$("#email-edit").val() } );
+
     this.render();
     $('div.edit-form').hide();
-    return false;
+    // return false;
   },
 
   cancelEdit: function(event) {

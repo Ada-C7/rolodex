@@ -13,6 +13,7 @@ var RolodexView = Backbone.View.extend({
     this.templateDetails = params.templateDetails;
     // update only relates to adding or removing an instance from the collection
     this.listenTo(this.model, "update", this.render);
+    // this.listenTo(this.model, "change", this.render);
   },
 
   render: function(){
