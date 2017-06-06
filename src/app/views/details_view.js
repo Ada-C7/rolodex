@@ -33,10 +33,7 @@ var DetailsView = Backbone.View.extend({
     console.log("want to delete contact");
     console.log(this.model);
     this.model.destroy();
-    // this.model.unbind();
-    // this.unbind();
-
-    // this.hide();
+    this.hide();
   },
 
   editForm: function(event) {
@@ -54,17 +51,12 @@ var DetailsView = Backbone.View.extend({
   updateContact: function(event) {
     event.stopPropagation();
 
-    // this.model.attributes.name = this.$("#name-edit").val();
-    // this.model.attributes.phone = this.$("#phone-edit").val();
-    // this.model.attributes.email = this.$("#email-edit").val();
-
     this.model.set( { name: this.$("#name-edit").val() } );
     this.model.set( { phone: this.$("#phone-edit").val() } );
     this.model.set( { email: this.$("#email-edit").val() } );
 
     this.render();
     $('div.edit-form').hide();
-    // return false;
   },
 
   cancelEdit: function(event) {
@@ -79,7 +71,7 @@ var DetailsView = Backbone.View.extend({
   },
 
   hide: function(event) {
-    event.stopPropagation();
+    // event.stopPropagation();
     console.log("kill the zombie view");
     // this.trigger("removeView");
     this.$el.hide();
