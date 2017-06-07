@@ -1,9 +1,10 @@
 import $ from 'jquery';
 import _ from 'underscore';
 
-import Contact from 'app/models/contact';
-import Rolodex from 'app/collections/rolodex';
-import ContactView from 'app/views/contact_view';
+import Contact from './app/models/contact';
+import Rolodex from './app/collections/rolodex';
+import ContactView from './app/views/contact_view';
+import RolodexView from './app/views/rolodex_view';
 
 var contactTemplate;
 var rolodex;
@@ -11,7 +12,7 @@ var rolodex;
 var contactData = [
   {
     name: "Kaitlin",
-    email: "queenforever@email.com",
+    email: "email@email.com",
     phone: "234-567-8910"
   },
   {
@@ -37,7 +38,14 @@ $(document).ready(function() {
   $("#contact-details").hide();
   contactTemplate = _.template($("#tmpl-contact-card").html());
   rolodex = new Rolodex(contactData);
-  
+
+  var rolodexView = new RolodexView({
+    contactTemplate: contactTemplate,
+    model: rolodex,
+    el: $('main')
+  });
+
+  rolodexView.render();
   // ------------------
   // Wave 1
   // ------------------

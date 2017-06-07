@@ -5,7 +5,7 @@ import ContactView from './contact_view';
 
 var RolodexView = Backbone.View.extend({
   initialize: function(params) {
-    this.template = params.template;
+    this.template = params.contactTemplate;
     this.listenTo(this.model, "update", this.render);
   },
   render: function() {
@@ -24,5 +24,32 @@ var RolodexView = Backbone.View.extend({
     'click .btn-save': 'addContact',
     'click .btn-cancel': 'clearForm'
   },
-  
+  addContact: function(event) {
+    var formData = this.readContactForm();
+    this.model.add(formData);
+  },
+  readContactForm: function() {
+    var nameData = this.$('#name').val();
+    this.$('#name').val();
+
+    var emailData = this.$('#email').val();
+    this.$('#email').val();
+
+    var phoneData = this.$('#phone').val();
+    this.$('#phone').val();
+
+    var formData = {};
+    if (nameData && nameData != "") {
+      formData["name"] = nameData;
+    }
+    if (emailData && emailData != "") {
+      formData["email"] = emailData;
+    }
+    if (phoneData && phoneData != "") {
+      formData["phone"] = phoneData;
+    }
+    return formData;
+  }
 });
+
+export default RolodexView;
