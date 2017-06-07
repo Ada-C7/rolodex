@@ -19,16 +19,20 @@ var ContactView = Backbone.View.extend({
   },
 
   events: {
-    "click" : "selectedHandler"
+    "click" : "selectedHandler",
+    "mouseover" : "mouseoverHandler",
+    "mouseout" : "mouseoverHandler"
   },
 
 
   selectedHandler: function(event){
     event.stopPropagation();
     this.trigger("showDetailsEvent", this.model);
+  },
+
+  mouseoverHandler: function(event){
+      this.$('.staff-pic').toggleClass('grayscale');
   }
-
-
 
 });
 

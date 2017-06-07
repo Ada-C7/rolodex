@@ -44,7 +44,7 @@ var RolodexView = Backbone.View.extend({
   events: {
     "click .btn-save" : "addContact",
     "click .btn-cancel" : "clearFormData",
-    "click" : "hideModal"
+    "click" : "hideModal",
   },
 
   getFormData: function(){

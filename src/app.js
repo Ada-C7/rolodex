@@ -95,8 +95,4 @@ $(document).ready(function() {
   myRolodexView.render();
 
   $('#contact-details').hide();
-
-  $('.staff-pic').hover(function(){
-    $(this).toggleClass('grayscale'); // broken when new contact added -- because it's in documenet.ready?
-  });
 });
