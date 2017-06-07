@@ -3,8 +3,10 @@ import _ from 'underscore';
 
 import Contact from 'app/models/contact';
 import Rolodex from 'app/collections/rolodex';
+import ContactView from 'app/views/contact_view';
 
 var contactTemplate;
+var rolodex;
 
 var contactData = [
   {
@@ -19,21 +21,30 @@ var contactData = [
   },
 ];
 
-var render = function(contact) {
-  var jsonTalk = contact.toJSON();
-  // send contact info to template
-  var generatedHTML = contactTemplate(jsonTalk);
-  // update the DOM
-  $('#contact-cards').append(generatedHTML);
-};
+// ------------------
+// Wave 1
+// ------------------
+// var render = function(contact) {
+//   var jsonTalk = contact.toJSON();
+//   // send contact info to template
+//   var generatedHTML = contactTemplate(jsonTalk);
+//   // update the DOM
+//   $('#contact-cards').append(generatedHTML);
+// };
 
-//var myContacts = new Contact(contactData);
 
 $(document).ready(function() {
   $("#contact-details").hide();
   contactTemplate = _.template($("#tmpl-contact-card").html());
-  contactData.forEach(function(rawContact) {
-    var myContacts = new Contact(rawContact);
-    render(myContacts);
-  });
+  rolodex = new Rolodex(contactData);
+  
+  // ------------------
+  // Wave 1
+  // ------------------
+  // contactTemplate = _.template($("#tmpl-contact-card").html());
+  // contactData.forEach(function(rawContact) {
+  //   var myContacts = new Contact(rawContact);
+  //   render(myContacts);
+  // });
+
 });
