@@ -2,6 +2,7 @@ import $ from 'jquery';
 import _ from 'underscore';
 
 import Contact from 'app/models/contact';
+import Rolodex from 'app/collections/rolodex';
 
 var contactTemplate;
 
