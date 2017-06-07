@@ -7,6 +7,11 @@ const Contact = Backbone.Model.extend({
     "name": "John Smith",
     "email": "email@email.com",
     "phone": "123-456-7890",
+  },
+  logStatus: function() {
+    console.log("Name: " + this.get("name"));
+    console.log("email: " + this.get("email"));
+    console.log("phone: " + this.get("phone"));
   }
 });
 
