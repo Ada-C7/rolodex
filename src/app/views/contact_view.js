@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+import $ from 'jquery';
 import Contact from '../models/contact';
 
 const ContactView = Backbone.View.extend({
