@@ -2,7 +2,7 @@ import Backbone from 'backbone';
 import _ from 'underscore';
 import $ from 'jquery';
 import Contact from '../models/contact.js';
-import ContactDetailsView from './contact_details.js';
+import ContactDetailsView from './contact_details_view.js';
 
 var ContactView = Backbone.View.extend({
 
@@ -14,20 +14,22 @@ var ContactView = Backbone.View.extend({
   render: function(){
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
+    console.log(this);
     return this;
   },
 
   events: {
-    "click img" : "showContactDetails"
+    "click" : "selectedHandler"
   },
 
-  showContactDetails: function(){
-    var contactDetailsView = new ContactDetailsView({
-      model: this.model,
-    });
-    contactDetailsView.render();
-    contactDetailsView.show();
+
+  selectedHandler: function(event){
+    event.stopPropagation();
+    this.trigger("showDetailsEvent", this.model);
   }
+
+
+
 });
 
 export default ContactView;

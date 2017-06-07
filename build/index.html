@@ -16,11 +16,17 @@
       </header>
 
       <main class="row">
-        <section id="contact-cards" class="row align-center"></section>
+        <div class="row">
+          <section id="contact-cards" class="align-center">
+          </section>
+        </div>
+        <div class="row">
+          <section id="contact-details" class="columns">
+          </section>
+        </div>
       </main>
 
-      <section id="contact-details"></section>
-
+      <!-- New Contact Form -->
       <section class="row contact-form">
         <h3>Add A New Contact</h3>
         <div class="small-12 columns">
@@ -42,7 +48,7 @@
       </section>
     </div>
 
-    <!-- Underscore Templates -->
+    <!-- Contact View Template -->
     <script type="text/template" id="tmpl-contact-card">
       <section class="contact-card small-12 medium-4 columns">
         <div class="staff-pic grayscale">
@@ -51,6 +57,7 @@
       </section>
     </script>
 
+    <!-- Contact Details Template -->
     <script type="text/template" id="tmpl-contact-details">
       <h2><%- name %></h2>
       <h4><%- email %></h4>

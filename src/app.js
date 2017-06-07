@@ -1,9 +1,11 @@
 import $ from 'jquery';
 import _ from 'underscore';
-import Contact from 'app/models/contact.js';
-import Rolodex from 'app/collections/rolodex.js';
-import ContactView from 'app/views/contact_view.js';
-import RolodexView from 'app/views/rolodex_view.js';
+
+import contact from './app/models/contact.js';
+import contactView from './app/views/contact_view.js';
+
+import Rolodex from './app/collections/rolodex.js';
+import RolodexView from './app/views/rolodex_view.js';
 
 var myContacts = [
   { name: "Dwight Schrute",
@@ -87,17 +89,14 @@ $(document).ready(function() {
   var myRolodexView = new RolodexView({
     model: myRolodex,
     template: _.template($('#tmpl-contact-card').html()),
-    el: 'div#application'
+    el: '#application'
   });
 
   myRolodexView.render();
 
-  $('.scroll_navigation ul li').on('click', function(){
-    $('html,body').animate({scrollTop: $(this).offset().top}, 800);
-  });
-
+  $('#contact-details').hide();
 
   $('.staff-pic').hover(function(){
-    $(this).toggleClass('grayscale'); // broken when new contact added
+    $(this).toggleClass('grayscale'); // broken when new contact added -- because it's in documenet.ready?
   });
 });

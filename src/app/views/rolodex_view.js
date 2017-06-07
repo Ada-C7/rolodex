@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Rolodex from '../collections/rolodex.js';
 import Contact from '../models/contact.js';
 import ContactView from './contact_view.js';
+import ContactDetailsView from './contact_details_view.js';
 
 var RolodexView = Backbone.View.extend({
 
@@ -13,7 +14,8 @@ var RolodexView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$('#contact-cards').empty();
+    this.$('#contact-cards').empty();  // shouldn't use jQuery in views
+
     var self = this;
 
     this.model.each(function(contact){
@@ -21,15 +23,28 @@ var RolodexView = Backbone.View.extend({
         model: contact,
         template: self.template,
       });
-      self.$("#contact-cards").append(contactView.render().el);
+      self.$('#contact-cards').append(contactView.render().el); // shouldn't use jQuery in views
+      self.listenTo(contactView, "showDetailsEvent", self.showDetails); // show details event
     });
 
     return this;
   },
 
+
+  showDetails: function(contact){
+    $('#contact-details').empty();
+    $('#contact-details').show();
+    console.log(contact);
+    var contactDetailsView = new ContactDetailsView({
+      model: contact,
+    });
+    $('#contact-details').append(contactDetailsView.render().el);
+  },
+
   events: {
     "click .btn-save" : "addContact",
-    "click .btn-cancel" : "clearFormData"
+    "click .btn-cancel" : "clearFormData",
+    "click" : "hideModal"
   },
 
   getFormData: function(){
@@ -40,9 +55,9 @@ var RolodexView = Backbone.View.extend({
     this.clearFormData();
 
     return {
-      name: formName,
-      email: formEmail,
-      phone: formPhone,
+      name: formName.length !== 0 ? formName : undefined,
+      email: formEmail.length !== 0 ? formEmail : undefined,
+      phone: formPhone.length !== 0 ? formPhone : undefined,
     };
   },
 
@@ -52,9 +67,13 @@ var RolodexView = Backbone.View.extend({
   },
 
   clearFormData: function(){
-    this.$('.form-name').val(' ');
-    this.$('.form-email').val(' ');
-    this.$('.form-phone').val(' ');
+    this.$('.form-name').val('');
+    this.$('.form-email').val('');
+    this.$('.form-phone').val('');
+  },
+
+  hideModal: function(){
+    this.$('#contact-details').hide();
   }
 });
 

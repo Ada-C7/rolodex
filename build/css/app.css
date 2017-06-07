@@ -39,17 +39,17 @@ header {
   padding: 30px;
   background: #2199e8;
   color: #fff;
-  /*z-index: 10;
-  position: fixed;
+  z-index: 10;
+
+  /* uncomment for pop-up like styling */
+  /*position: fixed;
+  top: 30px;
+  left: 30px;
   width: 30%;
   height: 30%;
-  top: 30%;
-  left: 30%;
-  background-color: #538ca3;
   text-align: center;
   border: 1em solid white;
-  margin-left: 20%;
-  border-radius: 20%;*/
+  margin-left: 20%;*/
 }
 
 #contact-cards {
