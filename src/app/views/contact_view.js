@@ -7,8 +7,8 @@ const ContactView = Backbone.View.extend({
   // ------------------
   // Wave 2
   // ------------------
-  // tagName: 'li',
-  // className: 'contact-card small-11 medium-4 large-2 medium-offset-1 columns',
+  tagName: 'li',
+  className: 'contact-card small-11 medium-4 large-2 medium-offset-1 columns',
   // ^^ commented out because click action didn't work.
   initialize: function(params) {
     this.template = params.template;

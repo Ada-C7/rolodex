@@ -42,7 +42,7 @@ $(document).ready(function() {
   var rolodexView = new RolodexView({
     contactTemplate: contactTemplate,
     model: rolodex,
-    el: $('main')
+    el: $('body') // I was targeting main which meant click didn't work outside main.
   });
 
   rolodexView.render();

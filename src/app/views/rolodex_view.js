@@ -27,8 +27,10 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': 'saveContact',
     'click .btn-cancel': 'clearContact',
-    // 'click': 'hideModal'
-    // 'click': 'modal'
+    'click': 'workDammit'
+  },
+  workDammit: function() {
+    console.log('workDammit');
   },
   readContactForm: function() {
     var nameData = this.$('input[name=name]').val();
@@ -39,31 +41,32 @@ var RolodexView = Backbone.View.extend({
 
     var phoneData = this.$('input[name=phone]').val();
     this.$('input[name=phone]').val('');
+    //
+    // return {
+    //   name: nameData,
+    //   email: emailData,
+    //   phone: phoneData
+    // };
 
-    return {
-      name: nameData,
-      email: emailData,
-      phone: phoneData
-    };
-
-    // var formData = {};
-    // if (nameData && nameData != "") {
-    //   formData["name"] = nameData;
-    // }
-    // if (emailData && emailData != "") {
-    //   formData["email"] = emailData;
-    // }
-    // if (phoneData && phoneData != "") {
-    //   formData["phone"] = phoneData;
-    // }
-    // return formData;
+    var formData = {};
+    if (nameData && nameData != "") {
+      formData["name"] = nameData;
+    }
+    if (emailData && emailData != "") {
+      formData["email"] = emailData;
+    }
+    if (phoneData && phoneData != "") {
+      formData["phone"] = phoneData;
+    }
+    return formData;
   },
   saveContact: function() {
-    var contact = new Contact(this.readContactForm());
-    // var formData = this.readContactForm();
-    // console.log("In save contact, form data: ");
-    // console.log(formData);
-    this.model.add(contact);
+    // var contact = new Contact(this.readContactForm());
+    var formData = this.readContactForm();
+    console.log("In save contact, form data: ");
+    console.log(formData);
+    // this.model.add(contact);
+    this.model.add(formData);
   },
   clearContact: function() {
     this.$('input[name=name]').val('');
@@ -71,7 +74,6 @@ var RolodexView = Backbone.View.extend({
     this.$('input[name=phone]').val('');
   },
   displayModal: function(contact){
-    // $('#contact-details').animate({opacity: 'toggle'}, 400);
     $('#contact-details').empty().animate({opacity: 'toggle'}, 800);
     $('#contact-details').show();
     var generatedModalTemplate = this.modalTemplate(contact.attributes);
