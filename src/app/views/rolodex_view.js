@@ -27,11 +27,11 @@ var RolodexView = Backbone.View.extend({
   events: {
     'click .btn-save': 'saveContact',
     'click .btn-cancel': 'clearContact',
-    'click': 'workDammit'
+    // 'click': 'workDammit'
   },
-  workDammit: function() {
-    console.log('workDammit');
-  },
+  // workDammit: function() {
+  //   console.log('workDammit');
+  // },
   readContactForm: function() {
     var nameData = this.$('input[name=name]').val();
     this.$('input[name=name]').val('');
