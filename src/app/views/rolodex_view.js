@@ -77,11 +77,6 @@ var RolodexView = Backbone.View.extend({
     var generatedModalTemplate = this.modalTemplate(contact.attributes);
     this.$('#contact-details').append(generatedModalTemplate);
   },
-  // hideModal: function(event) {
-  //   if($('#contact-details').has(event.target).length === 0 && !$('#contact-details').is(event.target)){
-  //     $('#contact-details').hide();
-  //   }
-  // }
 });
 
 export default RolodexView;
