@@ -22,12 +22,17 @@ const ContactView = Backbone.View.extend({
     return this;
   },
   events: {
-    "click li": 'contactInfo'
+    // "click li": 'contactInfo'
+    'click': 'onClick'
   },
-  contactInfo: function() {
-    console.log("clicked card: ");
-    console.log(this);
-    this.trigger("selected", this);
+  // contactInfo: function() {
+  //   // console.log("clicked card: ");
+  //   // console.log(this);
+  //   this.trigger("selected", this);
+  // },
+  onClick: function(event) {
+    event.stopPropagation();
+    var click = this.trigger('selectedCard', this.model);
   }
 });
 
