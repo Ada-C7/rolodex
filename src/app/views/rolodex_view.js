@@ -29,7 +29,7 @@ var RolodexView = Backbone.View.extend({
           model: model,
           template: that.detailsTemplate
         });
-        detailsView.render();
+      
         that.$("#contact-details").html(detailsView.render().el);
         that.$("#contact-details").show();
       });
