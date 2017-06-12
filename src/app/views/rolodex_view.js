@@ -71,14 +71,14 @@ var RolodexView = Backbone.View.extend({
   // ----------------//
 
   hideModal: function(){
-      $("#contact-details").addClass('hidden');
+      this.$("#contact-details").addClass('hidden');
   },
 
   displayModal: function(contact){
-    $("#contact-details").removeClass('hidden');
-    $('#contact-details').empty();
+    this.$("#contact-details").removeClass('hidden');
+    this.$('#contact-details').empty();
     var contactDetails = this.generateHTML(contact);
-    $("#contact-details").append(contactDetails);
+    this.$("#contact-details").append(contactDetails);
 
   },
 
@@ -96,7 +96,7 @@ var RolodexView = Backbone.View.extend({
   generateHTML: function(contact){
     var contactDetailsData = this.getData(contact);
 
-    var contactDetailsTemplate = _.template($('#tmpl-contact-details').html());
+    var contactDetailsTemplate = _.template(this.$('#tmpl-contact-details').html());
 
     var generatedHTML = contactDetailsTemplate({
       name: contactDetailsData.name,

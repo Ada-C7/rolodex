@@ -12,6 +12,8 @@ const Contact = Backbone.Model.extend({
     console.log("email: " +  this.get('email'));
   },
 
+  // this is a function that runs immediately after the model is created
+  // in this particular function, no code is being run
   initialize: function(params){
     console.log("New Contact", params);
     this.logStatus();
