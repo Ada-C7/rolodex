@@ -18,9 +18,9 @@ const ContactView = Backbone.View.extend({
   },
 
   showDets: function(event) {
-    var contactDets = this.contactTemplate(this.model.toJSON());
+    var contactDets = this.template(this.model.toJSON());
     $('#contact-details').html(contactDets);
-    $('#contact-details').show();
+    $('#tmpl-contact-card').show();
      event.stopPropagation(); //this kills the 'bubbling' on the click event
   },
 
