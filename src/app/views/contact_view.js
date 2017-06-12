@@ -15,8 +15,18 @@ const ContactView = Backbone.View.extend({
     var compiledTemplate = this.template(this.model.toJSON());
     this.$el.html(compiledTemplate);
     return this;
-  }
+  },
 
+  showDets: function(event) {
+    var contactDets = this.contactTemplate(this.model.toJSON());
+    $('#contact-details').html(contactDets);
+    $('#contact-details').show();
+     event.stopPropagation(); //this kills the 'bubbling' on the click event
+  },
+
+  events: {
+    'click': 'showDets'
+  }
   //come back fro delete?
 });
 
