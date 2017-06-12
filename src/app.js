@@ -30,14 +30,14 @@ var rolodex = new Rolodex(contactData);
 
 
 $(document).ready(function() {
-  var rolodexView = new rolodexView({
+  var rolodexV = new RolodexView({
     model: rolodex,
     template: _.template($('#tmpl-contact-card').html()),
     contactTemplate: _.template($("#tmpl-contact-details").html()),
-    el: $('#contact-cards')
+    el: 'body'
   });
 
-  rolodexView.render();
+  rolodexV.render();
 
   // rolodex = new Rolodex(contactData);
     // $("#contact-cards").append(cv.render().$el); //the dollar sign targets everything inside the object
@@ -56,7 +56,5 @@ $(document).ready(function() {
   //   model: rolodex, //referring to this new rolodex that contains the content data
   //   el: $('#contact-cards')
   // })
-
-
 
 });
