@@ -13,23 +13,25 @@
     <div id="application">
       <header>
         <h1>Rolodex</h1>
+        <!-- <button id="test-button">Test</button> -->
         <section class="row contact-form">
           <h3>Add A New Contact</h3>
           <div class="columns">
             <label>
               Name
-              <input type="text" name="name">
+              <input id="name" class="form-field" type="text" name="name">
             </label>
             <label>
               Email
-              <input type="text" name="email">
+              <input id="email" class="form-field" type="text" name="email">
             </label>
             <label>
               Phone
-              <input type="text" name="phone">
+              <input id="phone" class="form-field" type="text" name="phone">
             </label>
-            <h3 class="button btn-save">Save</h3>
-            <h3 class="button btn-cancel">Cancel</h3>
+
+            <h3 id="add-contact" class="button btn-save">Save</h3>
+            <h3 id="cancel-contact" class="button btn-cancel">Cancel</h3>
           </div>
         </section>
       </header>
