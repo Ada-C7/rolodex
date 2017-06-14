@@ -18,15 +18,15 @@
           <div class="columns">
             <label>
               Name
-              <input type="text" name="name">
+              <input type="text" class = "input" id="create-name" name="name">
             </label>
             <label>
               Email
-              <input type="text" name="email">
+              <input type="text" class = "input" id="create-email" name="email">
             </label>
             <label>
               Phone
-              <input type="text" name="phone">
+              <input type="text" class = "input" id="create-phone" name="phone">
             </label>
             <h3 class="button btn-save">Save</h3>
             <h3 class="button btn-cancel">Cancel</h3>
@@ -37,6 +37,9 @@
       <main>
         <ul id="contact-cards" class="row align-center"></ul>
         <section id="contact-details"></section>
+        <section id="edit-contact"></section>
+
+
       </main>
     </div>
 
@@ -51,6 +54,29 @@
       <h3><%- name %></h3>
       <h4><%- email %></h4>
       <h4><%- phone %></h4>
+      <button class="button" id="edit-button">Edit</button>
+    </script>
+
+    <script type="text/template" id="tmpl-contact-edit">
+      <!-- <section id="contact-edit-form"> -->
+        <h3>Edit Contact Info</h3>
+        <div>
+          <label>
+            Name
+            <input type="text" value="<%- name %>" class = "input" id="edit-name" name="name">
+          </label>
+          <label>
+            Email
+            <input type="text" value="<%- email %>" class = "input" id="edit-email" name="email">
+          </label>
+          <label>
+            Phone
+            <input type="text" value="<%- phone %>" class = "input" id="edit-phone" name="phone">
+          </label>
+          <h3 class="button" id= "btn-update">Update</h3>
+          <h3 class="button" id="btn-cancel-edit">Cancel</h3>
+        </div>
+      <!-- </section> -->
     </script>
 
     <!-- Entire JS project built by Webpack -->
