@@ -31,15 +31,23 @@ header {
   z-index: 10;
   position: fixed;
   width: 30%;
-  height: 30%;
+  height: 40%;
   top: 30%;
   left: 30%;
   background-color: #538ca3;
   text-align: center;
   border: 1em solid white;
   margin-left: 20%;
-  border-radius: 20%;
+  border-radius: 20px;
+  padding: 8px ;
+
+  display: none;
 }
+
+#contact-details.edit-form {
+   height: 55%;
+}
+
 
 #contact-cards {
   width: 70%;
@@ -48,6 +56,10 @@ header {
   text-align: center;
 }
 
+.button.btn-edit, .btn-save-edit, .btn-cancel-edit{
+background-color: black;
+
+}
 .contact-card {
   display: inline-block;
   padding: 2%;
